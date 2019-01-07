@@ -15,7 +15,7 @@ public class RotatingDoor : BaseInteractable {
     private float lastDoorOpen = 0;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
         Transform doorTransform = transform.Find("Door");
         if (doorTransform)
         {

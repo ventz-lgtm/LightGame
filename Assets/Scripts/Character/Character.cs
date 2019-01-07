@@ -56,7 +56,7 @@ public class Character : MonoBehaviour {
 
         UpdateCamera();
 
-        float lightIntensity = LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.5f, 0));
+        // float lightIntensity = LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.5f, 0));
 	}
 
     private void FixedUpdate()
@@ -119,12 +119,7 @@ public class Character : MonoBehaviour {
 
         if (horizontal != 0)
         {
-            Vector3 relativePosition = transform.position - targetCameraLocation;
-            relativePosition.y = 0;
-            Vector3 right = -Vector3.Cross(relativePosition.normalized, Vector3.up);
-
             velocityX = Mathf.Clamp(horizontal, -1, 1);
-            //rb.AddForce(right * horizontal * movementForce);
         }
         else
         {
@@ -133,13 +128,7 @@ public class Character : MonoBehaviour {
 
         if (vertical != 0)
         {
-            Vector3 relativePosition = transform.position - targetCameraLocation;
-            relativePosition.y = 0;
-            Vector3 forward = relativePosition.normalized;
-
             velocityZ = Mathf.Clamp(vertical, -1, 1);
-            //rb.AddForce(forward * vertical * movementForce);
-            rb.AddForce(forward * vertical * movementForce);
         }
         else
         {
@@ -148,9 +137,13 @@ public class Character : MonoBehaviour {
 
         Vector3 direction = new Vector3(velocityX, 0, velocityZ).normalized;
 
-        Vector3 vel = rb.velocity;
-        vel.x = Mathf.Abs(velocityX) * direction.x * movementForce;
-        vel.z = Mathf.Abs(velocityZ) * direction.z * movementForce;
-        rb.velocity = vel;
+        Vector3 rPos = transform.position - camera.transform.position;
+        rPos.y = 0;
+        rPos.Normalize();
+
+        Vector3 newVel = new Vector3(0, rb.velocity.y, 0);
+        newVel -= Vector3.Cross(rPos, Vector3.up) * Mathf.Abs(velocityX) * direction.x * movementForce;
+        newVel += rPos * Mathf.Abs(velocityZ) * direction.z * movementForce;
+        rb.velocity = newVel;
     }
 }
