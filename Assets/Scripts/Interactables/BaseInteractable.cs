@@ -47,8 +47,6 @@ public class BaseInteractable : MonoBehaviour {
             textMeshObject = textMeshTransform.gameObject;
             textMesh = textMeshObject.GetComponent<TextMesh>();
         }
-
-        
     }
 
     protected virtual void Update()
@@ -94,7 +92,10 @@ public class BaseInteractable : MonoBehaviour {
             }
         }else if((!hovered || !Input.GetMouseButton(0)) && interactableType == InteractableType.HOLD)
         {
-            DoInteractEnd(GameManager.instance.playerObject);
+            if (pressed)
+            {
+                DoInteractEnd(GameManager.instance.playerObject);
+            }
         }
 
         if (pressed || Time.time - lastActive < 0.3)

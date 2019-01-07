@@ -8,8 +8,9 @@ public class BaseElectricInteractable : BaseInteractable {
     public Material poweredMaterial;
     public Material unpoweredMaterial;
 
-    private GameObject poweredLightObject;
-    private MeshRenderer poweredLightRenderer;
+    protected GameObject poweredLightObject;
+    protected MeshRenderer poweredLightRenderer;
+    protected ParticleSystem poweredParticles;
 
     protected override void Start()
     {
@@ -21,6 +22,12 @@ public class BaseElectricInteractable : BaseInteractable {
         {
             poweredLightObject = poweredLighTransform.gameObject;
             poweredLightRenderer = poweredLightObject.GetComponent<MeshRenderer>();
+        }
+
+        Transform poweredParticleTransform = transform.Find("PoweredParticles");
+        if (poweredParticleTransform)
+        {
+            poweredParticles = poweredParticleTransform.gameObject.GetComponent<ParticleSystem>();
         }
     }
     protected override void OnInteractableStart(GameObject invokerObject)
@@ -43,12 +50,24 @@ public class BaseElectricInteractable : BaseInteractable {
             {
                 poweredLightRenderer.sharedMaterial = poweredMaterial;
             }
+
+            if(poweredParticles && !poweredParticles.isPlaying)
+            {
+                poweredParticles.gameObject.SetActive(true);
+                poweredParticles.Play();
+            }
         }
         else
         {
             if (poweredLightRenderer)
             {
                 poweredLightRenderer.sharedMaterial = unpoweredMaterial;
+            }
+
+            if(poweredParticles && poweredParticles.isPlaying)
+            {
+                poweredParticles.Stop();
+                poweredParticles.gameObject.SetActive(false);
             }
         }
     }
