@@ -4,66 +4,44 @@ using UnityEngine;
 
 public class Holding : MonoBehaviour {
 
-    public int inventory;
-    GameObject targetObject;
-    PickUpItem target;
-
+    public int currentlyHeldObject;
     public GameObject[] itemList;
     public Transform holdPosition;
     private GameObject heldObject;
 
 	// Use this for initialization
 	void Start () {
-        inventory = -1;
-
-        targetObject = GameObject.Find("Generator");
-        target = targetObject.GetComponent<PickUpItem>();
-        //dropPosition = transform.GetChild(0);
+        // -1 is no object in hands
+        currentlyHeldObject = -1;
 	}
-	
-
-    void pickUp()
-    {
-        if(inventory == -1)
-        {
-            inventory = target.pickUpRequest();
-
-            //If Picking up the torch
-            if(inventory == 1)
-            {
-                heldObject = Instantiate(itemList[0], holdPosition.position, holdPosition.rotation);
-                heldObject.transform.SetParent(holdPosition);
-            }
-
-        }
-        
-    }
 
     void putDown()
     {
-        if (inventory != -1)
+        if (currentlyHeldObject != -1)
         {
-            Instantiate(itemList[0], gameObject.transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+            Instantiate(itemList[currentlyHeldObject], gameObject.transform.position + new Vector3(0, 0, 1), Quaternion.identity);
             Destroy(heldObject);
-            inventory = -1;
+            currentlyHeldObject = -1;
             
-        }
-            
+        }      
     }
     
-    int getHolding()
+    public int getHolding()
     {
-        return inventory;
+        return currentlyHeldObject;
     }
 
+    public void getItem(int item)
+    {
+        
+        heldObject = Instantiate(itemList[item], holdPosition.position, holdPosition.rotation);
+        heldObject.transform.SetParent(holdPosition);
+        currentlyHeldObject = item;
+    }
+    
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            pickUp();
-        }
-
         if(Input.GetKeyDown(KeyCode.P))
         {
             putDown();

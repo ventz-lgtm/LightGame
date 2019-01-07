@@ -208,8 +208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec48c5e6db4af74fba201d84fda88de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightIntenisity: 10
+  maxLightIntensity: 10
+  currentLightIntenisity: 0
   batteryDrain: 0.01
+  maxBatteries: 3
   batteryCount: 3
   batteryPercent: 0
 --- !u!114 &114668814445640310
@@ -223,8 +225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16997209a12b8a24a9c553cf1db3c6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: 0
+  currentlyHeldObject: 0
   itemList:
+  - {fileID: 1297764409836724, guid: 09fa08e2e9b8fa6489f80ed5e234785d, type: 2}
+  - {fileID: 1297764409836724, guid: 09fa08e2e9b8fa6489f80ed5e234785d, type: 2}
   - {fileID: 1297764409836724, guid: 09fa08e2e9b8fa6489f80ed5e234785d, type: 2}
   holdPosition: {fileID: 4855212276409442}
 --- !u!114 &114676158033235320

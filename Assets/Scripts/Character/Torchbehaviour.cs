@@ -6,8 +6,10 @@ public class Torchbehaviour : MonoBehaviour {
 
 
     //LightIntensity value between 0 and 8.
-    public float lightIntenisity;
+    public float maxLightIntensity;
+    public float currentLightIntenisity;
     public float batteryDrain;
+    public int maxBatteries;
     public int batteryCount;
     public int batteryPercent;
     Light light;
@@ -16,18 +18,14 @@ public class Torchbehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         light = GetComponent<Light>();
-        lightIntenisity = 8;
-        batteryCount = 3;
 	}
 
     void replacebattery()
     {
-
         if (batteryCount > 0) {
-
             if (Input.GetKeyDown(KeyCode.T))
             {
-                lightIntenisity = 8.0f;
+                currentLightIntenisity = maxLightIntensity;
                 batteryCount--;
             }
         }
@@ -38,23 +36,20 @@ public class Torchbehaviour : MonoBehaviour {
         return batteryCount;
     }
 
-    public int GetIntensity()
+    public int GetMaxBatteries()
     {
-        batteryPercent = (int)((100.0f / 8.0f) * lightIntenisity);
-
-        return batteryPercent;
+        return maxBatteries;
     }
 
-
-
+    public int GetBatteryLife()
+    {
+        batteryPercent = (int)((100.0f / maxLightIntensity) * currentLightIntenisity);
+        return batteryPercent;
+    }
 	// Update is called once per frame
 	void Update () {
-
         replacebattery();
-
-        lightIntenisity -= batteryDrain;
-
-        light.intensity = lightIntenisity;
-		
+        currentLightIntenisity -= batteryDrain;
+        light.intensity = currentLightIntenisity;
 	}
 }

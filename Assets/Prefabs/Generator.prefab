@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1297764409836724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.606335, y: 0.5, z: -1.3667799}
+  m_LocalPosition: {x: 2.874237, y: 0.5, z: -6.390925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,13 +112,24 @@ MonoBehaviour:
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4
-  idleMaterial: {fileID: 0}
-  hoveredMaterial: {fileID: 0}
+  idleMaterial: {fileID: 2100000, guid: f1d14ee8dfdde574091a88200c359429, type: 2}
+  hoveredMaterial: {fileID: 2100000, guid: 95be4df36eca6eb4b821dcab4acd4a1e, type: 2}
   pressedMaterial: {fileID: 0}
   interactableType: 0
   onInteractStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114888987809859660}
+        m_MethodName: pickUpRequest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onInteractEnd:

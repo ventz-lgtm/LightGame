@@ -8,20 +8,30 @@ public class PickUpItem : BaseInteractable {
 
     public items itemDefinition;
 
-    public int itemType;
-
-    public Holding inventory;
+    public Holding playerHeld;
 
     protected override void Start()
     {
         base.Start();
+
+        playerHeld = GameObject.Find("Character").GetComponent<Holding>();
+        if (!playerHeld)
+        {
+            Debug.Log("Could not get inventory");
+        }
+
     }
 
-    public int pickUpRequest()
+    public void pickUpRequest()
     {
-        Destroy(gameObject);
-        return (int)itemDefinition;
+        if (playerHeld.getHolding() == -1) { 
+
+            playerHeld.getItem((int)itemDefinition);
+            Destroy(gameObject);
+        }
+       
     }
+
 
     protected override void Update()
     {

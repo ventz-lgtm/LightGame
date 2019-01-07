@@ -94,7 +94,10 @@ public class BaseInteractable : MonoBehaviour {
             }
         }else if((!hovered || !Input.GetMouseButton(0)) && interactableType == InteractableType.HOLD)
         {
-            DoInteractEnd(GameManager.instance.playerObject);
+            if (pressed)
+            {
+                DoInteractEnd(GameManager.instance.playerObject);
+            }
         }
 
         if (pressed || Time.time - lastActive < 0.3)
@@ -170,6 +173,11 @@ public class BaseInteractable : MonoBehaviour {
         onInteractStart.Invoke(invokerObject);
 
         pressed = true;
+    }
+
+    public float GetLastActive()
+    {
+        return lastActive;
     }
 
     void DoInteractEnd(GameObject invokerObject)
