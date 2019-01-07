@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpItem : MonoBehaviour {
+public class PickUpItem : BaseInteractable {
 
     public enum items {TORCH, GENERATOR_PIECE, FUEL};
 
@@ -12,10 +12,10 @@ public class PickUpItem : MonoBehaviour {
 
     public Holding inventory;
 
-	// Use this for initialization
-	void Start () {
-        
-	}
+    protected override void Start()
+    {
+        base.Start();
+    }
 
     public int pickUpRequest()
     {
@@ -23,9 +23,9 @@ public class PickUpItem : MonoBehaviour {
         return (int)itemDefinition;
     }
 
+    protected override void Update()
+    {
+        base.Update();
+    }
 
-	// Update is called once per frame
-	void Update () {
-        
-	}
 }
