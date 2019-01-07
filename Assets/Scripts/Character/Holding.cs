@@ -10,8 +10,7 @@ public class Holding : MonoBehaviour {
 
     public GameObject[] itemList;
     public Transform holdPosition;
-
-    public GameObject heldObject;
+    private GameObject heldObject;
 
 	// Use this for initialization
 	void Start () {
@@ -30,9 +29,10 @@ public class Holding : MonoBehaviour {
             inventory = target.pickUpRequest();
 
             //If Picking up the torch
-            if(inventory == 0)
+            if(inventory == 1)
             {
-                heldObject = Instantiate(itemList[0], holdPosition);
+                heldObject = Instantiate(itemList[0], holdPosition.position, holdPosition.rotation);
+                heldObject.transform.SetParent(holdPosition);
             }
 
         }
@@ -51,6 +51,10 @@ public class Holding : MonoBehaviour {
             
     }
     
+    int getHolding()
+    {
+        return inventory;
+    }
 
 
 	// Update is called once per frame

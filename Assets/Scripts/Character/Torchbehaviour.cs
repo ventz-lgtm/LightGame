@@ -6,9 +6,9 @@ public class Torchbehaviour : MonoBehaviour {
 
 
     //LightIntensity value between 0 and 8.
-    public float lightIntenisity = 0f;
-    public float batteryDrain = 0.1f;
-    public int batteryCount = 3;
+    public float lightIntenisity;
+    public float batteryDrain;
+    public int batteryCount;
     public int batteryPercent;
     Light light;
 
