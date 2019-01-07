@@ -11,9 +11,9 @@ public class Fire : BaseInteractable {
     public bool fireOn { get; private set; }
 
     private GameObject particleObject;
-    private ParticleSystem particleSystem;
+    private ParticleSystem fireParticleSystem;
     private GameObject lightObject;
-    private Light light;
+    private Light fireLight;
     private float fireAlpha = 0;
     private float flicker = 0;
     private float flickerChange = 0;
@@ -28,14 +28,14 @@ public class Fire : BaseInteractable {
         if (lightTransform)
         {
             lightObject = lightTransform.gameObject;
-            light = lightObject.GetComponent<Light>();
+            fireLight = lightObject.GetComponent<Light>();
         }
 
         Transform particleTransform = transform.Find("Particles");
         if (particleTransform)
         {
             particleObject = particleTransform.gameObject;
-            particleSystem = particleObject.GetComponent<ParticleSystem>();
+            fireParticleSystem = particleObject.GetComponent<ParticleSystem>();
         }
     }
     protected override void Update()
@@ -60,18 +60,18 @@ public class Fire : BaseInteractable {
 
         flicker = Mathf.Clamp(flicker + flickerChange, -flickerAmount, flickerAmount);
 
-        if (light)
+        if (fireLight)
         {
             if(fireAlpha > 0)
             {
-                light.intensity = fireAlpha + flicker;
+                fireLight.intensity = fireAlpha + flicker;
             }
             else
             {
-                light.intensity = 0;
+                fireLight.intensity = 0;
             }
             
-            light.range = fireRange;
+            fireLight.range = fireRange;
         }
     }
 
@@ -93,9 +93,9 @@ public class Fire : BaseInteractable {
     {
         fireOn = true;
 
-        if (particleSystem)
+        if (fireParticleSystem)
         {
-            particleSystem.Play();
+            fireParticleSystem.Play();
         }
     }
 
@@ -103,9 +103,9 @@ public class Fire : BaseInteractable {
     {
         fireOn = false;
 
-        if (particleSystem)
+        if (fireParticleSystem)
         {
-            particleSystem.Stop();
+            fireParticleSystem.Stop();
         }
     }
 }

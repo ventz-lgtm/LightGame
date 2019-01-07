@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class BaseInteractable : MonoBehaviour {
 
-    public enum InteractableType { PRESS, TOGGLE }
+    public enum InteractableType { PRESS, TOGGLE, HOLD }
 
     [System.Serializable]
     public class InteractableEvent : UnityEvent<GameObject> { }
@@ -28,16 +28,19 @@ public class BaseInteractable : MonoBehaviour {
 
     public bool pressed {get; private set;}
 
-    private GameObject textMeshObject;
-    private TextMesh textMesh;
-    private MeshRenderer meshRenderer;
+    protected GameObject textMeshObject;
+    protected TextMesh textMesh;
+    protected MeshRenderer meshRenderer;
+    protected MeshFilter meshFilter;
     private float lastActive = 0;
     private float textMeshAlpha = 0;
+    private bool checkedStartActive = false;
 
     protected virtual void Start()
     {
         pressed = false;
         meshRenderer = GetComponent<MeshRenderer>();
+        meshFilter = GetComponent<MeshFilter>();
         Transform textMeshTransform = transform.Find("TextMesh");
         if (textMeshTransform)
         {
@@ -45,14 +48,20 @@ public class BaseInteractable : MonoBehaviour {
             textMesh = textMeshObject.GetComponent<TextMesh>();
         }
 
-        if (startActive)
-        {
-            DoInteractStart(null);
-        }
+        
     }
 
     protected virtual void Update()
     {
+        if (!checkedStartActive)
+        {
+            checkedStartActive = true;
+            if (startActive)
+            {
+                DoInteractStart(null);
+            }
+        }
+
         bool hovered = IsHovered();
 
         if(hovered && Input.GetMouseButtonDown(0))
@@ -72,9 +81,20 @@ public class BaseInteractable : MonoBehaviour {
                         DoInteractStart(GameManager.instance.playerObject);
                     }
 
-                    pressed = !pressed;
+                    break;
+                case InteractableType.HOLD:
+                    if (Input.GetMouseButton(0))
+                    {
+                        if (!pressed)
+                        {
+                            DoInteractStart(GameManager.instance.playerObject);
+                        }
+                    }
                     break;
             }
+        }else if((!hovered || !Input.GetMouseButton(0)) && interactableType == InteractableType.HOLD)
+        {
+            DoInteractEnd(GameManager.instance.playerObject);
         }
 
         if (pressed || Time.time - lastActive < 0.3)
@@ -148,12 +168,16 @@ public class BaseInteractable : MonoBehaviour {
 
         OnInteractableStart(invokerObject);
         onInteractStart.Invoke(invokerObject);
+
+        pressed = true;
     }
 
     void DoInteractEnd(GameObject invokerObject)
     {
         OnInteractableEnd(invokerObject);
         onInteractEnd.Invoke(invokerObject);
+
+        pressed = false;
     }
 
     protected virtual void SetMaterial(Material material)
