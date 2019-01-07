@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour {
     public enum LocationType { NONE, TOWN, CAMP, WATER_TOWER, TRAIN_STATION }
 
     public static GameManager instance;
+
+    public float darknessWarningThreshold = 0.5f;
+    public float darknessDeathThreshold = 0.2f;
     public GameObject playerObject;
 
     public GeneratorPart[] generatorParts;

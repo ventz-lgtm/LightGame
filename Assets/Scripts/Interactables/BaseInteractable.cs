@@ -47,8 +47,6 @@ public class BaseInteractable : MonoBehaviour {
             textMeshObject = textMeshTransform.gameObject;
             textMesh = textMeshObject.GetComponent<TextMesh>();
         }
-
-        
     }
 
     protected virtual void Update()

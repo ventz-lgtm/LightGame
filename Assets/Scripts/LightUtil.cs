@@ -69,6 +69,13 @@ public class LightUtil : MonoBehaviour {
         float value = 1 - (distance / range);
 
         //return Mathf.Clamp(value + ((1 - value) * intensity * 0.3f), 0, 1);
+        value *= Mathf.Clamp(intensity, 0f, 1f);
+
+        if(value < 0.7f)
+        {
+            value = value * value;
+        }
+
         return value;
     }
 

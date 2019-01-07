@@ -55,8 +55,6 @@ public class Character : MonoBehaviour {
         }
 
         UpdateCamera();
-
-        // float lightIntensity = LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.5f, 0));
 	}
 
     private void FixedUpdate()
@@ -145,5 +143,14 @@ public class Character : MonoBehaviour {
         newVel -= Vector3.Cross(rPos, Vector3.up) * Mathf.Abs(velocityX) * direction.x * movementForce;
         newVel += rPos * Mathf.Abs(velocityZ) * direction.z * movementForce;
         rb.velocity = newVel;
+    }
+
+    public float GetLightIntensity()
+    {
+        float intensity = 0f;
+        intensity = LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.5f, 0));
+        intensity = Mathf.Max(intensity, LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.1f, 0)));
+
+        return intensity;
     }
 }

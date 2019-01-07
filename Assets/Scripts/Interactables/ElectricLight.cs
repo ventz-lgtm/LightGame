@@ -7,11 +7,15 @@ public class ElectricLight : BaseElectricInteractable {
     public float lightIntensity = 3;
     public float lightRange = 10;
     public float spotlightAngle = 35;
+    [Range(0,1)]
+    public float flickerChance = 0.1f;
 
     public bool lightOn { get; private set; }
 
     private GameObject lightObject;
     private Light electricLight;
+    private float lastFlicker = 0;
+    private bool flickering = false;
 
     protected override void Start()
     {
@@ -36,10 +40,26 @@ public class ElectricLight : BaseElectricInteractable {
                 electricLight.intensity = lightIntensity;
                 electricLight.range = lightRange;
                 electricLight.spotAngle = spotlightAngle;
+
+                if (flickering)
+                {
+                    electricLight.intensity = electricLight.intensity * Random.Range(0f, 1f);
+                }
             }
             else
             {
                 electricLight.intensity = 0;
+            }
+        }
+
+        if(Time.time - lastFlicker > 1)
+        {
+            lastFlicker = Time.time;
+            flickering = false;
+
+            if (Random.Range(0f, 1f) <= flickerChance)
+            {
+                flickering = true;
             }
         }
     }

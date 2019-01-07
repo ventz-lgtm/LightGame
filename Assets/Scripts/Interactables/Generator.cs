@@ -29,6 +29,12 @@ public class Generator : BaseElectricInteractable {
             generatorLight = lightObject.GetComponent<Light>();
             generatorLightMeshRenderer = lightObject.GetComponent<MeshRenderer>();
         }
+
+        Transform lightMeshTransform = transform.Find("LightMesh");
+        if (lightMeshTransform)
+        {
+            generatorLightMeshRenderer = lightMeshTransform.gameObject.GetComponent<MeshRenderer>();
+        }
     }
 
     protected override void Update()
@@ -43,19 +49,19 @@ public class Generator : BaseElectricInteractable {
 
         if (IsPowered())
         {
-            if (lightObject)
-            {
+            if (generatorLight)
                 generatorLight.color = onColor;
+
+            if(generatorLightMeshRenderer)
                 generatorLightMeshRenderer.sharedMaterial = onLightMaterial;
-            }
         }
         else
         {
-            if (lightObject)
-            {
+            if (generatorLight)
                 generatorLight.color = offColor;
+
+            if (generatorLightMeshRenderer)
                 generatorLightMeshRenderer.sharedMaterial = offLightMaterial;
-            }
         }
     }
 
