@@ -22,9 +22,17 @@ public class PickUpItem : BaseInteractable {
 
     }
 
+    public int getItemDefinition()
+    {
+        return (int)itemDefinition;
+    }
+
     public void pickUpRequest()
     {
-        playerHeld.GetItem(gameObject);
+        if (!playerHeld.holding)
+        {
+            playerHeld.GetItem(gameObject);
+        }
        
     }
 
