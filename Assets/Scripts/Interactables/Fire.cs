@@ -59,7 +59,7 @@ public class Fire : BaseInteractable {
     {
         base.Update();
 
-        fuel = Mathf.Lerp(fuel, 0.0f, (Time.time - fireStartTime) * fuelConsumptionRate * 0.0001f);
+        fuel = Mathf.Lerp(fuel, 0.0f, (Time.time - fireStartTime) * fuelConsumptionRate * Time.deltaTime * 0.01f);
 
         if(fuel > 0.1)
         {
