@@ -94,6 +94,8 @@ public class PrefabScatter : MonoBehaviour {
                 }
             }
         }
+
+        Random.InitState(System.DateTime.Now.Second);
     }
 
     public void RemoveItems()

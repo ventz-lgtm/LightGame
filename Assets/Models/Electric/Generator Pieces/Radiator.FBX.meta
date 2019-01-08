@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d96e6102d902ceb48815d69ebefb487b
-timeCreated: 1546874949
+guid: de40145531d49ff4db5a7389d83613b2
+timeCreated: 1546967517
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -9,13 +9,14 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Box
+    4300000: Radiator
+    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: ac7ed2eeee49e684296bddc1f272603d, type: 2}
+      name: 'Material #25'
+    second: {fileID: 2100000, guid: 6a38234f979b71f44965a4f6f13e22ac, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -87,7 +88,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

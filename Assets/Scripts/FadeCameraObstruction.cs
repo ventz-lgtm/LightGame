@@ -64,8 +64,6 @@ public class FadeCameraObstruction : MonoBehaviour {
             fadePercentage = Mathf.Max(0, fadePercentage - (Time.deltaTime * fadeSpeed));
         }
 
-        Debug.Log(fade);
-
         Color color = renderer.material.color;
         color.a = (1 - fadePercentage);
         renderer.material.color = color;

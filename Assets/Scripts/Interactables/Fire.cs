@@ -29,12 +29,6 @@ public class Fire : BaseInteractable {
 
     protected override void Start()
     {
-        
-
-        base.Start();
-
-        
-
         Transform lightTransform = transform.Find("Light");
         if (lightTransform)
         {
@@ -57,8 +51,9 @@ public class Fire : BaseInteractable {
 
         player = GameManager.instance.playerObject;
         
-        fuel = 0.0f;
         ExtinguishFire();
+
+        base.Start();
     }
     protected override void Update()
     {
@@ -117,6 +112,12 @@ public class Fire : BaseInteractable {
     protected override void OnInteractableStart(GameObject invokerObject)
     {
         base.OnInteractableStart(invokerObject);
+
+        if(invokerObject == null)
+        {
+            LightFire();
+            return;
+        }
 
         if (playerInventory.GetHolding())
         {
