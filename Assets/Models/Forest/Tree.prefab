@@ -53,8 +53,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4873398046794306}
+  - component: {fileID: 224719175449865642}
   - component: {fileID: 95977672558427876}
+  - component: {fileID: 65532814350169928}
+  - component: {fileID: 114814726030084746}
+  - component: {fileID: 222717984343989864}
+  - component: {fileID: 114082442545108128}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -72,7 +76,7 @@ Transform:
   m_LocalPosition: {x: 0.22426887, y: 0.24868394, z: -0.3252685}
   m_LocalScale: {x: 1.314123, y: 1.087075, z: 1.087075}
   m_Children: []
-  m_Father: {fileID: 4873398046794306}
+  m_Father: {fileID: 224719175449865642}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4839199934712144
@@ -85,22 +89,7 @@ Transform:
   m_LocalPosition: {x: 0.22426887, y: 0.24868394, z: -0.3252685}
   m_LocalScale: {x: 1.314123, y: 1.087075, z: 1.087075}
   m_Children: []
-  m_Father: {fileID: 4873398046794306}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4873398046794306
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1961604923457282}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.14, y: 0, z: 3.34}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_Children:
-  - {fileID: 4839199934712144}
-  - {fileID: 4633665345188208}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 224719175449865642}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23069100922692660
@@ -199,6 +188,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: beccc0b502d9a4b4ea0b72c44a9705fd, type: 3}
+--- !u!65 &65532814350169928
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961604923457282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5881578, y: 3.3961723, z: 0.47217268}
+  m_Center: {x: 0.0070368648, y: 1.1980855, z: -0.043296378}
 --- !u!95 &95977672558427876
 Animator:
   serializedVersion: 3
@@ -216,3 +217,114 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114082442545108128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961604923457282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: cafbb0229cd09a44a929ded63df426cb, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114814726030084746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961604923457282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cab1b8fd60d7c84e8b79114cee71883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startActive: 0
+  interactableName: Placeholder
+  tooltip: 
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  textMeshFadeMultiplier: 4
+  textTowardsCamera: 0
+  idleMaterial: {fileID: 0}
+  hoveredMaterial: {fileID: 0}
+  pressedMaterial: {fileID: 0}
+  touchActivates: 0
+  interactableType: 2
+  onInteractStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114814726030084746}
+        m_MethodName: Chop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onInteractEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114814726030084746}
+        m_MethodName: ChopEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  treeProgression: {fileID: 114082442545108128}
+  treeStump: {fileID: 1748871056867478, guid: b6f128df5ad205342bc5afdd194e7959, type: 2}
+  woodPile: {fileID: 1951372837659946, guid: a2307d4aecea5ed48a68d704edcd9b9d, type: 2}
+  chopDuration: 3
+--- !u!222 &222717984343989864
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961604923457282}
+--- !u!224 &224719175449865642
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961604923457282}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.69268, y: -0.21029282, z: -31.99}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children:
+  - {fileID: 4839199934712144}
+  - {fileID: 4633665345188208}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -12.692678, y: -0.21029288}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
