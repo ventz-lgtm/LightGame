@@ -150,7 +150,13 @@ public class BaseInteractable : MonoBehaviour {
 
         if (textMesh)
         {
-            textMesh.text = interactableName;
+            string text = interactableName;
+            if(GetHoverText(GameManager.instance.playerObject) != "")
+            {
+                text = GetHoverText(GameManager.instance.playerObject);
+            }
+
+            textMesh.text = text;
 
             if (hovered)
             {
@@ -230,6 +236,11 @@ public class BaseInteractable : MonoBehaviour {
     protected virtual void OnInteractableEnd(GameObject invokerObject)
     {
 
+    }
+
+    protected virtual string GetHoverText(GameObject invokerObject)
+    {
+        return "";
     }
 
     private void OnCollisionEnter(Collision collision)

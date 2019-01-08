@@ -159,4 +159,23 @@ public class Fire : BaseInteractable {
             fireParticleSystem.Stop();
         }
     }
+
+    protected override string GetHoverText(GameObject invokerObject)
+    {
+        if(invokerObject == null) { return ""; }
+
+        Character character = invokerObject.GetComponent<Character>();
+        if (!character) { return ""; }
+
+        Inventory inv = invokerObject.GetComponent<Inventory>();
+        Transform heldTransform = inv.GetHeldItem();
+        GameObject holdingObject = heldTransform ? heldTransform.gameObject : null;
+    
+        if (!holdingObject) { return ""; }
+
+        PickUpItem pickup = holdingObject.GetComponent<PickUpItem>();
+        if (pickup.itemDefinition == PickUpItem.items.FIRE_TORCH) { return "Light Torch"; }
+        
+        return "";
+    }
 }

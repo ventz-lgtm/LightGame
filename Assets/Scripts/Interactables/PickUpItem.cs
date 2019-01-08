@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpItem : BaseInteractable {
 
-    public enum items {TORCH, WOODPILE, AXE, FLARE, CONTROL_PANEL, BATTERY_CHARGER, EXHAUST, RADIATOR, FUEL};
+    public enum items {TORCH, FIRE_TORCH, WOODPILE, AXE, FLARE, CONTROL_PANEL, BATTERY_CHARGER, EXHAUST, RADIATOR, FUEL};
 
     public items itemDefinition;
     public bool aimable = false;
@@ -20,7 +20,16 @@ public class PickUpItem : BaseInteractable {
         {
             Debug.Log("Could not get inventory");
         }
+    }
 
+    protected override void Update()
+    {
+        base.Update();
+
+        if (Input.GetButtonDown("Use"))
+        {
+            OnUse();
+        }
     }
 
     protected override void OnInteractableStart(GameObject invokerObject)
@@ -69,15 +78,13 @@ public class PickUpItem : BaseInteractable {
        
     }
 
-
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     public virtual bool ShouldAim()
     {
         return true;
     }
 
+    public virtual void OnUse()
+    {
+
+    }
 }
