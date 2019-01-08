@@ -1,0 +1,137 @@
+fileFormatVersion: 2
+guid: edef808288e055a44b563753cc024e52
+timeCreated: 1546959362
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: WoodenCabin_BW
+    100004: WoodenCabin_floor
+    100006: WoodenCabin_FW
+    100008: WoodenCabin_LW
+    100010: WoodenCabin_Roof
+    100012: WoodenCabin_RW
+    100014: WoodenCabin_Roof2
+    100016: WoodenCabin_door
+    100018: WoodenCabin_door_handle
+    400000: //RootNode
+    400002: WoodenCabin_BW
+    400004: WoodenCabin_floor
+    400006: WoodenCabin_FW
+    400008: WoodenCabin_LW
+    400010: WoodenCabin_Roof
+    400012: WoodenCabin_RW
+    400014: WoodenCabin_Roof2
+    400016: WoodenCabin_door
+    400018: WoodenCabin_door_handle
+    2300000: WoodenCabin_BW
+    2300002: WoodenCabin_floor
+    2300004: WoodenCabin_FW
+    2300006: WoodenCabin_LW
+    2300008: WoodenCabin_Roof
+    2300010: WoodenCabin_RW
+    2300012: WoodenCabin_Roof2
+    2300014: WoodenCabin_door
+    2300016: WoodenCabin_door_handle
+    3300000: WoodenCabin_BW
+    3300002: WoodenCabin_floor
+    3300004: WoodenCabin_FW
+    3300006: WoodenCabin_LW
+    3300008: WoodenCabin_Roof
+    3300010: WoodenCabin_RW
+    3300012: WoodenCabin_Roof2
+    3300014: WoodenCabin_door
+    3300016: WoodenCabin_door_handle
+    4300000: WoodenCabin_floor
+    4300002: WoodenCabin_RW
+    4300004: WoodenCabin_LW
+    4300006: WoodenCabin_BW
+    4300008: WoodenCabin_Roof
+    4300010: WoodenCabin_FW
+    4300012: WoodenCabin_Roof2
+    4300014: WoodenCabin_door
+    4300016: WoodenCabin_door_handle
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: ac7ed2eeee49e684296bddc1f272603d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 0
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

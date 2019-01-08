@@ -11,7 +11,7 @@ public class PrefabScatter : MonoBehaviour {
 
     public int seed = 1;
 
-    public ScatterPrefabConfig[] prefabs;
+    public ScatterPrefabSettings settings;
 
     private bool hasSpawned = false;
     private int lastSeed = 0;
@@ -48,10 +48,11 @@ public class PrefabScatter : MonoBehaviour {
     {
         RemoveItems();
 
-        foreach(ScatterPrefabConfig cfg in prefabs)
-        {
-            Random.InitState(seed);
+        ScatterPrefabConfig[] prefabs = settings.prefabs;
+        Random.InitState(seed);
 
+        foreach (ScatterPrefabConfig cfg in prefabs)
+        {
             int amount = Random.Range(cfg.minPerSegment, cfg.maxPerSegment);
             amount = amount * (int)(width * 0.1f) * (int)(length * 0.1f);
 
@@ -85,6 +86,9 @@ public class PrefabScatter : MonoBehaviour {
                             Vector3 angle = cfg.angle;
                             angle += new Vector3(Random.Range(cfg.randomizePitch.x, cfg.randomizePitch.y), Random.Range(cfg.randomizeYaw.x, cfg.randomizeYaw.y), Random.Range(cfg.randomizeRoll.x, cfg.randomizeRoll.y));
                             item.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
+
+                            float scale = Mathf.Max(1, Random.Range(cfg.scale.x, cfg.scale.y));
+                            item.transform.localScale = new Vector3(item.transform.localScale.x * scale, item.transform.localScale.y * scale, item.transform.localScale.z * scale);
                         }
                     }
                 }
@@ -124,9 +128,16 @@ public class ScatterPrefabConfig
     public int maxPerSegment;
     public int minPerSegment;
     public float radius;
+    public Vector2 scale;
     public Vector3 offset;
     public Vector3 angle;
     public Vector2 randomizePitch;
     public Vector2 randomizeYaw;
     public Vector2 randomizeRoll;
+}
+
+[CreateAssetMenu]
+public class ScatterPrefabSettings : ScriptableObject
+{
+    public ScatterPrefabConfig[] prefabs;
 }
