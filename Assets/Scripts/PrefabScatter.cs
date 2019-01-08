@@ -80,7 +80,7 @@ public class PrefabScatter : MonoBehaviour {
                         if(item != null)
                         {
                             item.transform.position = location + cfg.offset;
-                            item.transform.parent = transform;
+                            item.transform.SetParent(transform);
                             locations[i] = location + cfg.offset;
 
                             Vector3 angle = cfg.angle;

@@ -195,8 +195,8 @@ public class GameManager : MonoBehaviour {
 
         GUIStyle style = new GUIStyle();
 
-        Rect rect = new Rect(0, 0, w, h * 2 / 100);
-        style.alignment = TextAnchor.UpperLeft;
+        Rect rect = new Rect(0, 0, w, h * 0.3f);
+        style.alignment = TextAnchor.MiddleCenter;
         style.fontSize = h * 2 / 100;
         style.normal.textColor = new Color(1f, 1f, 1f, notifyAlpha);
         GUI.Label(rect, notifyText, style);

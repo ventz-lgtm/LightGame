@@ -96,14 +96,44 @@ public class Character : MonoBehaviour {
     {
         if (visualObject)
         {
-            Vector3 direction = new Vector3(movementDirection.x, 0, movementDirection.z);
+            Inventory inv = GetComponent<Inventory>();
+            Transform transform = inv.GetHeldItem();
+            GameObject heldObject = transform != null ? transform.gameObject : null;
+            bool aiming = false;
 
-            if (direction != Vector3.zero)
+            if (heldObject)
             {
-                Vector3 diff = direction - currentMovementDirection;
-                currentMovementDirection += (diff * 10f * Time.deltaTime);
+                PickUpItem pickup = heldObject.GetComponent<PickUpItem>();
+                if (pickup && pickup.aimable && pickup.ShouldAim())
+                {
+                    aiming = true;
+                }
+            }
 
-                visualObject.transform.rotation = Quaternion.LookRotation(currentMovementDirection, Vector3.up);
+            if (aiming)
+            {
+                // Face towards the mouse for holdables which should be aimed
+
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                Vector3 endPos = ray.origin + (ray.direction * Vector3.Distance(Camera.main.gameObject.transform.position, visualObject.transform.position));
+                Vector3 rPos = endPos - visualObject.transform.position;
+                rPos.y = 0;
+                rPos.Normalize();
+                visualObject.transform.rotation = Quaternion.LookRotation(rPos, Vector3.up);
+            }
+            else {
+                // Face in direction of movement
+
+                Vector3 direction = new Vector3(movementDirection.x, 0, movementDirection.z);
+
+                if (direction != Vector3.zero)
+                {
+                    Vector3 diff = direction - currentMovementDirection;
+                    currentMovementDirection += (diff * 10f * Time.deltaTime);
+
+                    visualObject.transform.rotation = Quaternion.LookRotation(currentMovementDirection, Vector3.up);
+                }
             }
         }
     }

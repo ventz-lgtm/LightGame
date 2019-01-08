@@ -7,6 +7,7 @@ public class PickUpItem : BaseInteractable {
     public enum items {TORCH, WOODPILE, AXE, FLARE, CONTROL_PANEL, BATTERY_CHARGER, EXHAUST, RADIATOR, FUEL};
 
     public items itemDefinition;
+    public bool aimable = false;
 
     public Inventory playerHeld;
 
@@ -72,6 +73,11 @@ public class PickUpItem : BaseInteractable {
     protected override void Update()
     {
         base.Update();
+    }
+
+    public virtual bool ShouldAim()
+    {
+        return true;
     }
 
 }

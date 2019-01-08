@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScatterPrefabSettings
   prefabs:
   - prefab: {fileID: 1961604923457282, guid: 5f5bf186b75fce44886f73c242f20d9b, type: 2}
-    maxPerSegment: 5
-    minPerSegment: 5
+    maxPerSegment: 10
+    minPerSegment: 10
     radius: 4
     addCollider: 0
     scale: {x: 0, y: 0}
