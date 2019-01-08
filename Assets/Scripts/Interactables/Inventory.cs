@@ -15,6 +15,8 @@ public class Inventory : MonoBehaviour {
     public int batteryCount;
     public int maxBatteries;
 
+    private bool holdingTorch;
+
     public int batteryPercent;
 
     public void GetItem(GameObject pickUpObject)
@@ -35,6 +37,11 @@ public class Inventory : MonoBehaviour {
             rb_heldObject.isKinematic = true;
 
             holding = true;
+
+            if(pickUpObject.GetComponent<PickUpItem>().getItemDefinition() == 0)
+            {
+                holdingTorch = true;
+            }
         }
     }
 
@@ -50,12 +57,23 @@ public class Inventory : MonoBehaviour {
                 collider.enabled = true;
             }
 
+            if (holdPosition.GetChild(0).GetComponent<PickUpItem>().getItemDefinition() == 0)
+            {
+                holdingTorch = false;
+            }
+
             rb_heldObject = null;
             holdPosition.GetChild(0).SetParent(null);
             holding = false;
+
+           
         }
     }
     
+    public bool GetHoldingTorch()
+    {
+        return holdingTorch;
+    }
 
     // Use this for initialization
     void Start () {
@@ -90,7 +108,7 @@ public class Inventory : MonoBehaviour {
         }
 
         //Any Object to drop
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetMouseButton(1))
         {
             DropItem();
         }

@@ -52,13 +52,21 @@ public class BatteryLife : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (playerInventory.GetCurrentBatteryLife() > 0)
+        if (playerInventory.GetHoldingTorch())
         {
-            batteryTextItem.text = string.Format("Battery: {0}%", playerInventory.GetCurrentBatteryLife());
+
+            if (playerInventory.GetCurrentBatteryLife() > 0)
+            {
+                batteryTextItem.text = string.Format("Battery: {0}%", playerInventory.GetCurrentBatteryLife());
+            }
+            else
+            {
+                batteryTextItem.text = ("Battery: 0%");
+            }
         }
         else
         {
-            batteryTextItem.text = ("Battery: 0%");
+            batteryTextItem.text = "Battery:";
         }
         batteryCount.fillAmount = (float) (1.0f / maxBatteries * playerInventory.GetBatteryCount());
 	}
