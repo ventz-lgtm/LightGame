@@ -298,9 +298,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  treeProgression: {fileID: 114082442545108128}
+  treeProgression: {fileID: 114804640505771024, guid: 81e6de81a1f2a5440a24ba46d1f4c9f8,
+    type: 2}
   treeStump: {fileID: 1748871056867478, guid: b6f128df5ad205342bc5afdd194e7959, type: 2}
   woodPile: {fileID: 1951372837659946, guid: a2307d4aecea5ed48a68d704edcd9b9d, type: 2}
+  groundHeight: {x: 0, y: 0.5, z: 0}
   chopDuration: 3
 --- !u!222 &222717984343989864
 CanvasRenderer:
