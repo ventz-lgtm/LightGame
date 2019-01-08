@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4855212276409442}
   m_Layer: 0
-  m_Name: holdPosition
+  m_Name: HoldPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504709365347990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.02, y: 1.85, z: -12.58}
+  m_LocalPosition: {x: 13.75, y: 1.85, z: -21.59}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4855212276409442}
@@ -212,6 +212,7 @@ MonoBehaviour:
   holding: 0
   batteryCount: 0
   maxBatteries: 0
+  batteryPercent: 0
 --- !u!114 &114676158033235320
 MonoBehaviour:
   m_ObjectHideFlags: 1

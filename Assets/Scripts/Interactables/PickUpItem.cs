@@ -14,7 +14,7 @@ public class PickUpItem : BaseInteractable {
     {
         base.Start();
 
-        playerHeld = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        playerHeld = GameManager.instance.playerObject.GetComponent<Inventory>();
         if (!playerHeld)
         {
             Debug.Log("Could not get inventory");
@@ -22,14 +22,46 @@ public class PickUpItem : BaseInteractable {
 
     }
 
+    protected override void OnInteractableStart(GameObject invokerObject)
+    {
+        base.OnInteractableStart(invokerObject);
+
+        pickUpRequest();
+    }
+
     public int getItemDefinition()
     {
         return (int)itemDefinition;
     }
 
+    public string getPartDescription()
+    {
+        if(itemDefinition == items.CONTROL_PANEL)
+        {
+            return "Control Panel";
+        }
+
+        if (itemDefinition == items.BATTERY_CHARGER)
+        {
+            return "Battery Charger";
+        }
+
+        if (itemDefinition == items.EXHAUST)
+        {
+            return "Exhaust";
+        }
+
+        if (itemDefinition == items.RADIATOR)
+        {
+            return "Radiator";
+        }
+
+        return null;
+    }
+
     public void pickUpRequest()
     {
-        if (!playerHeld.holding)
+        if (!playerHeld.GetHolding())
         {
             playerHeld.GetItem(gameObject);
         }

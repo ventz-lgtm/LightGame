@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 108779002327588234}
   - component: {fileID: 114161387014756924}
   m_Layer: 0
-  m_Name: bulb
+  m_Name: Bulb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1522243455367144}
   m_LocalRotation: {x: -0.052335896, y: 0, z: 0, w: 0.9986295}
-  m_LocalPosition: {x: -1.43, y: 0.371, z: -0.275}
+  m_LocalPosition: {x: 15.274895, y: 0.69, z: -16.62}
   m_LocalScale: {x: 1.145125, y: 1.145125, z: 1.145125}
   m_Children:
   - {fileID: 4141879385967584}
@@ -219,18 +219,7 @@ MonoBehaviour:
   interactableType: 0
   onInteractStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114664538961635452}
-        m_MethodName: pickUpRequest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onInteractEnd:

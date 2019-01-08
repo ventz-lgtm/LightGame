@@ -86,15 +86,19 @@ public class Generator : BaseElectricInteractable {
     {
         base.OnInteractableStart(invokerObject);
 
-        //Checks if the player is currently holding an item.
+        Debug.Log(requiredPart.name);
+
+        
         if (playerInventory.GetHolding())
         {
-            //Gets a reference to the item being held by the player.
-            PickUpItem currentItem = player.transform.GetChild(0).GetChild(0).GetComponent<PickUpItem>();
-            //getItemDefinition returns the int for the enum of the pickUpItem held by the player.
-            if (currentItem.getItemDefinition() == 0)
+            
+            PickUpItem currentItem = player.transform.Find("HoldPosition").GetChild(0).GetComponent<PickUpItem>();
+            
+            bool success = ProvidePart(currentItem.getPartDescription());
+
+            if (success)
             {
-                bool success = ProvidePart(requiredPart.name); // TODO: Use part which the player is holding
+                playerInventory.DestroyHeldItem();
             }
         }
     }
