@@ -8,6 +8,7 @@ public class Holding : MonoBehaviour {
     public GameObject[] itemList;
     public Transform holdPosition;
     private GameObject heldObject;
+    private Rigidbody heldObjectRB;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,8 @@ public class Holding : MonoBehaviour {
     {
         
         heldObject = Instantiate(itemList[item], holdPosition.position, holdPosition.rotation);
+        heldObjectRB = heldObject.GetComponent<Rigidbody>();
+        heldObjectRB.isKinematic = true;
         heldObject.transform.SetParent(holdPosition);
         currentlyHeldObject = item;
     }

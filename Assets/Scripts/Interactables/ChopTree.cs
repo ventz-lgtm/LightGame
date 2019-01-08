@@ -8,11 +8,14 @@ public class ChopTree : BaseInteractable {
     public Image treeProgression;
     private Image treeInstance;
 
+    public GameObject treeStump;
+    public GameObject woodPile;
+
     Canvas m_Canvas;
     Vector3 pos;
-
+    Vector3 treePosition;
     float chopTime;
-
+    public int chopDuration;
     private bool chopping;
     private bool chopped;
 
@@ -22,6 +25,7 @@ public class ChopTree : BaseInteractable {
         base.Start();
         m_Canvas = Camera.main.GetComponentInChildren<Canvas>();
         chopping = false;
+        treePosition = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -31,10 +35,13 @@ public class ChopTree : BaseInteractable {
 
         if (chopping)
         {
-            treeInstance.fillAmount = Mathf.Clamp01(chopTime - Time.time);
+            treeInstance.fillAmount = Mathf.Lerp(1.0f, 0.0f, (Time.time - chopTime) / chopDuration);
             if(treeInstance.fillAmount == 0)
             {
+                
                 Destroy(gameObject);
+                Instantiate(treeStump, treePosition, treeStump.transform.rotation);
+                Instantiate(woodPile, treePosition + new Vector3(0, 0, 1), woodPile.transform.rotation);
             }
         }
     }
@@ -42,7 +49,7 @@ public class ChopTree : BaseInteractable {
     public void Chop()
     {
         
-        chopTime = Time.time + 1.0f;
+        chopTime = Time.time;
         pos =Input.mousePosition;
         treeInstance = Instantiate(treeProgression, m_Canvas.transform);
         treeInstance.transform.position = pos;
