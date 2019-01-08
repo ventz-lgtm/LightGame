@@ -195,7 +195,8 @@ MonoBehaviour:
   batteryDrain: 0.01
   maxBatteries: 3
   batteryCount: 3
-  batteryPercent: 0
+  torchOn: 0
+  hasBattery: 1
 --- !u!114 &114664538961635452
 MonoBehaviour:
   m_ObjectHideFlags: 1
