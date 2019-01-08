@@ -11,25 +11,27 @@ public class Torchbehaviour : MonoBehaviour {
     public float batteryDrain;
     public int maxBatteries;
     public int batteryCount;
-    public int batteryPercent;
+    private int batteryPercent;
     Light light;
 
-    Holding playerInventory;
+    Inventory playerInventory;
 
+    public bool torchOn;
+    public bool hasBattery;
 
 	// Use this for initialization
 	void Start () {
         light = GetComponent<Light>();
-        playerInventory = GameManager.instance.playerObject.GetComponent<Holding>();
+        playerInventory = GameManager.instance.playerObject.GetComponent<Inventory>();
         currentLightIntenisity = maxLightIntensity;
 	}
 
     
 
-    public int GetBatteryCount()
+    /*public int GetBatteryCount()
     {
         return batteryCount;
-    }
+    }*/
 
     public int GetMaxBatteries()
     {
@@ -44,12 +46,36 @@ public class Torchbehaviour : MonoBehaviour {
 
     public void replaceBatteries()
     {
+        hasBattery = true;
         currentLightIntenisity = maxLightIntensity;
     }
+
+    public void TurnOnLight()
+    {
+        if (hasBattery)
+        {
+            torchOn = !torchOn;
+        }
+    }
+
+
 	// Update is called once per frame
 	void Update () {
+
         
-        currentLightIntenisity -= batteryDrain;
-        light.intensity = currentLightIntenisity;
+
+        if (torchOn)
+        {
+            currentLightIntenisity -= batteryDrain;
+            light.intensity = currentLightIntenisity;
+            if(light.intensity <= 0.0)
+            {
+                hasBattery = false;
+            }
+        }
+        else
+        {
+            light.intensity = 0.0f;
+        }
 	}
 }

@@ -10,8 +10,12 @@ public class Inventory : MonoBehaviour {
     private Rigidbody rb_heldObject;
     public bool holding;
 
+    Torchbehaviour torch;
+
     public int batteryCount;
     public int maxBatteries;
+
+    public int batteryPercent;
 
     public void GetItem(GameObject pickUpObject)
     {
@@ -48,11 +52,37 @@ public class Inventory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (holding)
+        {
+            PickUpItem itemInHand = holdPosition.GetChild(0).GetComponent<PickUpItem>();
+
+            //If player is holding a torch
+            if (itemInHand && itemInHand.getItemDefinition() == 0)
+            {
+
+                
+                torch = holdPosition.GetChild(0).GetChild(0).GetComponent<Torchbehaviour>();
+                SetCurrentBatteryLife(torch);
+                if (Input.GetKeyDown(KeyCode.T) && holding)
+                {
+                    torch.TurnOnLight();
+                }
+
+                if (Input.GetKeyDown(KeyCode.R) && batteryCount > 0 && holding)
+                {
+                    torch.replaceBatteries();
+                    batteryCount--;
+                }
+            }
+        }
+
+        //Any Object to drop
         if (Input.GetKeyDown(KeyCode.P))
         {
             DropItem();
         }
-	}
+    }
 
     public Transform GetHeldItem()
     {
@@ -77,5 +107,25 @@ public class Inventory : MonoBehaviour {
     public bool GetHolding()
     {
         return holding;
+    }
+
+    public int GetMaxBatteries()
+    {
+        return maxBatteries;
+    }
+
+    public void SetCurrentBatteryLife(Torchbehaviour torch)
+    {
+        batteryPercent = torch.GetBatteryLife();
+    }
+
+    public int GetCurrentBatteryLife()
+    {
+        return batteryPercent;
+    }
+
+    public int GetBatteryCount()
+    {
+        return batteryCount;
     }
 }
