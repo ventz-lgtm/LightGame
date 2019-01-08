@@ -18,10 +18,14 @@ public class Fire : BaseInteractable {
     private float flicker = 0;
     private float flickerChange = 0;
 
-    private Holding playerHolding;
+    private Inventory playerInventory;
     private float fireStartTime;
     public float fuelConsumptionRate;
     public float fuel;
+
+    private PickUpItem playerItem;
+
+    private GameObject player;
 
     protected override void Start()
     {
@@ -45,12 +49,14 @@ public class Fire : BaseInteractable {
             fireParticleSystem = particleObject.GetComponent<ParticleSystem>();
         }
 
-        playerHolding = GameObject.FindWithTag("Player").GetComponent<Holding>();
-        if (!playerHolding)
+        playerInventory = GameManager.instance.playerObject.GetComponent<Inventory>();
+        if (!playerInventory)
         {
             Debug.Log("Could not get player Inventory");
         }
 
+        player = GameManager.instance.playerObject;
+        
         fuel = 0.0f;
         ExtinguishFire();
     }
@@ -112,17 +118,22 @@ public class Fire : BaseInteractable {
     {
         base.OnInteractableStart(invokerObject);
 
-        if(playerHolding.getHolding() == 1 && fuel <= 0.1f)
+        if (playerInventory.GetHolding())
         {
-            LightFire();
-            playerHolding.getItem(-1);
-        }
-        else if(playerHolding.getHolding() == 1 && fuel >= 0.1f)
-        {
-            playerHolding.getItem(-1);
-            fuel++;
-        }
+            playerItem = player.GetComponentInChildren<PickUpItem>();
 
+
+            if (playerItem.getItemDefinition() == 1 && fuel <= 0.1f)
+            {
+                LightFire();
+                playerInventory.DestroyHeldItem();
+            }
+            else if (playerItem.getItemDefinition() == 1 && fuel >= 0.1f)
+            {
+                playerInventory.DestroyHeldItem();
+                fuel++;
+            }
+        }
         
     }
 

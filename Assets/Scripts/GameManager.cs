@@ -36,17 +36,21 @@ public class GameManager : MonoBehaviour {
     private float lastMonsterSpawn = 0;
     private float lastMonsterTrySpawn = 0;
 
-	// Use this for initialization
-	void Start () {
-        if(instance == null)
+    private void Awake()
+    {
+        if (instance == null)
         {
             instance = this;
-        }else if(instance != this)
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
             return;
         }
+    }
 
+    // Use this for initialization
+    void Start () {
         if(playerObject != null)
         {
             playerCharacter = playerObject.GetComponent<Character>();
