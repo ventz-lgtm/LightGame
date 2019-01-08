@@ -20,7 +20,7 @@ public class Torchbehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         light = GetComponent<Light>();
-        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Holding>();
+        playerInventory = GameManager.instance.playerCharacter.GetComponent<Holding>();
         currentLightIntenisity = maxLightIntensity;
 	}
 

@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 54468572147089150}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504709365347990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.424775, y: 0.782, z: 4.415637}
+  m_LocalPosition: {x: -1.8, y: 1.81, z: -9.83}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4855212276409442}
@@ -145,11 +145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969533089904146}
   m_LocalRotation: {x: 0.044927116, y: -0, z: -0, w: 0.9989903}
-<<<<<<< HEAD
-  m_LocalPosition: {x: 0, y: 0, z: 0.109999515}
-=======
-  m_LocalPosition: {x: 0, y: 0, z: 0.11000019}
->>>>>>> 6cd34fb33679dd613f91591b08a40ee9620553df
+  m_LocalPosition: {x: 0, y: -0.288, z: -0.112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4616296491482024}
@@ -279,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLightIntensity: 10
-  currentLightIntenisity: 10
+  currentLightIntenisity: 0
   batteryDrain: 0.01
   maxBatteries: 3
   batteryCount: 3
@@ -298,11 +294,12 @@ MonoBehaviour:
   currentlyHeldObject: 0
   itemList:
   - {fileID: 1297764409836724, guid: 09fa08e2e9b8fa6489f80ed5e234785d, type: 2}
-  - {fileID: 1951372837659946, guid: a2307d4aecea5ed48a68d704edcd9b9d, type: 2}
-  - {fileID: 1297764409836724, guid: 09fa08e2e9b8fa6489f80ed5e234785d, type: 2}
   - {fileID: 1297764409836724, guid: 09fa08e2e9b8fa6489f80ed5e234785d, type: 2}
   - {fileID: 1297764409836724, guid: 09fa08e2e9b8fa6489f80ed5e234785d, type: 2}
   holdPosition: {fileID: 4855212276409442}
+  batteryCount: 0
+  maxBatteries: 0
+  currentBatteryLife: 0
 --- !u!114 &114676158033235320
 MonoBehaviour:
   m_ObjectHideFlags: 1
