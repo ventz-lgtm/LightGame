@@ -10,6 +10,10 @@ public class Holding : MonoBehaviour {
     private GameObject heldObject;
     private Rigidbody heldObjectRB;
 
+    public int batteryCount;
+    public int maxBatteries;
+    public float currentBatteryLife;
+
 	// Use this for initialization
 	void Start () {
         // -1 is no object in hands
@@ -34,18 +38,57 @@ public class Holding : MonoBehaviour {
 
     public void getItem(int item)
     {
-        
-        heldObject = Instantiate(itemList[item], holdPosition.position, holdPosition.rotation);
-        heldObjectRB = heldObject.GetComponent<Rigidbody>();
-        heldObjectRB.isKinematic = true;
-        heldObject.transform.SetParent(holdPosition);
-        currentlyHeldObject = item;
+        if (item != -1)
+        {
+            heldObject = Instantiate(itemList[item], holdPosition.position, holdPosition.rotation);
+            heldObjectRB = heldObject.GetComponent<Rigidbody>();
+            heldObjectRB.isKinematic = true;
+            heldObject.transform.SetParent(holdPosition);
+            currentlyHeldObject = item;
+        }
+        else
+        {
+            Destroy(heldObject);
+            currentlyHeldObject = item;
+        }
     }
-    
 
-	// Update is called once per frame
-	void Update () {
-        if(Input.GetKeyDown(KeyCode.P))
+    void replacebattery()
+    {
+       
+       if (batteryCount > 0 && currentlyHeldObject == 0)
+       {
+                
+            heldObject.GetComponentInChildren<Torchbehaviour>().replaceBatteries();
+            batteryCount--;
+       }
+            
+        
+    }
+
+    public int GetMaxBatteries()
+    {
+        return maxBatteries;
+    }
+
+    public float GetCurrentBatteryLife()
+    {
+        return currentBatteryLife;
+    }
+
+    public int GetCurrentBatteries()
+    {
+        return batteryCount;
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            replacebattery();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
         {
             putDown();
         }

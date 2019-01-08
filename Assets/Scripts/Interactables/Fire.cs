@@ -18,11 +18,18 @@ public class Fire : BaseInteractable {
     private float flicker = 0;
     private float flickerChange = 0;
 
+    private Holding playerHolding;
+    private float fireStartTime;
+    public float fuelConsumptionRate;
+    public float fuel;
+
     protected override void Start()
     {
-        ExtinguishFire();
+        
 
         base.Start();
+
+        
 
         Transform lightTransform = transform.Find("Light");
         if (lightTransform)
@@ -37,10 +44,26 @@ public class Fire : BaseInteractable {
             particleObject = particleTransform.gameObject;
             fireParticleSystem = particleObject.GetComponent<ParticleSystem>();
         }
+
+        playerHolding = GameObject.FindWithTag("Player").GetComponent<Holding>();
+        if (!playerHolding)
+        {
+            Debug.Log("Could not get player Inventory");
+        }
+
+        fuel = 0.0f;
+        ExtinguishFire();
     }
     protected override void Update()
     {
         base.Update();
+
+        fuel = Mathf.Lerp(fuel, 0.0f, (Time.time - fireStartTime) * fuelConsumptionRate * 0.0001f);
+
+        if(fuel > 0.1)
+        {
+            fireOn = true;
+        }
 
         if (fireOn)
         {
@@ -62,16 +85,26 @@ public class Fire : BaseInteractable {
 
         if (fireLight)
         {
+
+            
+
             if(fireAlpha > 0)
             {
-                fireLight.intensity = fireAlpha + flicker;
+                fireLight.intensity = fireAlpha + flicker * fuel;
             }
             else
             {
                 fireLight.intensity = 0;
+                
             }
-            
-            fireLight.range = fireRange;
+
+
+            fireLight.range = fireRange * fuel;
+
+            if(fuel <= 0.1f)
+            {
+                ExtinguishFire();
+            }
         }
     }
 
@@ -79,19 +112,25 @@ public class Fire : BaseInteractable {
     {
         base.OnInteractableStart(invokerObject);
 
-        LightFire();
-    }
+        if(playerHolding.getHolding() == 1 && fuel <= 0.1f)
+        {
+            LightFire();
+            playerHolding.getItem(-1);
+        }
+        else if(playerHolding.getHolding() == 1 && fuel >= 0.1f)
+        {
+            playerHolding.getItem(-1);
+            fuel++;
+        }
 
-    protected override void OnInteractableEnd(GameObject invokerObject)
-    {
-        base.OnInteractableEnd(invokerObject);
-
-        ExtinguishFire();
+        
     }
 
     void LightFire()
     {
         fireOn = true;
+        fuel++;
+        fireStartTime = Time.time;
 
         if (fireParticleSystem)
         {
