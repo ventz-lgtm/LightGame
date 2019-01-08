@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224989827051968484}
+  - component: {fileID: 114649670446835468}
   - component: {fileID: 33127092370185862}
   - component: {fileID: 65015589074161634}
   - component: {fileID: 23111671192860324}
   - component: {fileID: 95527730844910504}
-  - component: {fileID: 114649670446835468}
   - component: {fileID: 222581639074909230}
   - component: {fileID: 114378689770901930}
   m_Layer: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   treeProgression: {fileID: 114378689770901930}
+  chopDuration: 5
 --- !u!222 &222581639074909230
 CanvasRenderer:
   m_ObjectHideFlags: 1

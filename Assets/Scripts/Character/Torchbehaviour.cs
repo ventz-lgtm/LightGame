@@ -14,22 +14,17 @@ public class Torchbehaviour : MonoBehaviour {
     public int batteryPercent;
     Light light;
 
+    Holding playerInventory;
+
 
 	// Use this for initialization
 	void Start () {
         light = GetComponent<Light>();
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Holding>();
+        currentLightIntenisity = maxLightIntensity;
 	}
 
-    void replacebattery()
-    {
-        if (batteryCount > 0) {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                currentLightIntenisity = maxLightIntensity;
-                batteryCount--;
-            }
-        }
-    }
+    
 
     public int GetBatteryCount()
     {
@@ -46,9 +41,14 @@ public class Torchbehaviour : MonoBehaviour {
         batteryPercent = (int)((100.0f / maxLightIntensity) * currentLightIntenisity);
         return batteryPercent;
     }
+
+    public void replaceBatteries()
+    {
+        currentLightIntenisity = maxLightIntensity;
+    }
 	// Update is called once per frame
 	void Update () {
-        replacebattery();
+        
         currentLightIntenisity -= batteryDrain;
         light.intensity = currentLightIntenisity;
 	}

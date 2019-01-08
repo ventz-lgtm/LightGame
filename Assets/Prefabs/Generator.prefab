@@ -137,6 +137,5 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  itemDefinition: 1
-  itemType: 1
-  inventory: {fileID: 0}
+  itemDefinition: 4
+  playerHeld: {fileID: 0}

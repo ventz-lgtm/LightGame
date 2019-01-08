@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1385690792287880}
   m_LocalRotation: {x: -0.7071067, y: -0, z: -0, w: 0.7071069}
-  m_LocalPosition: {x: -3.23, y: -0, z: -10.04}
+  m_LocalPosition: {x: 0.348, y: 4.3431585e-17, z: -1.9559847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4051716040466430}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c96986f7d1b10647b746fe4760cfe1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startActive: 1
+  startActive: 0
   interactableName: Placeholder
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
@@ -245,7 +245,7 @@ MonoBehaviour:
   idleMaterial: {fileID: 0}
   hoveredMaterial: {fileID: 0}
   pressedMaterial: {fileID: 0}
-  interactableType: 1
+  interactableType: 0
   onInteractStart:
     m_PersistentCalls:
       m_Calls: []
@@ -259,6 +259,8 @@ MonoBehaviour:
   fireIntensity: 4
   fireRange: 7
   flickerAmount: 0.2
+  fuelConsumptionRate: 0.1
+  fuel: 1
 --- !u!198 &198311162625652094
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public class BatteryLife : MonoBehaviour {
 
     private Text batteryTextItem;
     private Torchbehaviour torch;
+    private Holding playerInventory;
     Image batteryCount;
     Image healthbar;
     private int maxBatteries;
@@ -33,13 +34,13 @@ public class BatteryLife : MonoBehaviour {
             Debug.Log("Not found healthbar display UI component");
         }
         
-        torch = GameObject.Find("torch").GetComponent<Torchbehaviour>();
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Holding>();
         if (!torch)
         {
-            Debug.Log("No torch instance found");
+            Debug.Log("No player Inventory instance found");
         }
 
-        maxBatteries = torch.GetMaxBatteries();
+        maxBatteries = playerInventory.GetMaxBatteries();
 
     }
 
@@ -51,14 +52,14 @@ public class BatteryLife : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (torch.GetBatteryLife() > 0)
+        if (playerInventory.GetCurrentBatteryLife() > 0)
         {
-            batteryTextItem.text = string.Format("Battery: {0}%", torch.GetBatteryLife());
+            batteryTextItem.text = string.Format("Battery: {0}%", playerInventory.GetCurrentBatteryLife());
         }
         else
         {
             batteryTextItem.text = ("Battery: 0%");
         }
-        batteryCount.fillAmount = (float) (1.0f / maxBatteries * torch.GetBatteryCount());
+        batteryCount.fillAmount = (float) (1.0f / maxBatteries * playerInventory.GetCurrentBatteries());
 	}
 }
