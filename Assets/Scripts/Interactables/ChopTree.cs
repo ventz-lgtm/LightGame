@@ -14,6 +14,7 @@ public class ChopTree : BaseInteractable {
     Canvas m_Canvas;
     Vector3 pos;
     Vector3 treePosition;
+    public Vector3 groundHeight;
     float chopTime;
     public int chopDuration;
     private bool chopping;
@@ -35,13 +36,14 @@ public class ChopTree : BaseInteractable {
 
         if (chopping)
         {
-            treeInstance.fillAmount = Mathf.Lerp(1.0f, 0.0f, (Time.time - chopTime) / chopDuration);
+            treeInstance.fillAmount = Mathf.Lerp(1.0f, 0.0f, ((Time.time - chopTime) / chopDuration));
             if(treeInstance.fillAmount == 0)
             {
                 
                 Destroy(gameObject);
-                Instantiate(treeStump, treePosition, treeStump.transform.rotation);
-                Instantiate(woodPile, treePosition + new Vector3(0, 0, 1), woodPile.transform.rotation);
+                Instantiate(treeStump, treePosition + groundHeight, treeStump.transform.rotation);
+                Instantiate(woodPile, treePosition + new Vector3(0, 0, 1) + groundHeight, woodPile.transform.rotation);
+                ChopEnd();
             }
         }
     }
@@ -50,7 +52,7 @@ public class ChopTree : BaseInteractable {
     {
         
         chopTime = Time.time;
-        pos =Input.mousePosition;
+        pos = Input.mousePosition;
         treeInstance = Instantiate(treeProgression, m_Canvas.transform);
         treeInstance.transform.position = pos;
         chopping = true;
@@ -58,8 +60,11 @@ public class ChopTree : BaseInteractable {
 
     public void ChopEnd()
     {
+
+        
         chopping = false;
         treeInstance.fillAmount = 1.0f;
+        
         Destroy(treeInstance);
     }
 }
