@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpItem : BaseInteractable {
 
-    public enum items {TORCH, WOODPILE, AXE, FLARE, GENERATOR_PIECE, FUEL};
+    public enum items {TORCH, WOODPILE, AXE, FLARE, CONTROL_PANEL, BATTERY_CHARGER, EXHAUST, RADIATOR, FUEL};
 
     public items itemDefinition;
 

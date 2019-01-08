@@ -18,6 +18,9 @@ public class Generator : BaseElectricInteractable {
     private MeshRenderer generatorLightMeshRenderer;
     private bool partPicked = false;
 
+    private Inventory playerInventory;
+    private GameObject player;
+
     protected override void Start()
     {
         base.Start();
@@ -35,6 +38,20 @@ public class Generator : BaseElectricInteractable {
         {
             generatorLightMeshRenderer = lightMeshTransform.gameObject.GetComponent<MeshRenderer>();
         }
+
+        playerInventory = GameManager.instance.playerObject.GetComponent<Inventory>();
+        if (!playerInventory)
+        {
+            Debug.Log("Could not get player inventory instance.");
+        }
+
+        player = GameManager.instance.playerObject;
+        if (!player)
+        {
+            Debug.Log("Could not get player instance.");
+        }
+
+
     }
 
     protected override void Update()
@@ -69,7 +86,17 @@ public class Generator : BaseElectricInteractable {
     {
         base.OnInteractableStart(invokerObject);
 
-        bool success = ProvidePart(requiredPart.name); // TODO: Use part which the player is holding
+        //Checks if the player is currently holding an item.
+        if (playerInventory.GetHolding())
+        {
+            //Gets a reference to the item being held by the player.
+            PickUpItem currentItem = player.transform.GetChild(0).GetChild(0).GetComponent<PickUpItem>();
+            //getItemDefinition returns the int for the enum of the pickUpItem held by the player.
+            if (currentItem.getItemDefinition() == 0)
+            {
+                bool success = ProvidePart(requiredPart.name); // TODO: Use part which the player is holding
+            }
+        }
     }
 
     public bool ProvidePart(string partName)
