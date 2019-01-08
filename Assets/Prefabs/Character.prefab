@@ -80,7 +80,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1969533089904146
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -105,7 +105,6 @@ Transform:
   m_LocalPosition: {x: -1.8, y: 1.81, z: -9.83}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
-  - {fileID: 4666629327390290}
   - {fileID: 4855212276409442}
   - {fileID: 4616296491482024}
   m_Father: {fileID: 0}
@@ -119,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 1556717011249796}
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4616296491482024}
   m_RootOrder: 0
@@ -135,8 +134,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4468120206734876}
+  - {fileID: 4666629327390290}
   m_Father: {fileID: 4271973742226716}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4666629327390290
 Transform:
@@ -144,12 +144,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969533089904146}
-  m_LocalRotation: {x: 0.044927116, y: 0, z: 0, w: 0.9989903}
-  m_LocalPosition: {x: 0, y: 0, z: 0.11}
+  m_LocalRotation: {x: 0.044927116, y: -0, z: -0, w: 0.9989903}
+  m_LocalPosition: {x: 0, y: 0, z: 0.109999515}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4271973742226716}
-  m_RootOrder: 0
+  m_Father: {fileID: 4616296491482024}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 5.15, y: 0, z: 0}
 --- !u!4 &4855212276409442
 Transform:
@@ -162,7 +162,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4271973742226716}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23636116178118792
 MeshRenderer:
@@ -178,7 +178,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 51e74b1a8f976cb438aafd80ae0a392d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   batteryDrain: 0.01
   maxBatteries: 3
   batteryCount: 3
-  batteryPercent: 0
+  batteryPercent: 100
 --- !u!114 &114668814445640310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38264cd7d84d0bc4e81773b25db95ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementForce: 8
+  movementForce: 4
   cameraHeight: 10
   movementDampen: 10
   visualObject: {fileID: 1943267559875420}
@@ -320,6 +320,8 @@ MonoBehaviour:
   minCameraPitch: 20
   maxCameraPitch: 80
   originDampening: 0.2
+  maxFlares: 5
+  flarePrefab: {fileID: 0}
 --- !u!136 &136502711734286430
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -330,6 +332,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
-  m_Height: 2
+  m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

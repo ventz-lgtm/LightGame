@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1599439969312750}
+  m_IsPrefabParent: 1
+--- !u!1 &1599439969312750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4962803965032330}
+  - component: {fileID: 114600073562162782}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4962803965032330
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1599439969312750}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114600073562162782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1599439969312750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78399eb60b6152f4494b1061e7824491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darknessWarningThreshold: 0.5
+  darknessDeathThreshold: 0.2
+  playerObject: {fileID: 0}
+  generatorPrefab: {fileID: 1031294813629202, guid: 4c606773557eb5646894b6ca2aecf030,
+    type: 2}
+  maxMonsters: 10
+  monsterSpawnCooldown: 5
+  minMonsterSpawnChance: 10
+  monsterPrefabs:
+  - prefab: {fileID: 1631358026519248, guid: b3f8f4fc7f57a314c9f8c61a81a9aef3, type: 2}
+    spawnAfterSeconds: 0
+    spawnChance: 100
+  generatorParts:
+  - name: Control Panel
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    generatorMesh: {fileID: 4300010, guid: cae1782fb15efad469e6ddef063e459d, type: 3}
+  - name: Battery Charger
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    generatorMesh: {fileID: 4300008, guid: 803236a8f2f25c94e8344ed80f3b8dc4, type: 3}
+  - name: Exhaust
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    generatorMesh: {fileID: 4300010, guid: de74fb3490398454f81273c746a0f99b, type: 3}
+  - name: Radiator
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+    generatorMesh: {fileID: 4300010, guid: 106a5ef221f87e345accd4d4c73c45a1, type: 3}
+  playerCharacter: {fileID: 0}

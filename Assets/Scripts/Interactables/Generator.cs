@@ -92,7 +92,9 @@ public class Generator : BaseElectricInteractable {
 
     private void PickPartName()
     {
-        int index = Random.Range(0, GameManager.instance.generatorParts.Length - 1);
+        int index = Random.Range(0, GameManager.instance.generatorParts.Length);
         requiredPart = (GameManager.instance.generatorParts[index]);
+
+        meshFilter.sharedMesh = requiredPart.generatorMesh;
     }
 }

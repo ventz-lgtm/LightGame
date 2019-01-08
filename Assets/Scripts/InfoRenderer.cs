@@ -33,7 +33,7 @@ public class InfoRenderer : MonoBehaviour
             GUI.Label(rect, text, style);
 
             rect = new Rect(0, 50, w, (h * 2 / 100));
-            text = string.Format("Danger: {0}", GameManager.instance.dangerLevel);
+            text = string.Format("Danger: {0}", GameManager.instance.GetDangerLevel());
             GUI.Label(rect, text, style);
 
             rect = new Rect(0, 75, w, (h * 2 / 100));
