@@ -24,6 +24,13 @@ public class Inventory : MonoBehaviour {
             pickUpObject.transform.SetParent(holdPosition);
             pickUpObject.transform.position = holdPosition.transform.position;
             pickUpObject.transform.rotation = holdPosition.transform.rotation;
+
+            Collider collider = pickUpObject.GetComponent<Collider>();
+            if (collider)
+            {
+                collider.enabled = false;
+            }
+
             rb_heldObject = pickUpObject.GetComponent<Rigidbody>();
             rb_heldObject.isKinematic = true;
 
@@ -36,11 +43,16 @@ public class Inventory : MonoBehaviour {
         if (holding)
         {
             rb_heldObject.isKinematic = false;
+
+            Collider collider = rb_heldObject.GetComponent<Collider>();
+            if (collider)
+            {
+                collider.enabled = true;
+            }
+
             rb_heldObject = null;
             holdPosition.GetChild(0).SetParent(null);
             holding = false;
-
-            
         }
     }
     

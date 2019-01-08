@@ -66,7 +66,7 @@ public class Torchbehaviour : MonoBehaviour {
 
         if (torchOn)
         {
-            currentLightIntenisity -= batteryDrain;
+            currentLightIntenisity -= (batteryDrain / maxLightIntensity) * Time.deltaTime * 10;
             light.intensity = currentLightIntenisity;
             if(light.intensity <= 0.0)
             {

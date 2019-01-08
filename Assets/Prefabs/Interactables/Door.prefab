@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478437631250316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.158422, y: 2.21, z: -6.005}
+  m_LocalPosition: {x: -1.94, y: 0.98, z: -15.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4031005114015220}
@@ -138,13 +138,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bef49dd01c5e9f4cb9025b28645a83e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startActive: 0
   interactableName: Placeholder
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4
+  textTowardsCamera: 0
   idleMaterial: {fileID: 2100000, guid: 219534c0801107046bb514fcc4bb0047, type: 2}
   hoveredMaterial: {fileID: 2100000, guid: eb77ca86a2b99c944ae844df5b464b83, type: 2}
   pressedMaterial: {fileID: 2100000, guid: a84c48de1e34aee4e9e9b87d9e475274, type: 2}
+  touchActivates: 0
   interactableType: 0
   onInteractStart:
     m_PersistentCalls:

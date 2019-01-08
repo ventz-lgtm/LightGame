@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour {
 
     private float lastMonsterSpawn = 0;
     private float lastMonsterTrySpawn = 0;
+    private float lastNotify = 0;
+    private float notifyTime = 0;
+    private string notifyText = "";
+    private float notifyAlpha = 0;
 
     private void Awake()
     {
@@ -165,6 +169,37 @@ public class GameManager : MonoBehaviour {
     public void SetLocationActive(LocationType type, bool active)
     {
         activatedLocations[type] = active;
+    }
+
+    public void Notify(string message, float time)
+    {
+        lastNotify = Time.time;
+        notifyTime = time;
+        notifyText = message;
+    }
+
+    void OnGUI()
+    {
+        if(Time.time - lastNotify < notifyTime)
+        {
+            notifyAlpha = Mathf.Min(1, notifyAlpha + Time.deltaTime);
+        }
+        else
+        {
+            notifyAlpha = Mathf.Max(0, notifyAlpha - Time.deltaTime);
+        }
+
+        if(notifyAlpha <= 0) { return; }
+
+        int w = Screen.width, h = Screen.height;
+
+        GUIStyle style = new GUIStyle();
+
+        Rect rect = new Rect(0, 0, w, h * 2 / 100);
+        style.alignment = TextAnchor.UpperLeft;
+        style.fontSize = h * 2 / 100;
+        style.normal.textColor = new Color(1f, 1f, 1f, notifyAlpha);
+        GUI.Label(rect, notifyText, style);
     }
 }
 
