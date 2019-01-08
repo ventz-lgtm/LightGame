@@ -146,13 +146,11 @@ public class Monster : MonoBehaviour {
             PickEscapeLocation();
         }
 
-        if (escapeLocation == null) { return; }
-
         FaceTowardsLocation(escapeLocation);
 
         if(Vector3.Distance(escapeLocation, transform.position) < 1)
         {
-            Destroy(gameObject);
+            GameManager.instance.RemoveMonster(gameObject);
         }
     }
 

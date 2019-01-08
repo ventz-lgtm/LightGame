@@ -1,59 +1,42 @@
 fileFormatVersion: 2
-guid: 1a01ff5750861724fad38d4d10187131
-timeCreated: 1546885830
+guid: 803236a8f2f25c94e8344ed80f3b8dc4
+timeCreated: 1546949424
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Box200
-    100002: Cylinder048
-    100004: Cylinder049
+    100000: Box242
+    100002: Cylinder060
+    100004: Cylinder061
     100006: //RootNode
-    100008: Box202
-    100010: Cylinder052
-    100012: Cylinder053
-    100014: Group47543
-    100016: Generator
-    100018: Generator 1 light 1
-    100020: Generator 1 light 2
-    400000: Box200
-    400002: Cylinder048
-    400004: Cylinder049
+    100008: Generator 5 light 1
+    100010: Generator 5 light 2
+    100012: Generator no box
+    400000: Box242
+    400002: Cylinder060
+    400004: Cylinder061
     400006: //RootNode
-    400008: Box202
-    400010: Cylinder052
-    400012: Cylinder053
-    400014: Group47543
-    400016: Generator
-    400018: Generator 1 light 1
-    400020: Generator 1 light 2
-    2300000: Box200
-    2300002: Cylinder048
-    2300004: Cylinder049
-    2300006: Box202
-    2300008: Cylinder052
-    2300010: Cylinder053
-    2300012: Generator
-    2300014: Generator 1 light 1
-    2300016: Generator 1 light 2
-    3300000: Box200
-    3300002: Cylinder048
-    3300004: Cylinder049
-    3300006: Box202
-    3300008: Cylinder052
-    3300010: Cylinder053
-    3300012: Generator
-    3300014: Generator 1 light 1
-    3300016: Generator 1 light 2
-    4300000: Box200
-    4300002: Cylinder048
-    4300004: Cylinder049
-    4300006: Cylinder052
-    4300008: Cylinder053
-    4300010: Box202
-    4300012: Generator 1 light 2
-    4300014: Generator 1 light 1
-    4300016: Generator
+    400008: Generator 5 light 1
+    400010: Generator 5 light 2
+    400012: Generator no box
+    2300000: Box242
+    2300002: Cylinder060
+    2300004: Cylinder061
+    2300006: Generator 5 light 1
+    2300008: Generator 5 light 2
+    2300010: Generator no box
+    3300000: Box242
+    3300002: Cylinder060
+    3300004: Cylinder061
+    3300006: Generator 5 light 1
+    3300008: Generator 5 light 2
+    3300010: Generator no box
+    4300000: Cylinder061
+    4300002: Cylinder060
+    4300004: Box242
+    4300006: Generator 5 light 1
+    4300008: Generator no box
+    4300010: Generator 5 light 2
     9500000: //RootNode
   externalObjects:
   - first:

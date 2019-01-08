@@ -22,6 +22,11 @@ public class Character : MonoBehaviour {
     public float maxCameraPitch = 80;
     public float originDampening = 0.2f;
 
+    [Header("Items")]
+    public int maxFlares = 5;
+    public GameObject flarePrefab;
+
+    public int flareCount { get; protected set; }
     private Vector3 targetCameraLocation;
     private Camera camera;
     private Rigidbody rb;
@@ -174,5 +179,29 @@ public class Character : MonoBehaviour {
         intensity = Mathf.Max(intensity, LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.1f, 0), gameObject));
 
         return intensity;
+    }
+
+    public bool PickupFlare()
+    {
+        if(flareCount >= maxFlares) { return false; }
+
+        flareCount++;
+
+        return true;
+    }
+
+    public bool ThrowFlare()
+    {
+        if(flareCount <= 0) { return false; }
+        if(flarePrefab == null) { return false; }
+
+        GameObject flare = Instantiate(flarePrefab);
+        if(flare == null) { return false; }
+
+        flare.transform.position = transform.position + (transform.forward * 0.5f);
+        DroppedFlare flareComponent = flare.GetComponent<DroppedFlare>();
+        flareComponent.Ignite();
+
+        return true;
     }
 }
