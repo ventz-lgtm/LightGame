@@ -17,11 +17,13 @@ public class BaseInteractable : MonoBehaviour {
     public string tooltip = "";
     public Color textColor = Color.white;
     public float textMeshFadeMultiplier = 4;
+    public bool textTowardsCamera = false;
     public Material idleMaterial;
     public Material hoveredMaterial;
     public Material pressedMaterial;
 
     [Header("Interaction")]
+    public bool touchActivates;
     public InteractableType interactableType;
     public InteractableEvent onInteractStart;
     public InteractableEvent onInteractEnd;
@@ -35,6 +37,9 @@ public class BaseInteractable : MonoBehaviour {
     private float lastActive = 0;
     private float textMeshAlpha = 0;
     private bool checkedStartActive = false;
+    private float textMeshDistance = 0;
+    private Vector3 originalTextPosition;
+    private float lastCollisionTrigger = 0;
 
     protected virtual void Start()
     {
@@ -46,6 +51,16 @@ public class BaseInteractable : MonoBehaviour {
         {
             textMeshObject = textMeshTransform.gameObject;
             textMesh = textMeshObject.GetComponent<TextMesh>();
+            textMeshDistance = Vector3.Distance(transform.position, textMeshObject.transform.position);
+
+            originalTextPosition = textMeshObject.transform.position - transform.position;
+        }
+
+        int layer = LayerMask.NameToLayer("Interactable");
+        gameObject.layer = layer;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.layer = layer;
         }
     }
 
@@ -57,6 +72,18 @@ public class BaseInteractable : MonoBehaviour {
             if (startActive)
             {
                 DoInteractStart(null);
+            }
+        }
+
+        if (textMeshObject)
+        {
+            if (textTowardsCamera)
+            {
+                textMeshObject.transform.position = transform.position + originalTextPosition + ((Camera.main.gameObject.transform.position - transform.position).normalized);
+            }
+            else
+            {
+                textMeshObject.transform.position = transform.position + (Vector3.up * textMeshDistance);
             }
         }
 
@@ -118,7 +145,7 @@ public class BaseInteractable : MonoBehaviour {
         {
             Vector3 forward = -(Camera.main.transform.position - transform.position).normalized;
 
-            transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+            textMeshObject.transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
         }
 
         if (textMesh)
@@ -150,7 +177,9 @@ public class BaseInteractable : MonoBehaviour {
 
         Debug.DrawLine(ray.origin, ray.direction * 100);
 
-        if (Physics.Raycast(ray, out hit))
+        int layerMask = 1 << LayerMask.NameToLayer("Interactable");
+
+        if (Physics.Raycast(ray.origin, ray.direction, out hit, 100, layerMask))
         {
             Transform objectHit = hit.transform;
 
@@ -201,5 +230,16 @@ public class BaseInteractable : MonoBehaviour {
     protected virtual void OnInteractableEnd(GameObject invokerObject)
     {
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!touchActivates) { return; }
+        if(Time.time - lastCollisionTrigger < 1) { return; }
+        GameObject collisionObject = collision.rigidbody.gameObject;
+        if(collisionObject != GameManager.instance.playerObject) { return; }
+
+        DoInteractStart(collisionObject);
+        lastCollisionTrigger = Time.time;
     }
 }

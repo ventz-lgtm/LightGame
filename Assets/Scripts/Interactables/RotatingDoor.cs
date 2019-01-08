@@ -13,9 +13,13 @@ public class RotatingDoor : BaseInteractable {
     private MeshRenderer doorMeshRenderer;
     private float doorDistance;
     private float lastDoorOpen = 0;
+    private bool rotateBackwards = false;
+    private float currentYaw = 0;
 
 	// Use this for initialization
 	protected override void Start () {
+        base.Start();
+
         Transform doorTransform = transform.Find("Door");
         if (doorTransform)
         {
@@ -37,16 +41,22 @@ public class RotatingDoor : BaseInteractable {
 
             if (doorOpen)
             {
-                float diff = 90 - yaw;
-                Quaternion rotation = Quaternion.Euler(0, diff * doorDampen, 0);
-                doorGameObject.transform.rotation = doorGameObject.transform.rotation * rotation;
+                float diff = 90 - currentYaw;
+                currentYaw += diff * doorDampen * Time.deltaTime * 30;
+
+                Quaternion rotation = Quaternion.Euler(0, (rotateBackwards ? -currentYaw : currentYaw), 0);
+                doorGameObject.transform.rotation = rotation;
             }
             else
             {
-                float diff = -yaw;
-                Quaternion rotation = Quaternion.Euler(0, diff * doorDampen, 0);
-                doorGameObject.transform.rotation = doorGameObject.transform.rotation * rotation;
+                float diff = currentYaw;
+                currentYaw -= diff * doorDampen * Time.deltaTime * 30;
+
+                Quaternion rotation = Quaternion.Euler(0, (rotateBackwards ? -currentYaw : currentYaw), 0);
+                doorGameObject.transform.rotation = rotation;
             }
+
+            currentYaw = Mathf.Clamp(currentYaw, 0f, 90f);
 
             Vector3 forward = doorGameObject.transform.rotation * Vector3.forward;
             doorGameObject.transform.position = transform.position + (forward * doorDistance);
@@ -66,7 +76,7 @@ public class RotatingDoor : BaseInteractable {
     {
         base.OnInteractableStart(invokerObject);
 
-        ToggleDoor();
+        ToggleDoor(invokerObject);
     }
 
     protected override void OnInteractableEnd(GameObject invokerObject)
@@ -84,8 +94,15 @@ public class RotatingDoor : BaseInteractable {
         }
     }
 
-    public void OpenDoor()
+    public void OpenDoor(GameObject invokerObject)
     {
+        if(invokerObject != null)
+        {
+            Vector3 rPos = (invokerObject.transform.position - transform.position).normalized;
+            float dot = Vector3.Dot(rPos, transform.forward);
+            rotateBackwards = dot < 0;
+        }
+        
         lastDoorOpen = Time.time;
         doorOpen = true;
     }
@@ -95,7 +112,7 @@ public class RotatingDoor : BaseInteractable {
         doorOpen = false;
     }
 
-    public void ToggleDoor()
+    public void ToggleDoor(GameObject invokerObject = null)
     {
         if (doorOpen)
         {
@@ -103,7 +120,7 @@ public class RotatingDoor : BaseInteractable {
         }
         else
         {
-            OpenDoor();
+            OpenDoor(invokerObject);
         }
     }
 }

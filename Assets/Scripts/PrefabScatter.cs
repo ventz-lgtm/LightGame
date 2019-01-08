@@ -89,6 +89,15 @@ public class PrefabScatter : MonoBehaviour {
 
                             float scale = Mathf.Max(1, Random.Range(cfg.scale.x, cfg.scale.y));
                             item.transform.localScale = new Vector3(item.transform.localScale.x * scale, item.transform.localScale.y * scale, item.transform.localScale.z * scale);
+
+                            if (cfg.addCollider)
+                            {
+                                Collider c = item.GetComponent<Collider>();
+                                if (!c)
+                                {
+                                    item.AddComponent<MeshCollider>();
+                                }
+                            }
                         }
                     }
                 }
@@ -130,6 +139,7 @@ public class ScatterPrefabConfig
     public int maxPerSegment;
     public int minPerSegment;
     public float radius;
+    public bool addCollider;
     public Vector2 scale;
     public Vector3 offset;
     public Vector3 angle;

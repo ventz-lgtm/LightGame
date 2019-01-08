@@ -175,6 +175,7 @@ public class GeneratorPart
     public Mesh mesh;
     public Material material;
     public Mesh generatorMesh;
+    public PickUpItem.items pickupType;
 }
 
 [System.Serializable]

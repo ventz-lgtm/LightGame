@@ -16,6 +16,7 @@ MonoBehaviour:
     maxPerSegment: 5
     minPerSegment: 5
     radius: 4
+    addCollider: 0
     scale: {x: 0, y: 0}
     offset: {x: 0, y: -0.1, z: 0}
     angle: {x: 0, y: 0, z: 0}
@@ -26,6 +27,7 @@ MonoBehaviour:
     maxPerSegment: 5
     minPerSegment: 5
     radius: 0
+    addCollider: 0
     scale: {x: 1, y: 1.5}
     offset: {x: 0, y: 0.1, z: 0}
     angle: {x: -90, y: 0, z: 0}
@@ -36,6 +38,7 @@ MonoBehaviour:
     maxPerSegment: 3
     minPerSegment: 3
     radius: 3
+    addCollider: 1
     scale: {x: 5, y: 7}
     offset: {x: 0, y: 0.7, z: 0}
     angle: {x: -90, y: 0, z: 0}
