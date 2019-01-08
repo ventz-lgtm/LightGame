@@ -31,6 +31,14 @@ public class InfoRenderer : MonoBehaviour
             rect = new Rect(0, 25, w, (h * 2 / 100));
             text = string.Format("Light: {0}", character.GetLightIntensity());
             GUI.Label(rect, text, style);
+
+            rect = new Rect(0, 50, w, (h * 2 / 100));
+            text = string.Format("Danger: {0}", GameManager.instance.dangerLevel);
+            GUI.Label(rect, text, style);
+
+            rect = new Rect(0, 75, w, (h * 2 / 100));
+            text = string.Format("Sanity: {0}", GameManager.instance.sanity);
+            GUI.Label(rect, text, style);
         }
     }
 }

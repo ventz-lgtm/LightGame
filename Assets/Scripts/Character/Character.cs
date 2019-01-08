@@ -10,6 +10,7 @@ public class Character : MonoBehaviour {
     public float movementForce = 10;
     public float cameraHeight = 10;
     public float movementDampen = 4;
+    public GameObject visualObject;
 
     [Header("Camera")]
     public CameraMovementType cameraMovementType = CameraMovementType.QE;
@@ -27,6 +28,8 @@ public class Character : MonoBehaviour {
     private float velocityX = 0;
     private float velocityZ = 0;
     private Vector3 currentOrigin;
+    private Vector3 movementDirection = Vector3.forward;
+    private Vector3 currentMovementDirection = Vector3.forward;
 
 	// Use this for initialization
 	void Start () {
@@ -55,6 +58,7 @@ public class Character : MonoBehaviour {
         }
 
         UpdateCamera();
+        UpdateVisibleObject();
 	}
 
     private void FixedUpdate()
@@ -80,6 +84,22 @@ public class Character : MonoBehaviour {
 
             camera.transform.position += (relativePosition * 0.3f);
             camera.transform.rotation = Quaternion.LookRotation((transform.position - camera.transform.position).normalized, Vector3.up);
+        }
+    }
+
+    void UpdateVisibleObject()
+    {
+        if (visualObject)
+        {
+            Vector3 direction = new Vector3(movementDirection.x, 0, movementDirection.z);
+
+            if (direction != Vector3.zero)
+            {
+                Vector3 diff = direction - currentMovementDirection;
+                currentMovementDirection += (diff * 10f * Time.deltaTime);
+
+                visualObject.transform.rotation = Quaternion.LookRotation(currentMovementDirection, Vector3.up);
+            }
         }
     }
 
@@ -143,13 +163,15 @@ public class Character : MonoBehaviour {
         newVel -= Vector3.Cross(rPos, Vector3.up) * Mathf.Abs(velocityX) * direction.x * movementForce;
         newVel += rPos * Mathf.Abs(velocityZ) * direction.z * movementForce;
         rb.velocity = newVel;
+
+        movementDirection = newVel.normalized;
     }
 
     public float GetLightIntensity()
     {
         float intensity = 0f;
-        intensity = LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.5f, 0));
-        intensity = Mathf.Max(intensity, LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.1f, 0)));
+        intensity = LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.5f, 0), gameObject);
+        intensity = Mathf.Max(intensity, LightUtil.instance.SampleLightIntensity(transform.position + new Vector3(0, 0.1f, 0), gameObject));
 
         return intensity;
     }

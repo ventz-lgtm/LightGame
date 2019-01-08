@@ -70,7 +70,6 @@ public class Generator : BaseElectricInteractable {
         base.OnInteractableStart(invokerObject);
 
         bool success = ProvidePart(requiredPart.name); // TODO: Use part which the player is holding
-        Debug.Log(success);
     }
 
     public bool ProvidePart(string partName)

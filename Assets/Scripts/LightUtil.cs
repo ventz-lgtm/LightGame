@@ -17,10 +17,19 @@ public class LightUtil : MonoBehaviour {
 
     public float SampleLightIntensity(Vector3 location)
     {
+        return SampleLightIntensity(location, true);
+    }
+
+    public float SampleLightIntensity(Vector3 location, GameObject traceObject)
+    {
+        return SampleLightIntensity(location, true, traceObject);
+    }
+
+    public float SampleLightIntensity(Vector3 location, bool useTrace, GameObject traceObject = null)
+    {
         FindLights();
 
         float intensity = 0;
-        RaycastHit hit;
 
         foreach (Light l in lights)
         {
@@ -39,20 +48,20 @@ public class LightUtil : MonoBehaviour {
                 switch (l.type)
                 {
                     case LightType.Point:
-                        if (Physics.Raycast(lightPosition, relativePosition.normalized, out hit, range, layerMask))
+                        if (LightHit(lightPosition, location, useTrace, traceObject))
                         {
                             intensity += GetLightIntensity(distance, range, l.intensity);
                         }
                         break;
                     case LightType.Spot:
-                        float dot = (1 - Vector3.Dot(relativePosition.normalized, l.transform.forward)) * 180 * 4;
+                        float dot = (1 - Vector3.Dot(relativePosition.normalized, l.transform.forward)) * 180 * 1.5f;
                         float dotLimit = l.spotAngle;
 
                         if(dot < dotLimit && dot > -dotLimit)
                         {
-                            if (Physics.Raycast(lightPosition, relativePosition.normalized, out hit, range, layerMask))
+                            if (LightHit(lightPosition, location, useTrace, traceObject))
                             {
-                                intensity += GetLightIntensity(distance, range, l.intensity);
+                                intensity += GetLightIntensity(distance, range, l.intensity) * 1.8f;
                             }
                         }
                         break;
@@ -62,6 +71,30 @@ public class LightUtil : MonoBehaviour {
         }
 
         return Mathf.Clamp(intensity, 0, 1);
+    }
+
+    public bool LightHit(Vector3 lightPosition, Vector3 location, bool useTrace, GameObject traceObject)
+    {
+        if (!useTrace)
+        {
+            return true;
+        }
+
+        Vector3 relativePosition = location - lightPosition;
+        float range = relativePosition.magnitude;
+        RaycastHit hit;
+        int layerMask = 0;
+        layerMask = ~layerMask;
+
+        if (Physics.Raycast(lightPosition, relativePosition.normalized, out hit, range, layerMask))
+        {
+            if(traceObject == null) { return false; }
+            if(traceObject != hit.collider.gameObject && hit.collider.gameObject.transform.parent != transform.transform) { return false; }
+
+            return true;
+        }
+
+        return true;
     }
 
     public float GetLightIntensity(float distance, float range, float intensity)
