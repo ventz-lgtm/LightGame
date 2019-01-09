@@ -8,6 +8,7 @@ public class BaseInventoryItem : BaseInteractable {
 
     protected override void Start()
     {
+        startActive = false;
         base.Start();
 
         if (!textMeshObject)

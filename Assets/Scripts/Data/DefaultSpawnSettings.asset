@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: DefaultSpawnSettings
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawnPointSettings
+  maxSpawnChance: 1
   items:
   - chance: 250
     prefab: {fileID: 1206544553321428, guid: 5f6c30d6657578840aece571858a1124, type: 2}
@@ -26,6 +27,10 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0}
   - chance: 300
     prefab: {fileID: 1387813720447954, guid: 86627cf802492da47b690f1ff856781c, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 200
+    prefab: {fileID: 1258652289979112, guid: 886d1dfc5e35f874eb4a59d28bc3e34f, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
   - chance: 10

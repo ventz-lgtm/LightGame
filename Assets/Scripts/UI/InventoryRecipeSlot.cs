@@ -21,6 +21,7 @@ public class InventoryRecipeSlot : MonoBehaviour {
         image = transform.Find("SlotButton").Find("Image").GetComponent<Image>();
         craftButton = transform.Find("CraftButton").GetComponent<Button>();
         button = transform.Find("SlotButton").GetComponent<Button>();
+        craftButton.onClick.AddListener(CraftItem);
         title = transform.Find("Label").GetComponent<Text>();
         toolTipText = transform.parent.parent.Find("ToolTip").GetComponent<Text>();
         character = GameManager.instance.playerCharacter;
@@ -39,6 +40,17 @@ public class InventoryRecipeSlot : MonoBehaviour {
                 toolTipText.text = "";
             }
         }
+    }
+
+    public void CraftItem()
+    {
+        foreach(string type in recipe.ingredients)
+        {
+            character.InventoryDrop(type, true);
+        }
+
+        GameObject item = Instantiate(recipe.prefab);
+        item.transform.position = character.gameObject.transform.position + character.transform.forward;
     }
 
     public void HoverStart()

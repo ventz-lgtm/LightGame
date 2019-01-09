@@ -61,7 +61,7 @@ public class DroppedFlare : BaseInventoryItem {
                 flareLightObject.SetActive(true);
             }
 
-            if (!flareSounds.isPlaying)
+            if (!flareSounds.isPlaying && flareSounds.enabled)
             {
                 flareSounds.clip = flareOnSound;
                 flareSounds.loop = true;

@@ -91,7 +91,6 @@ public class Character : MonoBehaviour {
                 footStepSound.Stop();
             }
         }
-
 	}
 
 
@@ -278,7 +277,7 @@ public class Character : MonoBehaviour {
         return true;
     }
 
-    public GameObject InventoryDrop(int index)
+    public GameObject InventoryDrop(int index, bool dontDrop = false)
     {
         if(inventoryItems.Count <= index) { return null; }
 
@@ -288,8 +287,16 @@ public class Character : MonoBehaviour {
         GameObject droppedItem = item.instance;
         if (droppedItem == null) { return null; }
 
-        droppedItem.SetActive(true);
-        droppedItem.transform.position = transform.position + (visualObject.transform.forward * 0.5f);
+        if (dontDrop)
+        {
+            Destroy(droppedItem);
+        }
+        else
+        {
+            droppedItem.SetActive(true);
+            droppedItem.transform.position = transform.position + (visualObject.transform.forward * 0.5f);
+        }
+        
         inventoryItems.RemoveAt(index);
 
         if (onInventoryChanged != null)
@@ -298,6 +305,21 @@ public class Character : MonoBehaviour {
         }
 
         return droppedItem;
+    }
+
+    public GameObject InventoryDrop(string name, bool dontDrop = false)
+    {
+        for(int i = 0; i < inventoryItems.Count; i++)
+        {
+            InventoryItemType type = inventoryItems[i];
+            
+            if (type.name == name)
+            {
+                return InventoryDrop(i, dontDrop);
+            }
+        }
+
+        return null;
     }
 
     public InventoryItemType InventoryItemAt(int index)
