@@ -64,12 +64,13 @@ public class GameManager : MonoBehaviour {
 
         audioSources = GetComponents<AudioSource>();
         backgroundAmbience = audioSources[0];
-        //backgroundAmbience.Play(0);
+        backgroundAmbience.volume = 0.2f;
+        
 
         sanityWhispers = audioSources[1];
-        sanityWhispers = GetComponent<AudioSource>();
         sanityWhispers.volume = 0.0f;
-        //sanityWhispers.Play(0);
+
+        backgroundAmbience.Play();
 
     }
 
@@ -103,6 +104,8 @@ public class GameManager : MonoBehaviour {
             {
                 valueChange *= 0.06f;
             }
+
+            sanityWhispers.volume = sanity;
 
             dangerLevel = Mathf.Clamp(dangerLevel + valueChange * Time.deltaTime, 0, 1);
 
