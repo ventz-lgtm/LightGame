@@ -10,18 +10,49 @@ public class FadeCameraObstruction : MonoBehaviour {
 
     public float fadePercentage { get; private set; }
 
-    private Renderer renderer;
-    private MeshCollider collider;
+    private List<Renderer> renderers;
+    private List<MeshCollider> colliders;
+    private List<GameObject> objects;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
+        renderers = new List<Renderer>();
+        colliders = new List<MeshCollider>();
+        objects = new List<GameObject>();
+        objects.Add(gameObject);
+
         MeshFilter meshFilter = GetComponent<MeshFilter>();
-        renderer = GetComponent<Renderer>();
-        collider = GetComponent<MeshCollider>();
-        if(meshFilter && renderer && !collider)
+        Renderer r = GetComponent<Renderer>();
+        if (r != null) {
+            renderers.Add(r);
+        }
+
+        MeshCollider c = GetComponent<MeshCollider>();
+        if(meshFilter && r && !c)
         {
-            collider = gameObject.AddComponent<MeshCollider>();
-            collider.sharedMesh = meshFilter.sharedMesh;
+            c = gameObject.AddComponent<MeshCollider>();
+            c.sharedMesh = meshFilter.sharedMesh;
+        }
+
+        colliders.Add(c);
+
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            GameObject child = transform.GetChild(i).gameObject;
+            Renderer renderer = child.GetComponent<Renderer>();
+
+            if(renderer != null)
+            {
+                renderers.Add(renderer);
+            }
+
+            MeshCollider collider = child.GetComponent<MeshCollider>();
+            if(collider != null)
+            {
+                colliders.Add(collider);
+            }
+
+            objects.Add(child);
         }
     }
 	
@@ -42,18 +73,51 @@ public class FadeCameraObstruction : MonoBehaviour {
             }
             else
             {
-                Fade(false);
+                Debug.DrawLine(GameManager.instance.playerObject.transform.position + new Vector3(0, 2, 0), GameManager.instance.playerObject.transform.position + new Vector3(0, 2, 0) + (-(GameManager.instance.playerObject.transform.position - origin).normalized * 20));
+                if (Physics.Raycast(GameManager.instance.playerObject.transform.position + new Vector3(0, 2, 0), -(GameManager.instance.playerObject.transform.position - origin).normalized, out hit, Vector3.Distance(origin, GameManager.instance.playerObject.transform.position), layerMask))
+                {
+                    GameObject hitObject2 = hit.collider.gameObject;
+
+                    if (objects.Contains(hitObject2))
+                    {
+                        Fade(true);
+                    }
+                    else
+                    {
+                        Fade(false);
+                    }
+                }
+                else
+                {
+                    Fade(false);
+                }
             }
         }
         else
         {
-            Fade(false);
+            if (Physics.Raycast(GameManager.instance.playerObject.transform.position + new Vector3(0,2,0), -(GameManager.instance.playerObject.transform.position - origin).normalized, out hit, Vector3.Distance(origin, GameManager.instance.playerObject.transform.position), layerMask))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+
+                if (hitObject == gameObject)
+                {
+                    Fade(true);
+                }
+                else
+                {
+                    Fade(false);
+                }
+            }
+            else
+            {
+                Fade(false);
+            }
         }
     }
 
     public void Fade(bool fade)
     {
-        if (!renderer) { return; }
+        if (renderers.Count == 0) { return; }
 
         if (fade)
         {
@@ -64,8 +128,11 @@ public class FadeCameraObstruction : MonoBehaviour {
             fadePercentage = Mathf.Max(0, fadePercentage - (Time.deltaTime * fadeSpeed * 2f));
         }
 
-        Color color = renderer.material.color;
-        color.a = (1 - fadePercentage);
-        renderer.material.color = color;
+        foreach(Renderer renderer in renderers)
+        {
+            Color color = renderer.material.color;
+            color.a = (1 - fadePercentage);
+            renderer.material.color = color;
+        }
     }
 }

@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1844272375105816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.2, y: -2.61, z: -20.91}
+  m_LocalPosition: {x: -14.3, y: -3.71, z: -96.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,14 +53,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationConfig:
     name: Town
-    locationType: 1
+    locationType: 2
     locationRadius: 30
     generatorSpawns:
-    - location: {x: -11.07, y: 0, z: -14.52}
+    - location: {x: 3.71, y: 0, z: -0.9}
       rotation: {x: -90, y: 0, z: -90}
-    - location: {x: 7, y: 0, z: -17.15}
+    - location: {x: -4.93, y: 0, z: 6.9}
       rotation: {x: -90, y: 0, z: -90}
-    - location: {x: 2.3, y: 0, z: -26.9}
-      rotation: {x: -90, y: 0, z: -90}
-    - location: {x: -13.14, y: 0, z: -26.9}
+    - location: {x: 20.19, y: 0, z: -12.29}
       rotation: {x: -90, y: 0, z: -90}

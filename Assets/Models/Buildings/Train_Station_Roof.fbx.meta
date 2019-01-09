@@ -1,0 +1,238 @@
+fileFormatVersion: 2
+guid: 5a5a5460aba3e5d4d8b4708b380e4098
+timeCreated: 1547057191
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Building 3 Roof 006
+    100002: pCube100
+    100004: pCube101
+    100006: pCube102
+    100008: pCube103
+    100010: pCube86
+    100012: pCube87
+    100014: pCube88
+    100016: pCube89
+    100018: pCube90
+    100020: pCube91
+    100022: pCube92
+    100024: pCube93
+    100026: pCube94
+    100028: pCube95
+    100030: pCube96
+    100032: pCube97
+    100034: pCube98
+    100036: pCube99
+    100038: polySurface556
+    100040: polySurface556 1
+    100042: polySurface557
+    100044: polySurface558
+    100046: polySurface559
+    100048: polySurface560
+    100050: polySurface562
+    100052: polySurface570
+    100054: polySurface572
+    100056: polySurface573
+    100058: polySurface574
+    100060: polySurface575
+    100062: polySurface576
+    100064: polySurface577
+    100066: polySurface578
+    100068: polySurface579
+    100070: polySurface584
+    100072: //RootNode
+    100074: transform1130
+    100076: transform1131
+    100078: transform1132
+    100080: transform1133
+    100082: transform1134
+    100084: transform1135
+    100086: transform1136
+    100088: transform1137
+    100090: transform1138
+    100092: transform1139
+    100094: transform1140
+    100096: transform1141
+    100098: transform1142
+    100100: transform1143
+    100102: transform1144
+    100104: transform1145
+    100106: transform1146
+    100108: transform1147
+    100110: transform1148
+    100112: transform1149
+    100114: transform1150
+    100116: transform1151
+    100118: transform1152
+    100120: transform1153
+    100122: transform1154
+    100124: transform1155
+    100126: transform1156
+    100128: transform1157
+    100130: transform1158
+    100132: transform1159
+    100134: transform1160
+    100136: transform1161
+    100138: transform1162
+    100140: transform1163
+    100142: transform1180
+    400000: Building 3 Roof 006
+    400002: pCube100
+    400004: pCube101
+    400006: pCube102
+    400008: pCube103
+    400010: pCube86
+    400012: pCube87
+    400014: pCube88
+    400016: pCube89
+    400018: pCube90
+    400020: pCube91
+    400022: pCube92
+    400024: pCube93
+    400026: pCube94
+    400028: pCube95
+    400030: pCube96
+    400032: pCube97
+    400034: pCube98
+    400036: pCube99
+    400038: polySurface556
+    400040: polySurface556 1
+    400042: polySurface557
+    400044: polySurface558
+    400046: polySurface559
+    400048: polySurface560
+    400050: polySurface562
+    400052: polySurface570
+    400054: polySurface572
+    400056: polySurface573
+    400058: polySurface574
+    400060: polySurface575
+    400062: polySurface576
+    400064: polySurface577
+    400066: polySurface578
+    400068: polySurface579
+    400070: polySurface584
+    400072: //RootNode
+    400074: transform1130
+    400076: transform1131
+    400078: transform1132
+    400080: transform1133
+    400082: transform1134
+    400084: transform1135
+    400086: transform1136
+    400088: transform1137
+    400090: transform1138
+    400092: transform1139
+    400094: transform1140
+    400096: transform1141
+    400098: transform1142
+    400100: transform1143
+    400102: transform1144
+    400104: transform1145
+    400106: transform1146
+    400108: transform1147
+    400110: transform1148
+    400112: transform1149
+    400114: transform1150
+    400116: transform1151
+    400118: transform1152
+    400120: transform1153
+    400122: transform1154
+    400124: transform1155
+    400126: transform1156
+    400128: transform1157
+    400130: transform1158
+    400132: transform1159
+    400134: transform1160
+    400136: transform1161
+    400138: transform1162
+    400140: transform1163
+    400142: transform1180
+    2300000: polySurface584
+    3300000: polySurface584
+    4300000: polySurface584
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrainstationRoof
+    second: {fileID: 2100000, guid: 704a91c61063b5b44b9d6f8e3894f166, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

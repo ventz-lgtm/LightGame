@@ -29,6 +29,7 @@ ModelImporter:
     100042: Two_story_Window3
     100044: Two_story_window4
     100046: windows
+    100048: Roof
     400000: Box056
     400002: Box057
     400004: Box058
@@ -53,6 +54,7 @@ ModelImporter:
     400042: Two_story_Window3
     400044: Two_story_window4
     400046: windows
+    400048: Roof
     2300000: Box056
     2300002: Box057
     2300004: Box058
@@ -75,6 +77,7 @@ ModelImporter:
     2300038: Two_story_Window3
     2300040: Two_story_window4
     2300042: windows
+    2300044: Roof
     3300000: Box056
     3300002: Box057
     3300004: Box058
@@ -97,6 +100,7 @@ ModelImporter:
     3300038: Two_story_Window3
     3300040: Two_story_window4
     3300042: windows
+    3300044: Roof
     4300000: Box056
     4300002: Box057
     4300004: Mod_Floor025
@@ -119,6 +123,7 @@ ModelImporter:
     4300038: Mod_Floor026
     4300040: Mod_Floor027
     4300042: Mod_Floor028
+    4300044: Roof
   externalObjects:
   - first:
       type: UnityEngine:Material

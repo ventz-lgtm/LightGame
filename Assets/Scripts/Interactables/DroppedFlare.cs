@@ -21,6 +21,7 @@ public class DroppedFlare : BaseInventoryItem {
     AudioClip flareStartSound;
     AudioClip flareEndSound;
 
+
     protected override void Start()
     {
         base.Start();

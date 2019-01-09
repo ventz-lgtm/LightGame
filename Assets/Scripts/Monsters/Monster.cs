@@ -23,6 +23,10 @@ public class Monster : MonoBehaviour {
     private Vector3 escapeLocation;
     private float stoppedSince = 0;
     private float invisibleSince = 0;
+    private bool visible = false;
+    private float lastGrowl = 0;
+    private float lastSurprise = 0;
+    private float predictSample;
 
     AudioSource[] audioSources;
     AudioSource monsterSuprise;
@@ -52,27 +56,31 @@ public class Monster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        if(Vector3.Distance(player.transform.position, gameObject.transform.position) < 6.0f && !IsVisible())
+        if (Time.time - lastGrowl > 4f)
         {
+            lastGrowl = Time.time;
+            if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 6.0f && !visible)
+            {
                 StartCoroutine(GrowlAfterSeconds());
+            }
         }
 
-        if (IsVisible())
+        if (visible && Time.time - lastSurprise > 5)
         {
-            if (!monsterSuprise.isPlaying) {
+            lastSurprise = Time.time;
+
+            if (!monsterSuprise.isPlaying)
+            {
                 if (Random.Range(0.0f, 1.0f) > 0.5f)
-            {
-                    monsterSuprise.PlayOneShot(monsterSupriseClip1);
+                {
+                     monsterSuprise.PlayOneShot(monsterSupriseClip1);
                 }
-            else
-            {
+                else
+                {
                     monsterSuprise.PlayOneShot(monsterSupriseClip2);
                 }
             }
-            
         }
-       
 
         if (escapingLight)
         {
@@ -100,7 +108,11 @@ public class Monster : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (IsVisible() || stopped)
+        visible = IsVisible();
+        Vector3 predictPosition = transform.position + (transform.forward * moveSpeed) + new Vector3(0, 0.5f, 0);
+        predictSample = LightUtil.instance.SampleLightIntensity(predictPosition, false, gameObject);
+
+        if (visible || stopped)
         {
             if(particleObject && !particles.isPlaying)
             {
@@ -145,9 +157,6 @@ public class Monster : MonoBehaviour {
 
         if (!escaping)
         {
-            Vector3 predictPosition = transform.position + (transform.forward * moveSpeed) + new Vector3(0, 0.5f, 0);
-            float predictSample = LightUtil.instance.SampleLightIntensity(predictPosition, false, gameObject);
-
             if (predictSample >= visibleLightThreshold - 0.05f)
             {
                 if (vel != Vector3.zero)
@@ -156,7 +165,7 @@ public class Monster : MonoBehaviour {
                     vel -= vel * 2f * Time.deltaTime;
                 }
 
-                if ((IsVisible() && Time.time - invisibleSince > 1f) || (stopped && Time.time - stoppedSince > waitUntilEscapeLight))
+                if ((visible && Time.time - invisibleSince > 1f) || (stopped && Time.time - stoppedSince > waitUntilEscapeLight))
                 {
                     escapingLight = true;
                     PickEscapeLocation();

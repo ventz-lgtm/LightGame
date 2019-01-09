@@ -1,0 +1,313 @@
+fileFormatVersion: 2
+guid: 1b4199576b1d67f4489e7648f3c24f4b
+timeCreated: 1547054618
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Building 3 floor 1
+    100002: Building 3 floor 2
+    100004: Building 3 floor 3
+    100006: Building 3 Roof 004
+    100008: Building 3 Roof 005
+    100010: Building 3 Roof 006
+    100012: Building 3 Roof 006 1
+    100014: Building 3 wall 1
+    100016: Building 3 wall 2
+    100018: Building 3 wall 3
+    100020: Building 3 wall 4
+    100022: Building 3 wall 5
+    100024: Building 3 wall 6
+    100026: Building 3 wall 7
+    100028: Building 3 wall 8
+    100030: Group47569
+    100032: pCube100
+    100034: pCube101
+    100036: pCube102
+    100038: pCube103
+    100040: pCube86
+    100042: pCube87
+    100044: pCube88
+    100046: pCube89
+    100048: pCube90
+    100050: pCube91
+    100052: pCube92
+    100054: pCube93
+    100056: pCube94
+    100058: pCube95
+    100060: pCube96
+    100062: pCube97
+    100064: pCube98
+    100066: pCube99
+    100068: polySurface556
+    100070: polySurface556 1
+    100072: polySurface557
+    100074: polySurface558
+    100076: polySurface559
+    100078: polySurface560
+    100080: polySurface562
+    100082: polySurface570
+    100084: polySurface572
+    100086: polySurface573
+    100088: polySurface574
+    100090: polySurface575
+    100092: polySurface576
+    100094: polySurface577
+    100096: polySurface578
+    100098: polySurface579
+    100100: //RootNode
+    100102: transform1116
+    100104: transform1117
+    100106: transform1118
+    100108: transform1119
+    100110: transform1120
+    100112: transform1121
+    100114: transform1122
+    100116: transform1123
+    100118: transform1124
+    100120: transform1125
+    100122: transform1126
+    100124: transform1127
+    100126: transform1128
+    100128: transform1129
+    100130: transform1130
+    100132: transform1131
+    100134: transform1132
+    100136: transform1133
+    100138: transform1134
+    100140: transform1135
+    100142: transform1136
+    100144: transform1137
+    100146: transform1138
+    100148: transform1139
+    100150: transform1140
+    100152: transform1141
+    100154: transform1142
+    100156: transform1143
+    100158: transform1144
+    100160: transform1145
+    100162: transform1146
+    100164: transform1147
+    100166: transform1148
+    100168: transform1149
+    100170: transform1150
+    100172: transform1151
+    100174: transform1152
+    100176: transform1153
+    100178: transform1154
+    100180: transform1155
+    100182: transform1156
+    100184: transform1157
+    100186: transform1158
+    100188: transform1159
+    100190: transform1160
+    100192: transform1161
+    100194: transform1162
+    100196: transform1163
+    400000: Building 3 floor 1
+    400002: Building 3 floor 2
+    400004: Building 3 floor 3
+    400006: Building 3 Roof 004
+    400008: Building 3 Roof 005
+    400010: Building 3 Roof 006
+    400012: Building 3 Roof 006 1
+    400014: Building 3 wall 1
+    400016: Building 3 wall 2
+    400018: Building 3 wall 3
+    400020: Building 3 wall 4
+    400022: Building 3 wall 5
+    400024: Building 3 wall 6
+    400026: Building 3 wall 7
+    400028: Building 3 wall 8
+    400030: Group47569
+    400032: pCube100
+    400034: pCube101
+    400036: pCube102
+    400038: pCube103
+    400040: pCube86
+    400042: pCube87
+    400044: pCube88
+    400046: pCube89
+    400048: pCube90
+    400050: pCube91
+    400052: pCube92
+    400054: pCube93
+    400056: pCube94
+    400058: pCube95
+    400060: pCube96
+    400062: pCube97
+    400064: pCube98
+    400066: pCube99
+    400068: polySurface556
+    400070: polySurface556 1
+    400072: polySurface557
+    400074: polySurface558
+    400076: polySurface559
+    400078: polySurface560
+    400080: polySurface562
+    400082: polySurface570
+    400084: polySurface572
+    400086: polySurface573
+    400088: polySurface574
+    400090: polySurface575
+    400092: polySurface576
+    400094: polySurface577
+    400096: polySurface578
+    400098: polySurface579
+    400100: //RootNode
+    400102: transform1116
+    400104: transform1117
+    400106: transform1118
+    400108: transform1119
+    400110: transform1120
+    400112: transform1121
+    400114: transform1122
+    400116: transform1123
+    400118: transform1124
+    400120: transform1125
+    400122: transform1126
+    400124: transform1127
+    400126: transform1128
+    400128: transform1129
+    400130: transform1130
+    400132: transform1131
+    400134: transform1132
+    400136: transform1133
+    400138: transform1134
+    400140: transform1135
+    400142: transform1136
+    400144: transform1137
+    400146: transform1138
+    400148: transform1139
+    400150: transform1140
+    400152: transform1141
+    400154: transform1142
+    400156: transform1143
+    400158: transform1144
+    400160: transform1145
+    400162: transform1146
+    400164: transform1147
+    400166: transform1148
+    400168: transform1149
+    400170: transform1150
+    400172: transform1151
+    400174: transform1152
+    400176: transform1153
+    400178: transform1154
+    400180: transform1155
+    400182: transform1156
+    400184: transform1157
+    400186: transform1158
+    400188: transform1159
+    400190: transform1160
+    400192: transform1161
+    400194: transform1162
+    400196: transform1163
+    2300000: pCube103
+    3300000: pCube103
+    4300000: pCube103
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Curb
+    second: {fileID: 2100000, guid: e0de774c108b78647b65db8be4421db8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrainstationRoof
+    second: {fileID: 2100000, guid: 704a91c61063b5b44b9d6f8e3894f166, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrainstationWall
+    second: {fileID: 2100000, guid: ffbb8bc64cdfee84c8c425641b07a686, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrainstationWindows
+    second: {fileID: 2100000, guid: 3fbad44b799f78f41ac4b63e7139635a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 5ceb6f7875b84d442be8645f948746d5, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

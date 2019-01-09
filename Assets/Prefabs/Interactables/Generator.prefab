@@ -380,13 +380,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startActive: 0
-  interactableName: Placeholder
+  interactableName: Generator
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4
+  textTowardsCamera: 0
   idleMaterial: {fileID: 0}
   hoveredMaterial: {fileID: 0}
   pressedMaterial: {fileID: 0}
+  touchActivates: 0
   interactableType: 0
   onInteractStart:
     m_PersistentCalls:
@@ -405,6 +407,8 @@ MonoBehaviour:
     name: 
     mesh: {fileID: 0}
     material: {fileID: 0}
+    generatorMesh: {fileID: 0}
+    pickupType: 0
   offColor: {r: 1, g: 0, b: 0, a: 1}
   onColor: {r: 0, g: 1, b: 0, a: 1}
   onLightMaterial: {fileID: 2100000, guid: a84c48de1e34aee4e9e9b87d9e475274, type: 2}
