@@ -45,3 +45,14 @@ MonoBehaviour:
     randomizePitch: {x: 0, y: 0}
     randomizeYaw: {x: 0, y: 360}
     randomizeRoll: {x: 0, y: 0}
+  - prefab: {fileID: 1387813720447954, guid: 86627cf802492da47b690f1ff856781c, type: 2}
+    maxPerSegment: 2
+    minPerSegment: 2
+    radius: 1
+    addCollider: 1
+    scale: {x: 0, y: 0}
+    offset: {x: 0, y: 1, z: 0}
+    angle: {x: -90, y: 0, z: 0}
+    randomizePitch: {x: 0, y: 360}
+    randomizeYaw: {x: 0, y: 360}
+    randomizeRoll: {x: 0, y: 360}

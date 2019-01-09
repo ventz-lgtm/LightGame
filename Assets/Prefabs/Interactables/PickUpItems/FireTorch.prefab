@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startActive: 0
-  interactableName: Placeholder
+  interactableName: Torch
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4
@@ -264,7 +264,7 @@ MonoBehaviour:
   aimable: 0
   playerHeld: {fileID: 0}
   lightFlicker: 0
-  fuelUsage: 0.01
+  fuelUsage: 0.004
   fireLightOn: 0
 --- !u!198 &198829103505092550
 ParticleSystem:

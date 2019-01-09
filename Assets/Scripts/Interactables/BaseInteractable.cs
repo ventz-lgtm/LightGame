@@ -41,6 +41,9 @@ public class BaseInteractable : MonoBehaviour {
     private Vector3 originalTextPosition;
     private float lastCollisionTrigger = 0;
 
+    private GameObject hoverLightObject;
+    private Light hoverLight;
+    
     protected virtual void Start()
     {
         pressed = false;
@@ -51,10 +54,23 @@ public class BaseInteractable : MonoBehaviour {
         {
             textMeshObject = textMeshTransform.gameObject;
             textMesh = textMeshObject.GetComponent<TextMesh>();
-            textMeshDistance = Vector3.Distance(transform.position, textMeshObject.transform.position);
 
             originalTextPosition = textMeshObject.transform.position - transform.position;
         }
+        else
+        {
+            textMeshObject = new GameObject("TextMesh");
+            textMeshObject.transform.parent = transform;
+            textMeshObject.transform.position = transform.position + new Vector3(0, 0.7f, 0);
+            textMesh = textMeshObject.AddComponent<TextMesh>();
+            textMesh.characterSize = 0.05f;
+            textMesh.fontSize = 70;
+            textMesh.alignment = TextAlignment.Center;
+            textMesh.anchor = TextAnchor.MiddleCenter;
+        }
+
+        textMeshDistance = Vector3.Distance(transform.position, textMeshObject.transform.position);
+        originalTextPosition = textMeshObject.transform.position - transform.position;
 
         int layer = LayerMask.NameToLayer("Interactable");
         gameObject.layer = layer;
@@ -62,6 +78,14 @@ public class BaseInteractable : MonoBehaviour {
         {
             transform.GetChild(i).gameObject.layer = layer;
         }
+
+        hoverLightObject = new GameObject("HoverLight");
+        hoverLightObject.transform.parent = transform;
+        hoverLight = hoverLightObject.AddComponent<Light>();
+        hoverLight.range = 2f;
+        hoverLight.color = new Color(255, 255, 200);
+        hoverLight.shadows = LightShadows.Hard;
+        hoverLight.renderMode = LightRenderMode.ForcePixel;
     }
 
     protected virtual void Update()
@@ -73,6 +97,11 @@ public class BaseInteractable : MonoBehaviour {
             {
                 DoInteractStart(null);
             }
+        }
+
+        if(hoverLightObject != null)
+        {
+            hoverLightObject.transform.position = transform.position + new Vector3(0, 1, 0);
         }
 
         if (textMeshObject)
@@ -89,7 +118,21 @@ public class BaseInteractable : MonoBehaviour {
 
         bool hovered = IsHovered();
 
-        if(InventoryUI.instance == null || !InventoryUI.instance.inventoryOpen)
+        if (hoverLight != null)
+        {
+            if (hovered)
+            {
+                hoverLight.intensity = 0.02f;
+                hoverLight.enabled = true;
+            }
+            else
+            {
+                hoverLight.intensity = 0;
+                hoverLight.enabled = false;
+            }
+        }
+
+        if (InventoryUI.instance == null || !InventoryUI.instance.inventoryOpen)
         if(hovered && Input.GetMouseButtonDown(0))
         {
             switch (interactableType) {
@@ -187,8 +230,9 @@ public class BaseInteractable : MonoBehaviour {
         Debug.DrawLine(ray.origin, ray.direction * 100);
 
         int layerMask = 1 << LayerMask.NameToLayer("Interactable");
+        float extents = 0.2f;
 
-        if (Physics.Raycast(ray.origin, ray.direction, out hit, 100, layerMask))
+        if(Physics.BoxCast(ray.origin,new Vector3(extents, extents, extents),ray.direction, out hit, Quaternion.identity, 100f, layerMask))
         {
             Transform objectHit = hit.transform;
 

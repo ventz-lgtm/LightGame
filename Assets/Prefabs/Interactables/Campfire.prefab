@@ -347,7 +347,7 @@ MonoBehaviour:
   fireIntensity: 4
   fireRange: 7
   flickerAmount: 0.2
-  fuelConsumptionRate: 0.1
+  fuelConsumptionRate: 0.01
   fuel: 1
 --- !u!198 &198311162625652094
 ParticleSystem:
