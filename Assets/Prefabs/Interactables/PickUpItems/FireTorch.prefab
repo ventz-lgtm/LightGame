@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 108864674229347572}
   - component: {fileID: 114795876208214052}
   m_Layer: 0
-  m_Name: Cheese
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,6 +264,7 @@ MonoBehaviour:
   aimable: 0
   playerHeld: {fileID: 0}
   lightFlicker: 0
+  fuelUsage: 0.01
   fireLightOn: 0
 --- !u!198 &198829103505092550
 ParticleSystem:

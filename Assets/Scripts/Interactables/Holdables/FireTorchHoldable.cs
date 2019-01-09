@@ -13,7 +13,7 @@ public class FireTorchHoldable : PickUpItem {
     protected ParticleSystem particles;
     protected float baseLightIntensity = 0;
     protected float fireAlpha = 0;
-
+    
     protected override void Start()
     {
         base.Start();
@@ -39,7 +39,11 @@ public class FireTorchHoldable : PickUpItem {
     protected override void Update()
     {
         base.Update();
-        fuelPercentage = Mathf.Max(0, fuelPercentage - (fuelUsage * Time.deltaTime));
+
+        if (fireLightOn)
+        {
+            fuelPercentage = Mathf.Max(0, fuelPercentage - (fuelUsage * Time.deltaTime));
+        }
         fireLight.gameObject.transform.position = transform.position + new Vector3(0, 1.5f, 0);
     }
 
@@ -85,8 +89,6 @@ public class FireTorchHoldable : PickUpItem {
 
     public void Toggle()
     {
-        Debug.Log("toggle");
-
         if (fireLightOn)
         {
             Extinguish();
@@ -102,5 +104,17 @@ public class FireTorchHoldable : PickUpItem {
         base.OnUse();
 
         Toggle();
+    }
+
+    public override string GetHoldText()
+    {
+        if (fireLightOn)
+        {
+            return "Torch: " + Mathf.Round(fuelPercentage * 100) + "%";
+        }
+        else
+        {
+            return "";
+        }
     }
 }

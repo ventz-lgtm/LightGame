@@ -32,10 +32,35 @@ public class PickUpItem : BaseInteractable {
     {
         base.Update();
 
-        if (Input.GetButtonDown("Use") && inventory.heldObject == gameObject)
+        if (Input.GetButtonDown("Use"))
         {
-            OnUse();
+            Transform item = inventory.GetHeldItem();
+            if(item != null && item.gameObject == gameObject)
+            {
+                OnUse();
+            }
         }
+    }
+
+    private void OnGUI()
+    {
+        string text = GetHoldText();
+        if(text == "") { return; }
+
+        int w = Screen.width, h = Screen.height;
+
+        GUIStyle style = new GUIStyle();
+
+        Rect rect = new Rect(0, 0, w, 50);
+        style.alignment = TextAnchor.MiddleCenter;
+        style.fontSize = h * 2 / 100;
+        style.normal.textColor = new Color(1f, 1f, 1f, 1.0f);
+        GUI.Label(rect, text, style);
+    }
+
+    protected override string GetHoverText(GameObject invokerObject)
+    {
+        return "Hold " + interactableName;
     }
 
     protected override void OnInteractableStart(GameObject invokerObject)
@@ -77,11 +102,12 @@ public class PickUpItem : BaseInteractable {
 
     public void pickUpRequest()
     {
-        if (!playerHeld.GetHolding())
+        if (playerHeld.GetHolding())
         {
-            playerHeld.GetItem(gameObject);
+            playerHeld.DropItem();
         }
-       
+
+        playerHeld.GetItem(gameObject);
     }
 
     public virtual bool ShouldAim()
@@ -92,5 +118,10 @@ public class PickUpItem : BaseInteractable {
     public virtual void OnUse()
     {
 
+    }
+
+    public virtual string GetHoldText()
+    {
+        return "";
     }
 }

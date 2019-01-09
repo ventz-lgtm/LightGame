@@ -12,15 +12,19 @@ public class InventoryUISlot : MonoBehaviour {
     private GameObject closeButtonObject;
     private Image image;
     private GameObject imageObject;
+    private Text label;
 
     private void Start()
     {
         closeButtonObject = transform.Find("CloseButton").gameObject;
         imageObject = transform.Find("SlotButton").Find("Image").gameObject;
         image = imageObject.GetComponent<Image>();
+        label = transform.Find("Label").GetComponent<Text>();
 
         Button closeButton = closeButtonObject.GetComponent<Button>();
         closeButton.onClick.AddListener(DropItem);
+
+        UpdateSlot();
     }
 
     public void UpdateSlot()
@@ -29,12 +33,14 @@ public class InventoryUISlot : MonoBehaviour {
         {
             imageObject.SetActive(false);
             closeButtonObject.SetActive(false);
+            label.text = "";
         }
         else
         {
             imageObject.SetActive(true);
             closeButtonObject.SetActive(true);
             image.sprite = itemType.icon;
+            label.text = itemType.name;
         }
     }
 

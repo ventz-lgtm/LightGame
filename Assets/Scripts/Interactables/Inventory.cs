@@ -90,7 +90,7 @@ public class Inventory : MonoBehaviour {
         }
 
         //Any Object to drop
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetMouseButtonDown(1))
         {
             DropItem();
         }
