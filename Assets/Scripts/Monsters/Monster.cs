@@ -56,7 +56,7 @@ public class Monster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time - lastGrowl > 4f)
+        if (Time.time - lastGrowl > 18)
         {
             lastGrowl = Time.time;
             if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 6.0f && !visible)
@@ -65,19 +65,39 @@ public class Monster : MonoBehaviour {
             }
         }
 
-        if (visible && Time.time - lastSurprise > 5)
+        if (visible && !escapingLight && Time.time - lastSurprise > 30)
         {
-            lastSurprise = Time.time;
+            RaycastHit hit;
 
-            if (!monsterSuprise.isPlaying)
+            bool playSound = false;
+            Vector3 origin = Camera.main.gameObject.transform.position;
+            if (Physics.Raycast(origin, (transform.position - origin).normalized, out hit, Vector3.Distance(origin, transform.position) - 1, ~0))
             {
-                if (Random.Range(0.0f, 1.0f) > 0.5f)
+                Debug.Log("hit " + hit.transform);
+                Transform objectHit = hit.transform;
+
+                playSound = objectHit.gameObject == gameObject;
+            }
+            else
+            {
+                Debug.Log("no hit");
+                playSound = true;
+            }
+
+            if (playSound)
+            {
+                lastSurprise = Time.time;
+
+                if (!monsterSuprise.isPlaying)
                 {
-                     monsterSuprise.PlayOneShot(monsterSupriseClip1);
-                }
-                else
-                {
-                    monsterSuprise.PlayOneShot(monsterSupriseClip2);
+                    if (Random.Range(0.0f, 1.0f) > 0.5f)
+                    {
+                        monsterSuprise.PlayOneShot(monsterSupriseClip1);
+                    }
+                    else
+                    {
+                        monsterSuprise.PlayOneShot(monsterSupriseClip2);
+                    }
                 }
             }
         }
