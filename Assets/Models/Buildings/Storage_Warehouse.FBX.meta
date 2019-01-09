@@ -1,0 +1,242 @@
+fileFormatVersion: 2
+guid: 5efaf593391555941a1ea23618587c16
+timeCreated: 1547038457
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Mod_Floor012
+    100002: Mod_Floor013
+    100004: Mod_Floor014
+    100006: Mod_Floor016
+    100008: Mod_Floor017
+    100010: Mod_Floor018
+    100012: Mod_Floor019
+    100014: Mod_Floor020
+    100016: Mod_Floor021
+    100018: Mod_Floor022
+    100020: Mod_Floor023
+    100022: Mod_Floor024
+    100024: Mod_Wall_Pillar004
+    100026: Mod_Wall_Pillar005
+    100028: Mod_Wall_Pillar006
+    100030: Mod_Wall_Pillar007
+    100032: Mod_Wall_Pillar008
+    100034: S_Box1
+    100036: S_Box2
+    100038: S_Corner
+    100040: S_Corner001
+    100042: S_Corner002
+    100044: S_Corner003
+    100046: S_door
+    100048: S_Roof
+    100050: S_shelves
+    100052: S_shelves2
+    100054: //RootNode
+    400000: Mod_Floor012
+    400002: Mod_Floor013
+    400004: Mod_Floor014
+    400006: Mod_Floor016
+    400008: Mod_Floor017
+    400010: Mod_Floor018
+    400012: Mod_Floor019
+    400014: Mod_Floor020
+    400016: Mod_Floor021
+    400018: Mod_Floor022
+    400020: Mod_Floor023
+    400022: Mod_Floor024
+    400024: Mod_Wall_Pillar004
+    400026: Mod_Wall_Pillar005
+    400028: Mod_Wall_Pillar006
+    400030: Mod_Wall_Pillar007
+    400032: Mod_Wall_Pillar008
+    400034: S_Box1
+    400036: S_Box2
+    400038: S_Corner
+    400040: S_Corner001
+    400042: S_Corner002
+    400044: S_Corner003
+    400046: S_door
+    400048: S_Roof
+    400050: S_shelves
+    400052: S_shelves2
+    400054: //RootNode
+    2300000: Mod_Floor012
+    2300002: Mod_Floor013
+    2300004: Mod_Floor014
+    2300006: Mod_Floor016
+    2300008: Mod_Floor017
+    2300010: Mod_Floor018
+    2300012: Mod_Floor019
+    2300014: Mod_Floor020
+    2300016: Mod_Floor021
+    2300018: Mod_Floor022
+    2300020: Mod_Floor023
+    2300022: Mod_Floor024
+    2300024: Mod_Wall_Pillar004
+    2300026: Mod_Wall_Pillar005
+    2300028: Mod_Wall_Pillar006
+    2300030: Mod_Wall_Pillar007
+    2300032: Mod_Wall_Pillar008
+    2300034: S_Box1
+    2300036: S_Box2
+    2300038: S_Corner
+    2300040: S_Corner001
+    2300042: S_Corner002
+    2300044: S_Corner003
+    2300046: S_door
+    2300048: S_Roof
+    2300050: S_shelves
+    2300052: S_shelves2
+    3300000: Mod_Floor012
+    3300002: Mod_Floor013
+    3300004: Mod_Floor014
+    3300006: Mod_Floor016
+    3300008: Mod_Floor017
+    3300010: Mod_Floor018
+    3300012: Mod_Floor019
+    3300014: Mod_Floor020
+    3300016: Mod_Floor021
+    3300018: Mod_Floor022
+    3300020: Mod_Floor023
+    3300022: Mod_Floor024
+    3300024: Mod_Wall_Pillar004
+    3300026: Mod_Wall_Pillar005
+    3300028: Mod_Wall_Pillar006
+    3300030: Mod_Wall_Pillar007
+    3300032: Mod_Wall_Pillar008
+    3300034: S_Box1
+    3300036: S_Box2
+    3300038: S_Corner
+    3300040: S_Corner001
+    3300042: S_Corner002
+    3300044: S_Corner003
+    3300046: S_door
+    3300048: S_Roof
+    3300050: S_shelves
+    3300052: S_shelves2
+    4300000: S_shelves
+    4300002: S_Box2
+    4300004: S_Box1
+    4300006: Mod_Floor012
+    4300008: S_shelves2
+    4300010: S_Roof
+    4300012: S_door
+    4300014: Mod_Wall_Pillar004
+    4300016: S_Corner
+    4300018: Mod_Floor013
+    4300020: Mod_Floor014
+    4300022: Mod_Floor016
+    4300024: Mod_Floor017
+    4300026: Mod_Floor018
+    4300028: Mod_Floor019
+    4300030: Mod_Floor020
+    4300032: Mod_Floor021
+    4300034: Mod_Floor022
+    4300036: Mod_Floor023
+    4300038: S_Corner001
+    4300040: Mod_Wall_Pillar005
+    4300042: Mod_Wall_Pillar006
+    4300044: S_Corner002
+    4300046: Mod_Floor024
+    4300048: Mod_Wall_Pillar007
+    4300050: S_Corner003
+    4300052: Mod_Wall_Pillar008
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #25'
+    second: {fileID: 2100000, guid: ee1007567c6aa5d4a92dd125dd238b58, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #26'
+    second: {fileID: 2100000, guid: d58cfa499739b4e49b2f8b4ce7d2e4da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #27'
+    second: {fileID: 2100000, guid: 2d0ad79a9861139438e25a21e84f10a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: ac7ed2eeee49e684296bddc1f272603d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

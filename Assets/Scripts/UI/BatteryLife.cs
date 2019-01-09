@@ -10,11 +10,14 @@ public class BatteryLife : MonoBehaviour {
     private Inventory playerInventory;
     Image batteryCount;
     Image sanityMeter;
+    Image sanityPulse;
 
     GameManager gameManager;
 
     private int maxBatteries;
-
+    private float pulse = 0;
+    private float lastPulse = 0;
+    
     Color tempColor;
 
     private void Start()
@@ -45,6 +48,8 @@ public class BatteryLife : MonoBehaviour {
             Debug.Log("No player Inventory instance found");
         }
 
+        sanityPulse = transform.Find("SanityPulse").GetComponent<Image>();
+
         gameManager = GameManager.instance;
 
         maxBatteries = playerInventory.GetMaxBatteries();
@@ -72,9 +77,22 @@ public class BatteryLife : MonoBehaviour {
         batteryCount.fillAmount = (float) (1.0f / maxBatteries * playerInventory.GetBatteryCount());
 
         tempColor = sanityMeter.color;
-        tempColor.a = gameManager.sanity;
+        tempColor.a = gameManager.sanity * 0.25f;
         sanityMeter.color = tempColor;
+        tempColor = sanityPulse.color;
+        tempColor.a = pulse * gameManager.sanity * 0.3f;
+        sanityPulse.color = tempColor;
 
+        float pulseTime = 1.35f - gameManager.sanity;
+        if(Time.time - lastPulse > pulseTime)
+        {
+            lastPulse = Time.time;
 
-	}
+            pulse = gameManager.sanity;
+        }
+        else
+        {
+            pulse = Mathf.Max(0, pulse - (Time.deltaTime * 2f));
+        }
+    }
 }

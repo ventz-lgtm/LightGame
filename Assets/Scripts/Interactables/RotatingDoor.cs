@@ -15,6 +15,7 @@ public class RotatingDoor : BaseInteractable {
     private float lastDoorOpen = 0;
     private bool rotateBackwards = false;
     private float currentYaw = 0;
+    private float initialYaw = 0;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -25,6 +26,8 @@ public class RotatingDoor : BaseInteractable {
         {
             doorGameObject = doorTransform.gameObject;
             doorMeshRenderer = doorGameObject.GetComponent<MeshRenderer>();
+            Vector3 rotation = doorGameObject.transform.rotation.eulerAngles;
+            initialYaw = rotation.y;
 
             doorDistance = Vector3.Distance(transform.position, doorGameObject.transform.position);
         }
@@ -44,7 +47,7 @@ public class RotatingDoor : BaseInteractable {
                 float diff = 90 - currentYaw;
                 currentYaw += diff * doorDampen * Time.deltaTime * 30;
 
-                Quaternion rotation = Quaternion.Euler(0, (rotateBackwards ? -currentYaw : currentYaw), 0);
+                Quaternion rotation = Quaternion.Euler(0, (rotateBackwards ? -currentYaw : currentYaw) + initialYaw, 0);
                 doorGameObject.transform.rotation = rotation;
             }
             else
@@ -52,7 +55,7 @@ public class RotatingDoor : BaseInteractable {
                 float diff = currentYaw;
                 currentYaw -= diff * doorDampen * Time.deltaTime * 30;
 
-                Quaternion rotation = Quaternion.Euler(0, (rotateBackwards ? -currentYaw : currentYaw), 0);
+                Quaternion rotation = Quaternion.Euler(0, (rotateBackwards ? -currentYaw : currentYaw) + initialYaw, 0);
                 doorGameObject.transform.rotation = rotation;
             }
 

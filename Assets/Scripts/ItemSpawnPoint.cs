@@ -43,7 +43,7 @@ public class ItemSpawnPoint : MonoBehaviour {
             {
                 GameObject obj = Instantiate(item.prefab);
                 if(obj == null) { return null; }
-                obj.transform.position = transform.position + item.offset;
+                obj.transform.position = transform.position + item.offset + new Vector3(0,0.6f,0);
                 obj.transform.rotation = Quaternion.Euler(item.rotation.x, item.rotation.y, item.rotation.z);
                 obj.transform.parent = parent.transform;
 

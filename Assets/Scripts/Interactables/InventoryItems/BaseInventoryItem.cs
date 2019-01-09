@@ -31,6 +31,13 @@ public class BaseInventoryItem : BaseInteractable {
         itemType.instance = gameObject;
         if (player.InventoryPickup(itemType))
         {
+            GameObject parent = GameObject.Find("InventoryItems");
+            if(parent == null)
+            {
+                parent = new GameObject("InventoryItems");
+            }
+
+            gameObject.transform.parent = parent.transform;
             gameObject.SetActive(false);
         }
         else

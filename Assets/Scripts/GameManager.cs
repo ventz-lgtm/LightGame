@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour {
     void Start () {
         dangerLevel = 0;
         monsters = new ArrayList();
+
+        Camera.main.farClipPlane = 30f;
     }
 	
 	// Update is called once per frame

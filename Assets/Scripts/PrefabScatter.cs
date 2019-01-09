@@ -15,11 +15,13 @@ public class PrefabScatter : MonoBehaviour {
 
     private bool hasSpawned = false;
     private int lastSeed = 0;
+    private GameObject playerObect;
+    private bool spawned = true;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        playerObect = GameManager.instance.playerObject;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,7 +44,59 @@ public class PrefabScatter : MonoBehaviour {
             hasSpawned = true;
             SpawnItems();
         }
+
+        if (spawned)
+        {
+            if (!PlayerWithinBounds())
+            {
+                ShowItems(false);
+            }
+        }
+        else
+        {
+            if (PlayerWithinBounds())
+            {
+                ShowItems(true);
+            }
+        }
 	}
+
+    public bool PlayerWithinBounds()
+    {
+        if (!Application.isPlaying) { return true; }
+
+        Vector3 playerPosition = playerObect.transform.position;
+        Vector3 position = transform.position;
+
+        float margin = 15f;
+
+        if(playerPosition.x < position.x - margin) { return false; }
+        if(playerPosition.z < position.z - margin) { return false; }
+        if(playerPosition.x > position.x + width + margin) { return false; }
+        if(playerPosition.z > position.z + length + margin) { return false; }
+
+        return true;
+    }
+
+    public void ShowItems(bool show)
+    {
+        if (show)
+        {
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+
+        spawned = show;
+    }
 
     public void SpawnItems()
     {
@@ -104,6 +158,8 @@ public class PrefabScatter : MonoBehaviour {
             }
         }
 
+        spawned = true;
+
         Random.InitState(System.DateTime.Now.Second);
     }
 
@@ -114,6 +170,8 @@ public class PrefabScatter : MonoBehaviour {
             Transform child = transform.GetChild(i);
             DestroyImmediate(child.gameObject);
         }
+
+        spawned = false;
     }
 
     public Vector3 PickLocation()

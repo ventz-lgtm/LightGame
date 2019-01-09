@@ -123,19 +123,24 @@ public class Fire : BaseInteractable {
         {
             playerItem = player.GetComponentInChildren<PickUpItem>();
 
-
-            if (playerItem.getItemDefinition() == 1 && fuel <= 0.1f)
+            if (fuel >= 0.9f)
             {
-                LightFire();
-                playerInventory.DestroyHeldItem();
+                GameManager.instance.Notify("Fire is fully fueled!", 3);
             }
-            else if (playerItem.getItemDefinition() == 1 && fuel >= 0.1f)
+            else
             {
-                playerInventory.DestroyHeldItem();
-                fuel++;
+                if (playerItem.itemDefinition == PickUpItem.items.WOODPILE && fuel <= 0.1f)
+                {
+                    LightFire();
+                    playerInventory.DestroyHeldItem();
+                }
+                else if (playerItem.itemDefinition == PickUpItem.items.WOODPILE && fuel >= 0.1f)
+                {
+                    playerInventory.DestroyHeldItem();
+                    fuel += 0.3f;
+                }
             }
-        }
-        
+        }        
     }
 
     void LightFire()

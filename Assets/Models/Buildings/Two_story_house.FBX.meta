@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: 78c21ad4c632d4e49a042fabebf1666a
+timeCreated: 1547050905
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Box056
+    100002: Box057
+    100004: Box058
+    100006: Box059
+    100008: Box060
+    100010: Box061
+    100012: Box062
+    100014: Building 1 floor001
+    100016: Building 1 floor002
+    100018: Building 1 floor003
+    100020: Building 1 wall 1
+    100022: Group47568
+    100024: Mod_Floor025
+    100026: Mod_Floor026
+    100028: Mod_Floor027
+    100030: Mod_Floor028
+    100032: Stair_ramp
+    100034: //RootNode
+    100036: Two_story_Stairs
+    100038: Two_story_Window1
+    100040: Two_story_Window2
+    100042: Two_story_Window3
+    100044: Two_story_window4
+    100046: windows
+    400000: Box056
+    400002: Box057
+    400004: Box058
+    400006: Box059
+    400008: Box060
+    400010: Box061
+    400012: Box062
+    400014: Building 1 floor001
+    400016: Building 1 floor002
+    400018: Building 1 floor003
+    400020: Building 1 wall 1
+    400022: Group47568
+    400024: Mod_Floor025
+    400026: Mod_Floor026
+    400028: Mod_Floor027
+    400030: Mod_Floor028
+    400032: Stair_ramp
+    400034: //RootNode
+    400036: Two_story_Stairs
+    400038: Two_story_Window1
+    400040: Two_story_Window2
+    400042: Two_story_Window3
+    400044: Two_story_window4
+    400046: windows
+    2300000: Box056
+    2300002: Box057
+    2300004: Box058
+    2300006: Box059
+    2300008: Box060
+    2300010: Box061
+    2300012: Box062
+    2300014: Building 1 floor001
+    2300016: Building 1 floor002
+    2300018: Building 1 floor003
+    2300020: Building 1 wall 1
+    2300022: Mod_Floor025
+    2300024: Mod_Floor026
+    2300026: Mod_Floor027
+    2300028: Mod_Floor028
+    2300030: Stair_ramp
+    2300032: Two_story_Stairs
+    2300034: Two_story_Window1
+    2300036: Two_story_Window2
+    2300038: Two_story_Window3
+    2300040: Two_story_window4
+    2300042: windows
+    3300000: Box056
+    3300002: Box057
+    3300004: Box058
+    3300006: Box059
+    3300008: Box060
+    3300010: Box061
+    3300012: Box062
+    3300014: Building 1 floor001
+    3300016: Building 1 floor002
+    3300018: Building 1 floor003
+    3300020: Building 1 wall 1
+    3300022: Mod_Floor025
+    3300024: Mod_Floor026
+    3300026: Mod_Floor027
+    3300028: Mod_Floor028
+    3300030: Stair_ramp
+    3300032: Two_story_Stairs
+    3300034: Two_story_Window1
+    3300036: Two_story_Window2
+    3300038: Two_story_Window3
+    3300040: Two_story_window4
+    3300042: windows
+    4300000: Box056
+    4300002: Box057
+    4300004: Mod_Floor025
+    4300006: Building 1 wall 1
+    4300008: Building 1 floor001
+    4300010: Building 1 floor002
+    4300012: Building 1 floor003
+    4300014: windows
+    4300016: Box058
+    4300018: Box059
+    4300020: Two_story_window4
+    4300022: Box060
+    4300024: Box061
+    4300026: Two_story_Window3
+    4300028: Two_story_Window2
+    4300030: Two_story_Window1
+    4300032: Box062
+    4300034: Two_story_Stairs
+    4300036: Stair_ramp
+    4300038: Mod_Floor026
+    4300040: Mod_Floor027
+    4300042: Mod_Floor028
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: ac7ed2eeee49e684296bddc1f272603d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
