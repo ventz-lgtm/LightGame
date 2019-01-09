@@ -14,9 +14,19 @@ public class PickUpItem : BaseInteractable {
     private Character player;
     private Inventory inventory;
 
+    AudioSource pickupSoundSource;
+    AudioClip pickupSound;
+
     protected override void Start()
     {
         base.Start();
+
+        gameObject.AddComponent<AudioSource>();
+        pickupSoundSource = GetComponent<AudioSource>();
+        pickupSound = (AudioClip)Resources.Load("Audio/snatch");
+
+        pickupSoundSource.clip = pickupSound;
+        pickupSoundSource.volume = 1.0f;
 
         playerHeld = GameManager.instance.playerObject.GetComponent<Inventory>();
         if (!playerHeld)
@@ -71,6 +81,7 @@ public class PickUpItem : BaseInteractable {
         base.OnInteractableStart(invokerObject);
 
         pickUpRequest();
+        pickupSoundSource.Play();
     }
 
     public int getItemDefinition()

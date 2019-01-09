@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour {
     AudioSource[] audioSources;
     AudioSource backgroundAmbience;
     AudioSource sanityWhispers;
+    AudioListener audioListener;
 
     private void Awake()
     {
@@ -61,6 +62,8 @@ public class GameManager : MonoBehaviour {
         {
             playerCharacter = playerObject.GetComponent<Character>();
         }
+
+        audioListener = playerObject.GetComponent<AudioListener>();
 
         audioSources = GetComponents<AudioSource>();
         backgroundAmbience = audioSources[0];
