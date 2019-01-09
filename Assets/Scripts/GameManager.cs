@@ -20,8 +20,10 @@ public class GameManager : MonoBehaviour {
     public float monsterSpawnCooldown = 10f;
     public int minMonsterSpawnChance = 10;
     public MonsterPrefabType[] monsterPrefabs;
-
     public GeneratorPart[] generatorParts;
+
+    [Header("Crafting")]
+    public InventoryRecipe[] recipes;
 
     [HideInInspector]
     Dictionary<LocationType, bool> activatedLocations = new Dictionary<LocationType, bool>();
@@ -29,10 +31,8 @@ public class GameManager : MonoBehaviour {
     public float dangerLevel { get; private set; }
     public float sanity { get; private set; }
     public float minimumSanity { get; private set; }
-
     public ArrayList monsters { get; private set; }
-
-    public Character playerCharacter;
+    public Character playerCharacter { get; private set; }
 
     private float lastMonsterSpawn = 0;
     private float lastMonsterTrySpawn = 0;
@@ -244,4 +244,13 @@ public class InventoryItemType
     public string name;
     public Sprite icon;
     public GameObject instance;
+}
+
+[System.Serializable]
+public class InventoryRecipe
+{
+    public string name;
+    public Sprite icon;
+    public GameObject prefab;
+    public string[] ingredients;
 }

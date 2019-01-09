@@ -40,15 +40,18 @@ public class Character : MonoBehaviour {
     private Vector3 movementDirection = Vector3.forward;
     private Vector3 currentMovementDirection = Vector3.forward;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        inventoryItems = new List<InventoryItemType>();
+    }
+
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody>();
         camera = Camera.main;
         camera.transform.parent = transform;
 
         currentOrigin = transform.position;
-
-        inventoryItems = new List<InventoryItemType>();
     }
 	
 	// Update is called once per frame
@@ -280,5 +283,20 @@ public class Character : MonoBehaviour {
     {
         if(inventoryItems.Count <= index) { return null; }
         return inventoryItems[index];
+    }
+
+    public int GetInventoryItemCount(string name)
+    {
+        int count = 0;
+
+        foreach (InventoryItemType type in inventoryItems)
+        {
+            if(type.name == name)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

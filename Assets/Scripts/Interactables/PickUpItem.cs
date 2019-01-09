@@ -11,6 +11,9 @@ public class PickUpItem : BaseInteractable {
 
     public Inventory playerHeld;
 
+    private Character player;
+    private Inventory inventory;
+
     protected override void Start()
     {
         base.Start();
@@ -20,13 +23,16 @@ public class PickUpItem : BaseInteractable {
         {
             Debug.Log("Could not get inventory");
         }
+
+        player = GameManager.instance.playerCharacter;
+        inventory = player.GetComponent<Inventory>();
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (Input.GetButtonDown("Use"))
+        if (Input.GetButtonDown("Use") && inventory.heldObject == gameObject)
         {
             OnUse();
         }

@@ -89,6 +89,7 @@ public class BaseInteractable : MonoBehaviour {
 
         bool hovered = IsHovered();
 
+        if(InventoryUI.instance == null || !InventoryUI.instance.inventoryOpen)
         if(hovered && Input.GetMouseButtonDown(0))
         {
             switch (interactableType) {
@@ -124,6 +125,8 @@ public class BaseInteractable : MonoBehaviour {
                 DoInteractEnd(GameManager.instance.playerObject);
             }
         }
+
+
 
         if (pressed || Time.time - lastActive < 0.3)
         {
