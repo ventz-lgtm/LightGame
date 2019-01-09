@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Character : MonoBehaviour {
 
@@ -25,7 +26,10 @@ public class Character : MonoBehaviour {
     [Header("Items")]
     public int maxFlares = 5;
     public GameObject flarePrefab;
+    public int inventorySize = 12;
 
+    public Action onInventoryChanged;
+    public List<InventoryItemType> inventoryItems { get; private set; }
     public int flareCount { get; protected set; }
     private Vector3 targetCameraLocation;
     private Camera camera;
@@ -44,6 +48,7 @@ public class Character : MonoBehaviour {
 
         currentOrigin = transform.position;
 
+        inventoryItems = new List<InventoryItemType>();
     }
 	
 	// Update is called once per frame
@@ -233,5 +238,47 @@ public class Character : MonoBehaviour {
         flareComponent.Ignite();
 
         return true;
+    }
+
+    public bool InventoryPickup(InventoryItemType type)
+    {
+        if(inventoryItems.Count >= inventorySize) { return false; }
+
+        inventoryItems.Add(type);
+
+        if (onInventoryChanged != null)
+        {
+            onInventoryChanged();
+        }
+
+        return true;
+    }
+
+    public GameObject InventoryDrop(int index)
+    {
+        if(inventoryItems.Count <= index) { return null; }
+
+        InventoryItemType item = inventoryItems[index];
+        if (item == null) { return null; }
+
+        GameObject droppedItem = item.instance;
+        if (droppedItem == null) { return null; }
+
+        droppedItem.SetActive(true);
+        droppedItem.transform.position = transform.position + (visualObject.transform.forward * 0.5f);
+        inventoryItems.RemoveAt(index);
+
+        if (onInventoryChanged != null)
+        {
+            onInventoryChanged();
+        }
+
+        return droppedItem;
+    }
+
+    public InventoryItemType InventoryItemAt(int index)
+    {
+        if(inventoryItems.Count <= index) { return null; }
+        return inventoryItems[index];
     }
 }

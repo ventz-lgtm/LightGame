@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public enum LocationType { NONE, TOWN, CAMP, WATER_TOWER, TRAIN_STATION }
+    public enum InventoryItem { STICK }
 
     public static GameManager instance;
 
@@ -51,15 +52,15 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+
+        if (playerObject != null)
+        {
+            playerCharacter = playerObject.GetComponent<Character>();
+        }
     }
 
     // Use this for initialization
     void Start () {
-        if(playerObject != null)
-        {
-            playerCharacter = playerObject.GetComponent<Character>();
-        }
-
         dangerLevel = 0;
         monsters = new ArrayList();
     }
@@ -235,4 +236,12 @@ public class GeneratorSpawnInfo
 {
     public Vector3 location;
     public Vector3 rotation;
+}
+
+[System.Serializable]
+public class InventoryItemType
+{
+    public string name;
+    public Sprite icon;
+    public GameObject instance;
 }
