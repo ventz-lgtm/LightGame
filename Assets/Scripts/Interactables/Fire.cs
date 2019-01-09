@@ -27,6 +27,8 @@ public class Fire : BaseInteractable {
 
     private GameObject player;
 
+    AudioSource campFireSound;
+
     protected override void Start()
     {
         Transform lightTransform = transform.Find("Light");
@@ -50,8 +52,11 @@ public class Fire : BaseInteractable {
         }
 
         player = GameManager.instance.playerObject;
-        
+
+        campFireSound = GetComponent<AudioSource>();
+
         ExtinguishFire();
+
 
         base.Start();
     }
@@ -153,6 +158,8 @@ public class Fire : BaseInteractable {
         {
             fireParticleSystem.Play();
         }
+
+        campFireSound.Play();
     }
 
     void ExtinguishFire()
@@ -163,6 +170,7 @@ public class Fire : BaseInteractable {
         {
             fireParticleSystem.Stop();
         }
+        campFireSound.Stop();
     }
 
     protected override string GetHoverText(GameObject invokerObject)
