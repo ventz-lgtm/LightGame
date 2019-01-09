@@ -89,6 +89,7 @@ public class BaseInteractable : MonoBehaviour {
 
         bool hovered = IsHovered();
 
+        if(InventoryUI.instance == null || !InventoryUI.instance.inventoryOpen)
         if(hovered && Input.GetMouseButtonDown(0))
         {
             switch (interactableType) {
@@ -125,6 +126,8 @@ public class BaseInteractable : MonoBehaviour {
             }
         }
 
+
+
         if (pressed || Time.time - lastActive < 0.3)
         {
             SetMaterial(pressedMaterial);
@@ -150,7 +153,13 @@ public class BaseInteractable : MonoBehaviour {
 
         if (textMesh)
         {
-            textMesh.text = interactableName;
+            string text = interactableName;
+            if(GetHoverText(GameManager.instance.playerObject) != "")
+            {
+                text = GetHoverText(GameManager.instance.playerObject);
+            }
+
+            textMesh.text = text;
 
             if (hovered)
             {
@@ -230,6 +239,11 @@ public class BaseInteractable : MonoBehaviour {
     protected virtual void OnInteractableEnd(GameObject invokerObject)
     {
 
+    }
+
+    protected virtual string GetHoverText(GameObject invokerObject)
+    {
+        return "";
     }
 
     private void OnCollisionEnter(Collision collision)

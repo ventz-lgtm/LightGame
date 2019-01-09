@@ -109,6 +109,7 @@ public class Inventory : MonoBehaviour {
 
         //Any Object to drop
         if (Input.GetMouseButton(1))
+
         {
             DropItem();
         }

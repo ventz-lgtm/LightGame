@@ -85,28 +85,33 @@ public class Generator : BaseElectricInteractable {
     protected override void OnInteractableStart(GameObject invokerObject)
     {
         base.OnInteractableStart(invokerObject);
-
-        Debug.Log(requiredPart.name);
-
         
         if (playerInventory.GetHolding())
         {
             
-            PickUpItem currentItem = player.transform.Find("HoldPosition").GetChild(0).GetComponent<PickUpItem>();
+            PickUpItem currentItem = player.transform.Find("Visual").gameObject.transform.Find("HoldPosition").GetChild(0).GetComponent<PickUpItem>();
             
-            bool success = ProvidePart(currentItem.getPartDescription());
-
+            bool success = ProvidePart(currentItem.itemDefinition);
+            Debug.Log(success);
             if (success)
             {
                 playerInventory.DestroyHeldItem();
             }
+            else
+            {
+                GameManager.instance.Notify("Generator needs a " + requiredPart.name + "!", 4f);
+            }
+        }
+        else
+        {
+            GameManager.instance.Notify("Generator needs a " + requiredPart.name + "!", 4f);
         }
     }
 
-    public bool ProvidePart(string partName)
+    public bool ProvidePart(PickUpItem.items itemType)
     {
         if (partProvided) { return false; }
-        if(partName != requiredPart.name) { return false; }
+        if(itemType != requiredPart.pickupType) { return false; }
 
         GameManager.instance.SetLocationActive(locationType, true);
         partProvided = true;

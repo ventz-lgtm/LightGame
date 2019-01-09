@@ -73,15 +73,21 @@ MonoBehaviour:
     mesh: {fileID: 0}
     material: {fileID: 0}
     generatorMesh: {fileID: 4300008, guid: 803236a8f2f25c94e8344ed80f3b8dc4, type: 3}
-    pickupType: 4
+    pickupType: 5
   - name: Exhaust
     mesh: {fileID: 0}
     material: {fileID: 0}
     generatorMesh: {fileID: 4300010, guid: de74fb3490398454f81273c746a0f99b, type: 3}
-    pickupType: 4
+    pickupType: 6
   - name: Radiator
     mesh: {fileID: 0}
     material: {fileID: 0}
     generatorMesh: {fileID: 4300010, guid: 106a5ef221f87e345accd4d4c73c45a1, type: 3}
-    pickupType: 4
-  playerCharacter: {fileID: 0}
+    pickupType: 7
+  recipes:
+  - name: Torch
+    icon: {fileID: 21300000, guid: a8ab10a405cc91d4db8fff9e05727735, type: 3}
+    prefab: {fileID: 1047933807099954, guid: 1fe6fd8c7c36c7a44b4b1e1f799c46e7, type: 2}
+    ingredients:
+    - Stick
+    - Cloth

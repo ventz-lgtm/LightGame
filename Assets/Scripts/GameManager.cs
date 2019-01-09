@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public enum LocationType { NONE, TOWN, CAMP, WATER_TOWER, TRAIN_STATION }
+    public enum InventoryItem { STICK }
 
     public static GameManager instance;
 
@@ -19,8 +20,10 @@ public class GameManager : MonoBehaviour {
     public float monsterSpawnCooldown = 10f;
     public int minMonsterSpawnChance = 10;
     public MonsterPrefabType[] monsterPrefabs;
-
     public GeneratorPart[] generatorParts;
+
+    [Header("Crafting")]
+    public InventoryRecipe[] recipes;
 
     [HideInInspector]
     Dictionary<LocationType, bool> activatedLocations = new Dictionary<LocationType, bool>();
@@ -28,10 +31,8 @@ public class GameManager : MonoBehaviour {
     public float dangerLevel { get; private set; }
     public float sanity { get; private set; }
     public float minimumSanity { get; private set; }
-
     public ArrayList monsters { get; private set; }
-
-    public Character playerCharacter;
+    public Character playerCharacter { get; private set; }
 
     private float lastMonsterSpawn = 0;
     private float lastMonsterTrySpawn = 0;
@@ -51,15 +52,15 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+
+        if (playerObject != null)
+        {
+            playerCharacter = playerObject.GetComponent<Character>();
+        }
     }
 
     // Use this for initialization
     void Start () {
-        if(playerObject != null)
-        {
-            playerCharacter = playerObject.GetComponent<Character>();
-        }
-
         dangerLevel = 0;
         monsters = new ArrayList();
     }
@@ -195,8 +196,8 @@ public class GameManager : MonoBehaviour {
 
         GUIStyle style = new GUIStyle();
 
-        Rect rect = new Rect(0, 0, w, h * 2 / 100);
-        style.alignment = TextAnchor.UpperLeft;
+        Rect rect = new Rect(0, 0, w, h * 0.3f);
+        style.alignment = TextAnchor.MiddleCenter;
         style.fontSize = h * 2 / 100;
         style.normal.textColor = new Color(1f, 1f, 1f, notifyAlpha);
         GUI.Label(rect, notifyText, style);
@@ -235,4 +236,21 @@ public class GeneratorSpawnInfo
 {
     public Vector3 location;
     public Vector3 rotation;
+}
+
+[System.Serializable]
+public class InventoryItemType
+{
+    public string name;
+    public Sprite icon;
+    public GameObject instance;
+}
+
+[System.Serializable]
+public class InventoryRecipe
+{
+    public string name;
+    public Sprite icon;
+    public GameObject prefab;
+    public string[] ingredients;
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Character : MonoBehaviour {
 
@@ -25,7 +26,10 @@ public class Character : MonoBehaviour {
     [Header("Items")]
     public int maxFlares = 5;
     public GameObject flarePrefab;
+    public int inventorySize = 12;
 
+    public Action onInventoryChanged;
+    public List<InventoryItemType> inventoryItems { get; private set; }
     public int flareCount { get; protected set; }
     private Vector3 targetCameraLocation;
     private Camera camera;
@@ -36,14 +40,18 @@ public class Character : MonoBehaviour {
     private Vector3 movementDirection = Vector3.forward;
     private Vector3 currentMovementDirection = Vector3.forward;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        inventoryItems = new List<InventoryItemType>();
+    }
+
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody>();
         camera = Camera.main;
         camera.transform.parent = transform;
 
         currentOrigin = transform.position;
-
     }
 	
 	// Update is called once per frame
@@ -96,14 +104,44 @@ public class Character : MonoBehaviour {
     {
         if (visualObject)
         {
-            Vector3 direction = new Vector3(movementDirection.x, 0, movementDirection.z);
+            Inventory inv = GetComponent<Inventory>();
+            Transform transform = inv.GetHeldItem();
+            GameObject heldObject = transform != null ? transform.gameObject : null;
+            bool aiming = false;
 
-            if (direction != Vector3.zero)
+            if (heldObject)
             {
-                Vector3 diff = direction - currentMovementDirection;
-                currentMovementDirection += (diff * 10f * Time.deltaTime);
+                PickUpItem pickup = heldObject.GetComponent<PickUpItem>();
+                if (pickup && pickup.aimable && pickup.ShouldAim())
+                {
+                    aiming = true;
+                }
+            }
 
-                visualObject.transform.rotation = Quaternion.LookRotation(currentMovementDirection, Vector3.up);
+            if (aiming)
+            {
+                // Face towards the mouse for holdables which should be aimed
+
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                Vector3 endPos = ray.origin + (ray.direction * Vector3.Distance(Camera.main.gameObject.transform.position, visualObject.transform.position));
+                Vector3 rPos = endPos - visualObject.transform.position;
+                rPos.y = 0;
+                rPos.Normalize();
+                visualObject.transform.rotation = Quaternion.LookRotation(rPos, Vector3.up);
+            }
+            else {
+                // Face in direction of movement
+
+                Vector3 direction = new Vector3(movementDirection.x, 0, movementDirection.z);
+
+                if (direction != Vector3.zero)
+                {
+                    Vector3 diff = direction - currentMovementDirection;
+                    currentMovementDirection += (diff * 10f * Time.deltaTime);
+
+                    visualObject.transform.rotation = Quaternion.LookRotation(currentMovementDirection, Vector3.up);
+                }
             }
         }
     }
@@ -203,5 +241,62 @@ public class Character : MonoBehaviour {
         flareComponent.Ignite();
 
         return true;
+    }
+
+    public bool InventoryPickup(InventoryItemType type)
+    {
+        if(inventoryItems.Count >= inventorySize) { return false; }
+
+        inventoryItems.Add(type);
+
+        if (onInventoryChanged != null)
+        {
+            onInventoryChanged();
+        }
+
+        return true;
+    }
+
+    public GameObject InventoryDrop(int index)
+    {
+        if(inventoryItems.Count <= index) { return null; }
+
+        InventoryItemType item = inventoryItems[index];
+        if (item == null) { return null; }
+
+        GameObject droppedItem = item.instance;
+        if (droppedItem == null) { return null; }
+
+        droppedItem.SetActive(true);
+        droppedItem.transform.position = transform.position + (visualObject.transform.forward * 0.5f);
+        inventoryItems.RemoveAt(index);
+
+        if (onInventoryChanged != null)
+        {
+            onInventoryChanged();
+        }
+
+        return droppedItem;
+    }
+
+    public InventoryItemType InventoryItemAt(int index)
+    {
+        if(inventoryItems.Count <= index) { return null; }
+        return inventoryItems[index];
+    }
+
+    public int GetInventoryItemCount(string name)
+    {
+        int count = 0;
+
+        foreach (InventoryItemType type in inventoryItems)
+        {
+            if(type.name == name)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

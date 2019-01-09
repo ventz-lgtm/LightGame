@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PickUpItem : BaseInteractable {
 
-    public enum items {TORCH, WOODPILE, AXE, FLARE, CONTROL_PANEL, BATTERY_CHARGER, EXHAUST, RADIATOR, FUEL};
+    public enum items {TORCH, FIRE_TORCH, WOODPILE, AXE, FLARE, CONTROL_PANEL, BATTERY_CHARGER, EXHAUST, RADIATOR, FUEL};
 
     public items itemDefinition;
+    public bool aimable = false;
 
     public Inventory playerHeld;
+
+    private Character player;
+    private Inventory inventory;
 
     protected override void Start()
     {
@@ -20,6 +24,43 @@ public class PickUpItem : BaseInteractable {
             Debug.Log("Could not get inventory");
         }
 
+        player = GameManager.instance.playerCharacter;
+        inventory = player.GetComponent<Inventory>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (Input.GetButtonDown("Use"))
+        {
+            Transform item = inventory.GetHeldItem();
+            if(item != null && item.gameObject == gameObject)
+            {
+                OnUse();
+            }
+        }
+    }
+
+    private void OnGUI()
+    {
+        string text = GetHoldText();
+        if(text == "") { return; }
+
+        int w = Screen.width, h = Screen.height;
+
+        GUIStyle style = new GUIStyle();
+
+        Rect rect = new Rect(0, 0, w, 50);
+        style.alignment = TextAnchor.MiddleCenter;
+        style.fontSize = h * 2 / 100;
+        style.normal.textColor = new Color(1f, 1f, 1f, 1.0f);
+        GUI.Label(rect, text, style);
+    }
+
+    protected override string GetHoverText(GameObject invokerObject)
+    {
+        return "Hold " + interactableName;
     }
 
     protected override void OnInteractableStart(GameObject invokerObject)
@@ -61,17 +102,26 @@ public class PickUpItem : BaseInteractable {
 
     public void pickUpRequest()
     {
-        if (!playerHeld.GetHolding())
+        if (playerHeld.GetHolding())
         {
-            playerHeld.GetItem(gameObject);
+            playerHeld.DropItem();
         }
-       
+
+        playerHeld.GetItem(gameObject);
     }
 
-
-    protected override void Update()
+    public virtual bool ShouldAim()
     {
-        base.Update();
+        return true;
     }
 
+    public virtual void OnUse()
+    {
+
+    }
+
+    public virtual string GetHoldText()
+    {
+        return "";
+    }
 }
