@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1206544553321428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1, y: 0.039, z: -13.99}
+  m_LocalPosition: {x: 74.87892, y: -25.008854, z: 36.97823}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4931619967772820}
@@ -150,7 +150,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 6eddb870712b6984ea0f2370fb25e351, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176,7 +176,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1206544553321428}
-  m_Mesh: {fileID: 4300000, guid: 4a2b734fecdaf8b42ad8621027387aa9, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 745f760f1868e1a468fecb85ac2a6939, type: 3}
 --- !u!54 &54398125812564390
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -239,14 +239,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c963272b72de6e845a1e6b4bf90cf3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startActive: 1
+  startActive: 0
   interactableName: Flare
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4
+  textTowardsCamera: 0
   idleMaterial: {fileID: 0}
   hoveredMaterial: {fileID: 0}
   pressedMaterial: {fileID: 0}
+  touchActivates: 0
   interactableType: 0
   onInteractStart:
     m_PersistentCalls:
@@ -272,7 +274,7 @@ CapsuleCollider:
   m_Radius: 0.034
   m_Height: 0.3
   m_Direction: 2
-  m_Center: {x: 0, y: 0.030891879, z: -0.000000037252903}
+  m_Center: {x: 0, y: 0.02, z: 0.13}
 --- !u!198 &198240591367442568
 ParticleSystem:
   m_ObjectHideFlags: 1

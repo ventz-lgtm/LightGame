@@ -59,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6a38234f979b71f44965a4f6f13e22ac, type: 2}
+  - {fileID: 2100000, guid: 34f0830f6f6ccca4a9d2deded490d503, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,4 +165,5 @@ MonoBehaviour:
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   itemDefinition: 6
+  aimable: 0
   playerHeld: {fileID: 0}

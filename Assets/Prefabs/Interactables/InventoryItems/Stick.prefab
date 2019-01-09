@@ -68,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1483941266604402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4047225615417826}
   m_RootOrder: 0
@@ -87,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 14034ec482cf615439f25a1b491efaa4, type: 2}
+  - {fileID: 2100000, guid: 7576d1edfccea2a4dbe8f6dde81e9a9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,7 +113,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483941266604402}
-  m_Mesh: {fileID: 4300116, guid: 1fcf69ca02217de43ad645c757b90ea9, type: 3}
+  m_Mesh: {fileID: 4300000, guid: df7f26e84d9ab7246b971cc8b071d0cb, type: 3}
 --- !u!54 &54761496719851602
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startActive: 0
-  interactableName: Placeholder
+  interactableName: Stick
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4

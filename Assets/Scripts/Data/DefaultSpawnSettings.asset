@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: DefaultSpawnSettings
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSpawnPointSettings
+  items:
+  - chance: 250
+    prefab: {fileID: 1206544553321428, guid: 5f6c30d6657578840aece571858a1124, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 100
+    prefab: {fileID: 1522243455367144, guid: e6bcbee606ebaf84f8b497f257be8d1a, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 150
+    prefab: {fileID: 1047933807099954, guid: 1fe6fd8c7c36c7a44b4b1e1f799c46e7, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 300
+    prefab: {fileID: 1387813720447954, guid: 86627cf802492da47b690f1ff856781c, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 10
+    prefab: {fileID: 1365329461780218, guid: 99a610785ec081b4a9fd1a0cafeba044, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 10
+    prefab: {fileID: 1471889488849816, guid: 5e950484409f62d4294d3edcc4f0a7e2, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 10
+    prefab: {fileID: 1177231729009212, guid: 1ef607b14326a7940a921bedfbb74998, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 10
+    prefab: {fileID: 1985986182169152, guid: 7a633382a7e46714393a03b80c79893b, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 140
+    prefab: {fileID: 1951372837659946, guid: a2307d4aecea5ed48a68d704edcd9b9d, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}

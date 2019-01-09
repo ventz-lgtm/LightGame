@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1522243455367144}
   m_LocalRotation: {x: -0.052335896, y: -0, z: -0, w: 0.9986295}
-  m_LocalPosition: {x: -4.1716194, y: -3.7547836, z: -9.774026}
+  m_LocalPosition: {x: 75.08236, y: -25.008854, z: 37.16508}
   m_LocalScale: {x: 1.145125, y: 1.145125, z: 1.145125}
   m_Children:
   - {fileID: 4141879385967584}
@@ -89,7 +89,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ac7ed2eeee49e684296bddc1f272603d, type: 2}
+  - {fileID: 2100000, guid: 6eddb870712b6984ea0f2370fb25e351, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,7 +115,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1522243455367144}
-  m_Mesh: {fileID: 4300000, guid: 4a2b734fecdaf8b42ad8621027387aa9, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b4dec9fc5e6e1434492865ce7111e605, type: 3}
 --- !u!54 &54395579633855690
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startActive: 0
-  interactableName: Placeholder
+  interactableName: Electric Torch
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4

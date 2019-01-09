@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 33209049677463088}
   - component: {fileID: 23654854312688382}
   - component: {fileID: 95704142662363248}
+  - component: {fileID: 64993343709822624}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1128749088515378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4376192, y: -2.31, z: -7.9349995}
+  m_LocalPosition: {x: 69.025696, y: -25.734684, z: 43.93949}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4132375936806034}
@@ -215,6 +216,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1652345166302700}
   m_Mesh: {fileID: 4300000, guid: dec064a58c4aedd42ac6b75f1c85288e, type: 3}
+--- !u!64 &64993343709822624
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652345166302700}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: dec064a58c4aedd42ac6b75f1c85288e, type: 3}
 --- !u!95 &95704142662363248
 Animator:
   serializedVersion: 3
@@ -284,9 +299,11 @@ MonoBehaviour:
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4
+  textTowardsCamera: 0
   idleMaterial: {fileID: 2100000, guid: 219534c0801107046bb514fcc4bb0047, type: 2}
   hoveredMaterial: {fileID: 2100000, guid: eb77ca86a2b99c944ae844df5b464b83, type: 2}
   pressedMaterial: {fileID: 2100000, guid: a84c48de1e34aee4e9e9b87d9e475274, type: 2}
+  touchActivates: 0
   interactableType: 1
   onInteractStart:
     m_PersistentCalls:
