@@ -27,6 +27,7 @@ public class BaseInteractable : MonoBehaviour {
     public InteractableType interactableType;
     public InteractableEvent onInteractStart;
     public InteractableEvent onInteractEnd;
+    public AudioClip useSound;
 
     public bool pressed {get; private set;}
 
@@ -46,6 +47,7 @@ public class BaseInteractable : MonoBehaviour {
     
     protected virtual void Start()
     {
+
         pressed = false;
         meshRenderer = GetComponent<MeshRenderer>();
         meshFilter = GetComponent<MeshFilter>();
@@ -248,6 +250,11 @@ public class BaseInteractable : MonoBehaviour {
     void DoInteractStart(GameObject invokerObject)
     {
         lastActive = Time.time;
+
+        if(useSound != null)
+        {
+            AudioPlayer.instance.PlaySound(useSound, 0.6f, Random.Range(0.9f, 1.1f));
+        }
 
         OnInteractableStart(invokerObject);
         onInteractStart.Invoke(invokerObject);

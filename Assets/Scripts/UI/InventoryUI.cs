@@ -7,6 +7,10 @@ public class InventoryUI : MonoBehaviour {
     public static InventoryUI instance;
 
     public bool inventoryOpen = false;
+    public AudioClip openSound;
+    public AudioClip closeSound;
+    public AudioClip dropItemSound;
+    public AudioClip craftSound;
 
     private GameObject slotsObject;
     private GameObject recipeSlotsObject;
@@ -55,6 +59,14 @@ public class InventoryUI : MonoBehaviour {
         if (Input.GetButtonDown("Inventory"))
         {
             inventoryOpen = !inventoryOpen;
+            if (inventoryOpen)
+            {
+                AudioPlayer.instance.PlaySound(openSound, 0.03f, Random.Range(0.95f, 1.05f));
+            }
+            else
+            {
+                AudioPlayer.instance.PlaySound(closeSound, 0.03f, Random.Range(0.95f, 1.05f));
+            }
         }
 
         if (inventoryOpen)
@@ -122,5 +134,15 @@ public class InventoryUI : MonoBehaviour {
 
             index++;
         }
+    }
+
+    public void OnItemDropped()
+    {
+        AudioPlayer.instance.PlaySound(dropItemSound, 0.03f, Random.Range(0.95f, 1.05f));
+    }
+
+    public void OnItemCrafted()
+    {
+        AudioPlayer.instance.PlaySound(craftSound, 0.03f, Random.Range(0.95f, 1.05f));
     }
 }

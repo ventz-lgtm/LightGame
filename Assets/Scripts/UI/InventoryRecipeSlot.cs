@@ -8,6 +8,7 @@ public class InventoryRecipeSlot : MonoBehaviour {
     public InventoryRecipe recipe;
     public bool hasRecipe;
 
+    private InventoryUI ui;
     private Button craftButton;
     private Button button;
     private Image image;
@@ -18,6 +19,7 @@ public class InventoryRecipeSlot : MonoBehaviour {
 
     private void Start()
     {
+        ui = transform.parent.parent.parent.parent.GetComponent<InventoryUI>();
         image = transform.Find("SlotButton").Find("Image").GetComponent<Image>();
         craftButton = transform.Find("CraftButton").GetComponent<Button>();
         button = transform.Find("SlotButton").GetComponent<Button>();
@@ -51,6 +53,8 @@ public class InventoryRecipeSlot : MonoBehaviour {
 
         GameObject item = Instantiate(recipe.prefab);
         item.transform.position = character.gameObject.transform.position + character.transform.forward;
+
+        ui.OnItemCrafted();
     }
 
     public void HoverStart()
