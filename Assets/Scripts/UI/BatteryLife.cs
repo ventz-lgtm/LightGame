@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class BatteryLife : MonoBehaviour {
 
-    private Text batteryTextItem;
-    private Torchbehaviour torch;
     private Inventory playerInventory;
     Image batteryCount;
     Image sanityMeter;
     Image sanityPulse;
+
+    Image batteryChargeMeter;
+    Image batteryCasing;
 
     GameManager gameManager;
 
@@ -22,12 +23,6 @@ public class BatteryLife : MonoBehaviour {
 
     private void Start()
     {
-
-        batteryTextItem = transform.GetChild(0).GetComponent<Text>();
-        if(batteryTextItem.name != "BatteryMeter")
-        {
-            Debug.Log("Not found battery meter UI component.");
-        }
 
         batteryCount = transform.Find("BatteryDisplay").GetComponent<Image>();
 
@@ -48,6 +43,10 @@ public class BatteryLife : MonoBehaviour {
             Debug.Log("No player Inventory instance found");
         }
 
+        batteryChargeMeter = gameObject.transform.Find("EnergyBar").GetComponent<Image>();
+
+        batteryCasing = batteryChargeMeter.transform.Find("BatteryCasing").GetComponent<Image>();
+
         sanityPulse = transform.Find("SanityPulse").GetComponent<Image>();
 
         gameManager = GameManager.instance;
@@ -60,20 +59,25 @@ public class BatteryLife : MonoBehaviour {
 
         if (playerInventory.GetHoldingTorch())
         {
-
+            batteryCasing.enabled = true;
+            batteryChargeMeter.enabled = true;
+           
             if (playerInventory.GetCurrentBatteryLife() > 0)
             {
-                batteryTextItem.text = string.Format("Battery: {0}%", playerInventory.GetCurrentBatteryLife());
+                batteryChargeMeter.fillAmount = ( playerInventory.GetCurrentBatteryLife() / 100f);
             }
             else
             {
-                batteryTextItem.text = ("Battery: 0%");
+                batteryChargeMeter.fillAmount = 0.0f;
             }
+            
         }
         else
         {
-            batteryTextItem.text = "Battery:";
+            batteryCasing.enabled = false;
+            batteryChargeMeter.enabled = false;
         }
+
         batteryCount.fillAmount = (float) (1.0f / maxBatteries * playerInventory.GetBatteryCount());
 
         tempColor = sanityMeter.color;

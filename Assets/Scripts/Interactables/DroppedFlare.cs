@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppedFlare : BaseInteractable {
+public class DroppedFlare : BaseInventoryItem {
 
     public float flareIntensity = 3f;
     public float flareRange = 5f;
@@ -12,7 +12,14 @@ public class DroppedFlare : BaseInteractable {
     protected ParticleSystem flareParticles;
     protected bool flareOn = false;
 
-    AudioSource 
+    public float flareDuration;
+    private float flareFuelRemaining;
+    private float startTime;
+
+    AudioSource flareSounds;
+    AudioClip flareOnSound;
+    AudioClip flareStartSound;
+    AudioClip flareEndSound;
 
     protected override void Start()
     {
@@ -30,6 +37,12 @@ public class DroppedFlare : BaseInteractable {
         {
             flareLight = flareLightTransform.gameObject.GetComponent<Light>();
         }
+
+        flareSounds = GetComponent<AudioSource>();
+        flareOnSound = (AudioClip)Resources.Load("Audio/roadFlareContinue");
+        flareStartSound = (AudioClip)Resources.Load("Audio/RoadFlareStart");
+        flareEndSound = (AudioClip)Resources.Load("Audio/RoadFlareEnd");
+        flareSounds.clip = flareStartSound;
     }
 
     protected override void Update()
@@ -38,9 +51,20 @@ public class DroppedFlare : BaseInteractable {
 
         if (flareOn)
         {
+
+            flareFuelRemaining = flareDuration - (Time.time - startTime * Time.deltaTime);
+            
+
             if(flareLightObject && !flareLightObject.activeSelf)
             {
                 flareLightObject.SetActive(true);
+            }
+
+            if (!flareSounds.isPlaying)
+            {
+                flareSounds.clip = flareOnSound;
+                flareSounds.loop = true;
+                flareSounds.Play();
             }
 
             if (flareLight)
@@ -51,6 +75,15 @@ public class DroppedFlare : BaseInteractable {
             if (flareParticles && !flareParticles.isPlaying)
             {
                 flareParticles.Play();
+            }
+
+            if (flareFuelRemaining <= 0)
+            {
+                flareOn = false;
+                flareSounds.Stop();
+                flareSounds.loop = false;
+                flareSounds.clip = flareEndSound;
+                flareSounds.Play();
             }
         }
         else
@@ -97,5 +130,8 @@ public class DroppedFlare : BaseInteractable {
     public void Ignite()
     {
         flareOn = true;
+        startTime = Time.time;
+        flareSounds.Play();
+        
     }
 }
