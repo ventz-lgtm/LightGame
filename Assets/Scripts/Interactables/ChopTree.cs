@@ -20,6 +20,8 @@ public class ChopTree : BaseInteractable {
     private bool chopping;
     private bool chopped;
 
+    AudioSource treeChopSound;
+
 
     // Use this for initialization
     protected override void Start () {
@@ -27,6 +29,8 @@ public class ChopTree : BaseInteractable {
         m_Canvas = Camera.main.GetComponentInChildren<Canvas>();
         chopping = false;
         treePosition = gameObject.transform.position;
+
+        treeChopSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,14 +40,31 @@ public class ChopTree : BaseInteractable {
 
         if (chopping)
         {
+            if (!treeChopSound.isPlaying)
+            {
+                treeChopSound.Play();
+            }
+
+
             treeInstance.fillAmount = Mathf.Lerp(1.0f, 0.0f, ((Time.time - chopTime) / chopDuration));
             if(treeInstance.fillAmount == 0)
             {
-                
+                if (treeChopSound.isPlaying)
+                {
+                    treeChopSound.Stop();
+                }
                 Destroy(gameObject);
                 Instantiate(treeStump, treePosition + groundHeight, treeStump.transform.rotation);
                 Instantiate(woodPile, treePosition + new Vector3(0, 0, 1) + groundHeight, woodPile.transform.rotation);
                 ChopEnd();
+            }
+        }
+
+        else
+        {
+            if (treeChopSound.isPlaying)
+            {
+                treeChopSound.Stop();
             }
         }
     }

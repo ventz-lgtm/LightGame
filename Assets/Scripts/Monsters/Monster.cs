@@ -24,16 +24,56 @@ public class Monster : MonoBehaviour {
     private float stoppedSince = 0;
     private float invisibleSince = 0;
 
+    AudioSource[] audioSources;
+    AudioSource monsterSuprise;
+    AudioSource monsterGrowl;
+
+    AudioClip monsterSupriseClip1;
+    AudioClip monsterSupriseClip2;
+
+    GameObject player;
 	// Use this for initialization
 	void Start () {
         if (particleObject)
         {
             particles = particleObject.GetComponent<ParticleSystem>();
         }
-	}
+
+        audioSources = GetComponents<AudioSource>();
+
+        monsterSuprise = audioSources[0];
+        monsterGrowl = audioSources[1];
+
+        monsterSupriseClip1 = (AudioClip)Resources.Load("Audio/horror_sound_one");
+        monsterSupriseClip2 = (AudioClip)Resources.Load("Audio/horror_sound_two");
+
+        player = GameManager.instance.playerObject;
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(Vector3.Distance(player.transform.position, gameObject.transform.position) < 6.0f && !IsVisible())
+        {
+                StartCoroutine(GrowlAfterSeconds());
+        }
+
+        if (IsVisible())
+        {
+            if (!monsterSuprise.isPlaying) {
+                if (Random.Range(0.0f, 1.0f) > 0.5f)
+            {
+                    monsterSuprise.PlayOneShot(monsterSupriseClip1);
+                }
+            else
+            {
+                    monsterSuprise.PlayOneShot(monsterSupriseClip2);
+                }
+            }
+            
+        }
+       
+
         if (escapingLight)
         {
             EscapeLight();
@@ -45,6 +85,18 @@ public class Monster : MonoBehaviour {
             MoveTowardsTargetLocation(false);
         }
 	}
+
+    public IEnumerator GrowlAfterSeconds()
+    {
+        
+        yield return new WaitForSeconds(Mathf.Floor(Random.Range(0.0f, 8.0f)));
+
+        if (!monsterGrowl.isPlaying)
+        {
+            monsterGrowl.Play();
+        }
+
+    }
 
     private void FixedUpdate()
     {

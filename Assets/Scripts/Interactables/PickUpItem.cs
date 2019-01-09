@@ -16,6 +16,8 @@ public class PickUpItem : BaseInteractable {
 
     AudioSource pickupSoundSource;
     AudioClip pickupSound;
+    float pitchMin = 0.70f;
+    float pitchMax = 1.0f;
 
     protected override void Start()
     {
@@ -81,6 +83,7 @@ public class PickUpItem : BaseInteractable {
         base.OnInteractableStart(invokerObject);
 
         pickUpRequest();
+        pickupSoundSource.pitch = Random.Range(pitchMin, pitchMax);
         pickupSoundSource.Play();
     }
 

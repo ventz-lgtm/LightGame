@@ -40,6 +40,8 @@ public class Character : MonoBehaviour {
     private Vector3 movementDirection = Vector3.forward;
     private Vector3 currentMovementDirection = Vector3.forward;
 
+    AudioSource footStepSound;
+
     private void Awake()
     {
         inventoryItems = new List<InventoryItemType>();
@@ -52,6 +54,8 @@ public class Character : MonoBehaviour {
         camera.transform.parent = transform;
 
         currentOrigin = transform.position;
+
+        footStepSound = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -72,7 +76,24 @@ public class Character : MonoBehaviour {
 
         UpdateCamera();
         UpdateVisibleObject();
+
+        if (velocityX > 0.1f || velocityZ > 0.1f || velocityX < -0.1f || velocityZ < -0.1f)
+        {
+            if (!footStepSound.isPlaying)
+            {
+                footStepSound.Play();
+            }
+        }
+        else
+        {
+            if (footStepSound.isPlaying)
+            {
+                footStepSound.Stop();
+            }
+        }
+
 	}
+
 
     private void FixedUpdate()
     {
