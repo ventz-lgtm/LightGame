@@ -44,6 +44,9 @@ public class PickUpItem : BaseInteractable {
 
     private void OnGUI()
     {
+        Transform item = inventory.GetHeldItem();
+        if (item == null || item.gameObject != gameObject) { return; }
+
         string text = GetHoldText();
         if(text == "") { return; }
 
