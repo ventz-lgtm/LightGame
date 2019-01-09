@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public enum LocationType { NONE, TOWN, CAMP, WATER_TOWER, TRAIN_STATION }
+    public enum LocationType { NONE, TOWN, CAMP, WATER_TOWER, CABIN }
     public enum InventoryItem { STICK }
 
     public static GameManager instance;

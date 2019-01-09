@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startActive: 0
-  interactableName: Placeholder
+  interactableName: Tree
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textMeshFadeMultiplier: 4

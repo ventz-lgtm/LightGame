@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: d1cc360bd1304ed4484f3c39d777149c
+timeCreated: 1547053342
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Box318
+    100002: Building 1 wall 003
+    100004: Building 1 wall 004
+    100006: Building 1 wall 005
+    100008: building 1 wall 009
+    100010: building 1 wall 011
+    100012: building 1 wall 012
+    100014: //RootNode
+    100016: Building 3 floor 004
+    100018: Building 3 floor 005
+    100020: Group47568
+    400000: Box318
+    400002: Building 1 wall 003
+    400004: Building 1 wall 004
+    400006: Building 1 wall 005
+    400008: building 1 wall 009
+    400010: building 1 wall 011
+    400012: building 1 wall 012
+    400014: //RootNode
+    400016: Building 3 floor 004
+    400018: Building 3 floor 005
+    400020: Group47568
+    2300000: Box318
+    2300002: Building 1 wall 003
+    2300004: Building 1 wall 004
+    2300006: Building 1 wall 005
+    2300008: building 1 wall 009
+    2300010: building 1 wall 011
+    2300012: building 1 wall 012
+    2300014: Building 3 floor 004
+    2300016: Building 3 floor 005
+    3300000: Box318
+    3300002: Building 1 wall 003
+    3300004: Building 1 wall 004
+    3300006: Building 1 wall 005
+    3300008: building 1 wall 009
+    3300010: building 1 wall 011
+    3300012: building 1 wall 012
+    3300014: Building 3 floor 004
+    3300016: Building 3 floor 005
+    4300000: Building 3 floor 004
+    4300002: Building 3 floor 005
+    4300004: building 1 wall 009
+    4300006: Building 1 wall 004
+    4300008: building 1 wall 011
+    4300010: building 1 wall 012
+    4300012: Building 1 wall 005
+    4300014: Box318
+    4300016: Building 1 wall 003
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: ac7ed2eeee49e684296bddc1f272603d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

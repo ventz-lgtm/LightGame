@@ -13,6 +13,7 @@ public class LightUtil : MonoBehaviour {
     private void Start()
     {
         instance = this;
+        FindLights();
     }
 
     public float SampleLightIntensity(Vector3 location)
@@ -27,12 +28,15 @@ public class LightUtil : MonoBehaviour {
 
     public float SampleLightIntensity(Vector3 location, bool useTrace, GameObject traceObject = null)
     {
-        FindLights();
-
         float intensity = 0;
 
         foreach (Light l in lights)
         {
+            if(l == null)
+            {
+                continue;
+            }
+
             if (l.gameObject.activeSelf)
             {
                 Vector3 lightPosition = l.gameObject.transform.position;

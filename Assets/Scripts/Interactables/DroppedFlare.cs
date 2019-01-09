@@ -12,8 +12,6 @@ public class DroppedFlare : BaseInteractable {
     protected ParticleSystem flareParticles;
     protected bool flareOn = false;
 
-    AudioSource 
-
     protected override void Start()
     {
         base.Start();
