@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour {
     private string notifyText = "";
     private float notifyAlpha = 0;
 
+    AudioSource[] audioSources;
+    AudioSource backgroundAmbience;
+    AudioSource sanityWhispers;
+
     private void Awake()
     {
         if (instance == null)
@@ -57,6 +61,16 @@ public class GameManager : MonoBehaviour {
         {
             playerCharacter = playerObject.GetComponent<Character>();
         }
+
+        audioSources = GetComponents<AudioSource>();
+        backgroundAmbience = audioSources[0];
+        //backgroundAmbience.Play(0);
+
+        sanityWhispers = audioSources[1];
+        sanityWhispers = GetComponent<AudioSource>();
+        sanityWhispers.volume = 0.0f;
+        //sanityWhispers.Play(0);
+
     }
 
     // Use this for initialization

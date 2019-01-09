@@ -9,10 +9,15 @@ public class BatteryLife : MonoBehaviour {
     private Torchbehaviour torch;
     private Inventory playerInventory;
     Image batteryCount;
-    Image healthbar;
+    Image sanityMeter;
+
+    GameManager gameManager;
+
     private int maxBatteries;
 
-    private void Awake()
+    Color tempColor;
+
+    private void Start()
     {
 
         batteryTextItem = transform.GetChild(0).GetComponent<Text>();
@@ -21,31 +26,27 @@ public class BatteryLife : MonoBehaviour {
             Debug.Log("Not found battery meter UI component.");
         }
 
-        batteryCount = transform.GetChild(1).GetComponent<Image>();
+        batteryCount = transform.Find("BatteryDisplay").GetComponent<Image>();
 
         if(batteryCount.name != "BatteryDisplay")
         {
             Debug.Log("Not found battery display UI component");
         }
 
-        healthbar = transform.GetChild(2).GetComponent<Image>();
-        if(healthbar.name != "healthbar")
+        sanityMeter = transform.Find("SanityMeter").GetComponent<Image>();
+        if(sanityMeter.name != "SanityMeter")
         {
-            Debug.Log("Not found healthbar display UI component");
+            Debug.Log("Not found SanityMeter display UI component");
         }
         
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        if (!torch)
+        if (!playerInventory)
         {
             Debug.Log("No player Inventory instance found");
         }
 
-        
+        gameManager = GameManager.instance;
 
-    }
-
-    // Use this for initialization
-    void Start () {
         maxBatteries = playerInventory.GetMaxBatteries();
     }
 	
@@ -69,5 +70,11 @@ public class BatteryLife : MonoBehaviour {
             batteryTextItem.text = "Battery:";
         }
         batteryCount.fillAmount = (float) (1.0f / maxBatteries * playerInventory.GetBatteryCount());
+
+        tempColor = sanityMeter.color;
+        tempColor.a = gameManager.sanity;
+        sanityMeter.color = tempColor;
+
+
 	}
 }
