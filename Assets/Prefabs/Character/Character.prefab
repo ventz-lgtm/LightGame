@@ -797,7 +797,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579144395401260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8976293, y: -24.713, z: 92.816315}
+  m_LocalPosition: {x: 3.8976293, y: -24.734684, z: 92.816315}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4546874886441558}
@@ -1392,6 +1392,7 @@ MonoBehaviour:
   cameraHeight: 10
   movementDampen: 10
   visualObject: {fileID: 1949593785877306}
+  handObject: {fileID: 1921973004966574}
   cameraMovementType: 1
   cameraSensitivityYaw: 100
   cameraSensitivityPitch: 30
