@@ -42,6 +42,7 @@ public class Character : MonoBehaviour {
     private Vector3 currentMovementDirection = Vector3.forward;
     private float lastHintCheck = 0;
     private bool darknessHintDone = false;
+    private Inventory inv;
 
     AudioSource footStepSound;
 
@@ -62,6 +63,8 @@ public class Character : MonoBehaviour {
         currentOrigin = transform.position;
         playerAnimation = transform.Find("Visual").transform.Find("Mesh").GetComponent<Animator>();
         footStepSound = GetComponent<AudioSource>();
+
+        inv = GetComponent<Inventory>();
     }
 
     // Update is called once per frame
@@ -132,10 +135,26 @@ public class Character : MonoBehaviour {
                 playerAnimation.SetInteger("RunDirection", (int)runDirection.LEFT);
             }
 
+            Transform transform = inv.GetHeldItem();
+            GameObject heldObject = transform != null ? transform.gameObject : null;
+            bool holding = true;
+            if (heldObject)
+            {
+                PickUpItem pickup = heldObject.GetComponent<PickUpItem>();
+                if (pickup == null || !(pickup.aimable && pickup.ShouldAim()))
+                {
+                    holding = false;
+                }
+            }
+            else
+            {
+                holding = false;
+            }
 
-
-
-
+            if (!holding)
+            {
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.FORWARD);
+            }
         }
         else
         {
@@ -178,7 +197,6 @@ public class Character : MonoBehaviour {
     {
         if (visualObject)
         {
-            Inventory inv = GetComponent<Inventory>();
             Transform transform = inv.GetHeldItem();
             GameObject heldObject = transform != null ? transform.gameObject : null;
             bool aiming = false;
