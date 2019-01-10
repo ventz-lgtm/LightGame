@@ -25,11 +25,11 @@ MonoBehaviour:
     prefab: {fileID: 1047933807099954, guid: 1fe6fd8c7c36c7a44b4b1e1f799c46e7, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
-  - chance: 300
+  - chance: 200
     prefab: {fileID: 1387813720447954, guid: 86627cf802492da47b690f1ff856781c, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
-  - chance: 200
+  - chance: 300
     prefab: {fileID: 1258652289979112, guid: 886d1dfc5e35f874eb4a59d28bc3e34f, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}

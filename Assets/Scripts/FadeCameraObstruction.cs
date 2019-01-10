@@ -75,7 +75,6 @@ public class FadeCameraObstruction : MonoBehaviour {
             }
             else
             {
-                Debug.DrawLine(GameManager.instance.playerObject.transform.position + new Vector3(0, 2, 0), GameManager.instance.playerObject.transform.position + new Vector3(0, 2, 0) + (-(GameManager.instance.playerObject.transform.position - origin).normalized * 20));
                 if (Physics.Raycast(GameManager.instance.playerObject.transform.position + new Vector3(0, 2, 0), -(GameManager.instance.playerObject.transform.position - origin).normalized, out hit, Vector3.Distance(origin, GameManager.instance.playerObject.transform.position), layerMask))
                 {
                     GameObject hitObject2 = hit.collider.gameObject;

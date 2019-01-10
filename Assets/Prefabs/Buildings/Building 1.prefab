@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 33115322883212118}
   - component: {fileID: 23487177040092142}
   - component: {fileID: 95082819283381648}
+  - component: {fileID: 64681502560668322}
   m_Layer: 0
   m_Name: Metal Table
   m_TagString: Untagged
@@ -1703,6 +1704,20 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 4d2cfb962bce7d74590c818913951c9e, type: 3}
+--- !u!64 &64681502560668322
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1446325921804232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 35bfefb915a584b4985aa7131f930380, type: 3}
 --- !u!64 &64787664441804586
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -1951,6 +1966,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  useSound: {fileID: 0}
   doorDampen: 0.2
   autoCloseDuration: 0
 --- !u!114 &114300847922504848
