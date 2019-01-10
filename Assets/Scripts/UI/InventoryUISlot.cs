@@ -9,6 +9,7 @@ public class InventoryUISlot : MonoBehaviour {
     public InventoryItemType itemType;
     public bool hasItem;
 
+    private InventoryUI ui;
     private GameObject closeButtonObject;
     private Image image;
     private GameObject imageObject;
@@ -16,6 +17,7 @@ public class InventoryUISlot : MonoBehaviour {
 
     private void Start()
     {
+        ui = transform.parent.parent.parent.GetComponent<InventoryUI>();
         closeButtonObject = transform.Find("CloseButton").gameObject;
         imageObject = transform.Find("SlotButton").Find("Image").gameObject;
         image = imageObject.GetComponent<Image>();
@@ -50,5 +52,7 @@ public class InventoryUISlot : MonoBehaviour {
 
         Character player = GameManager.instance.playerCharacter;
         player.InventoryDrop(slotIndex);
+
+        ui.OnItemDropped();
     }
 }

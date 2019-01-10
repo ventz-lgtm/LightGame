@@ -260,8 +260,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  useSound: {fileID: 0}
   itemDefinition: 1
   aimable: 0
+  holdableUseSound: {fileID: 8300000, guid: 838e6f1005172a244a4b5c490c97ba99, type: 3}
+  holdableUseVolume: 0.04
   playerHeld: {fileID: 0}
   lightFlicker: 0
   fuelUsage: 0.004

@@ -7,18 +7,30 @@ public class Location : MonoBehaviour {
 
     public LocationConfig locationConfig;
 
-    private bool spawnedGenerator = false;
+    // Use this for initialization
+    void Start () {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+        if (locationConfig.generatorSpawns.Length >= 0 && Application.isPlaying)
+        {
+            GeneratorSpawnInfo location = locationConfig.generatorSpawns[Random.Range(0, locationConfig.generatorSpawns.Length)];
+            GameObject generator = Instantiate(GameManager.instance.generatorPrefab);
+            generator.transform.position = transform.position + location.location;
+            generator.transform.rotation = Quaternion.Euler(location.rotation);
+            generator.transform.parent = transform;
+
+            Generator generatorComponent = generator.GetComponent<Generator>();
+            generatorComponent.locationType = locationConfig.locationType;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!Application.isPlaying) {
-            spawnedGenerator = false;
-
+        if (!Application.isPlaying)
+        {
             LocationConfig cfg = locationConfig;
             if (cfg == null) { return; }
 
@@ -35,23 +47,6 @@ public class Location : MonoBehaviour {
             }
 
             return;
-        }
-
-        if (!spawnedGenerator)
-        {
-            spawnedGenerator = true;
-
-            if (locationConfig.generatorSpawns.Length >= 0)
-            {
-                GeneratorSpawnInfo location = locationConfig.generatorSpawns[Random.Range(0, locationConfig.generatorSpawns.Length)];
-                GameObject generator = Instantiate(GameManager.instance.generatorPrefab);
-                generator.transform.position = transform.position + location.location;
-                generator.transform.rotation = Quaternion.Euler(location.rotation);
-                generator.transform.parent = transform;
-
-                Generator generatorComponent = generator.GetComponent<Generator>();
-                generatorComponent.locationType = locationConfig.locationType;
-            }
         }
     }
 }

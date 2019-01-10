@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -19,11 +20,17 @@ public class GameManager : MonoBehaviour {
     public int maxMonsters = 10;
     public float monsterSpawnCooldown = 10f;
     public int minMonsterSpawnChance = 10;
+    public int maxLurkers = 10;
     public MonsterPrefabType[] monsterPrefabs;
+    public LurkerPrefabType[] lurkerPrefabs;
     public GeneratorPart[] generatorParts;
 
     [Header("Crafting")]
     public InventoryRecipe[] recipes;
+
+    [Header("Audio")]
+    public bool playSounds = true;
+    public float windVolume = 0.14f;
 
     [HideInInspector]
     Dictionary<LocationType, bool> activatedLocations = new Dictionary<LocationType, bool>();
@@ -32,6 +39,7 @@ public class GameManager : MonoBehaviour {
     public float sanity { get; private set; }
     public float minimumSanity { get; private set; }
     public ArrayList monsters { get; private set; }
+    public ArrayList lurkers { get; private set; }
     public Character playerCharacter { get; private set; }
 
     private float lastMonsterSpawn = 0;
@@ -40,10 +48,15 @@ public class GameManager : MonoBehaviour {
     private float notifyTime = 0;
     private string notifyText = "";
     private float notifyAlpha = 0;
+    private Light dangerLight;
+    private float lastLurker = 0;
 
     AudioSource[] audioSources;
     AudioSource backgroundAmbience;
+    AudioSource windSource;
     AudioSource sanityWhispers;
+
+    private float windSourceVolume = 0f;
 
     private void Awake()
     {
@@ -60,37 +73,116 @@ public class GameManager : MonoBehaviour {
         if (playerObject != null)
         {
             playerCharacter = playerObject.GetComponent<Character>();
+            dangerLight = playerObject.transform.Find("DangerLight").GetComponent<Light>();
         }
 
         audioSources = GetComponents<AudioSource>();
         backgroundAmbience = audioSources[0];
         backgroundAmbience.volume = 0.2f;
-        
 
         sanityWhispers = audioSources[1];
         sanityWhispers.volume = 0.0f;
 
         backgroundAmbience.Play();
 
+        windSource = audioSources[2];
+        windSource.volume = 0f;
+        windSource.Play();
+
+        if (!playSounds)
+        {
+            foreach(AudioSource source in audioSources)
+            {
+                source.volume = 0;
+            }
+        }
     }
 
     // Use this for initialization
     void Start () {
         dangerLevel = 0;
         monsters = new ArrayList();
+        lurkers = new ArrayList();
 
         Camera.main.farClipPlane = 30f;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if(playerCharacter != null)
+        backgroundAmbience.volume = 0.2f * dangerLevel;
+
+        ////////////////
+        // WIND SOUND //
+        ////////////////
+
+        if (playerObject != null)
+        {
+            int layerMask = ~0;
+            RaycastHit hit;
+            if (Physics.Raycast(playerObject.transform.position + new Vector3(0, 1, 0), Vector3.up, out hit, 20, layerMask))
+            {
+                windSourceVolume = windVolume * 0.15f * (1 - dangerLevel);
+            }
+            else
+            {
+                windSourceVolume = windVolume * (1 - dangerLevel);
+            }
+
+            windSource.volume = windSource.volume + ((windSourceVolume - windSource.volume) * 2f * Time.deltaTime);
+        }
+        if (!playSounds) { windSource.volume = 0f; }
+
+        //////////////////
+        // DANGER LIGHT //
+        //////////////////
+
+        float minDistance = Mathf.Infinity;
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            minDistance = Mathf.Min(minDistance, Vector3.Distance(playerObject.transform.position, transform.GetChild(i).transform.position));
+        }
+
+        if (dangerLight != null)
+        {
+            float dangerLightPercentage = Mathf.Clamp((3 - minDistance) / 3, 0, 1);
+            dangerLight.range = 8;
+            dangerLight.intensity = dangerLightPercentage * 0.38f;
+
+            dangerLevel = Mathf.Max(dangerLevel, dangerLightPercentage);
+        }
+
+        /////////////
+        // LURKERS //
+        /////////////
+
+        if(Time.time - lastLurker > Mathf.Max(0.1f, 1 - dangerLevel) * 1)
+        {
+            lastLurker = Time.time;
+
+            foreach(LurkerPrefabType type in lurkerPrefabs)
+            {
+                if(type.dangerThreshold < dangerLevel)
+                {
+                    if(lurkers.Count >= maxLurkers) { break; }
+
+                    GameObject lurker = Instantiate(type.prefab);
+                    lurker.transform.position = PickMonsterSpawnLocation(Random.Range(8f, 15f));
+                    lurkers.Add(lurker);
+                }
+            }
+        }
+
+        /////////////////////
+        // SANITY & DANGER //
+        /////////////////////
+
+        if (playerCharacter != null)
         {
             float lightLevel = playerCharacter.GetLightIntensity();
 
             if(lightLevel <= 0.2f)
             {
-                sanity = Mathf.Clamp(sanity + (0.02f * Time.deltaTime), minimumSanity, 1f);
+                sanity = Mathf.Clamp(sanity + (0.01f * Time.deltaTime), minimumSanity, 1f);
             }
             else
             {
@@ -100,7 +192,7 @@ public class GameManager : MonoBehaviour {
             float valueChange = (((1 - lightLevel) - 0.5f));
             if(valueChange > 0)
             {
-                valueChange *= 0.03f;
+                valueChange *= 0.02f;
             }
             else
             {
@@ -133,6 +225,11 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public float GetDangerLevel()
     {
         return Mathf.Max(sanity, dangerLevel);
@@ -153,12 +250,12 @@ public class GameManager : MonoBehaviour {
         Destroy(monster);
     }
 
-    public Vector3 PickMonsterSpawnLocation()
+    public Vector3 PickMonsterSpawnLocation(float distance = 0)
     {
         Vector3 location = playerObject.transform.position;
 
         float degree = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-        float distance = Random.Range(15f, 30f);
+        distance = distance == 0 ? Random.Range(15f, 30f) : distance;
 
         location += new Vector3(Mathf.Cos(degree), 0, Mathf.Sin(degree)) * distance;
 
@@ -239,6 +336,13 @@ public class MonsterPrefabType
     public GameObject prefab;
     public int spawnAfterSeconds = 0;
     public int spawnChance = 100;
+}
+
+[System.Serializable]
+public class LurkerPrefabType
+{
+    public GameObject prefab;
+    public float dangerThreshold = 0.5f;
 }
 
 [System.Serializable]

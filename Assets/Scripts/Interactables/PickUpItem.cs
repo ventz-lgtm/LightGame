@@ -8,6 +8,8 @@ public class PickUpItem : BaseInteractable {
 
     public items itemDefinition;
     public bool aimable = false;
+    public AudioClip holdableUseSound;
+    public float holdableUseVolume = 0.1f;
 
     public Inventory playerHeld;
 
@@ -16,6 +18,7 @@ public class PickUpItem : BaseInteractable {
 
     AudioSource pickupSoundSource;
     AudioClip pickupSound;
+    
     float pitchMin = 0.70f;
     float pitchMax = 1.0f;
 
@@ -50,6 +53,10 @@ public class PickUpItem : BaseInteractable {
             if(item != null && item.gameObject == gameObject)
             {
                 OnUse();
+                if (holdableUseSound)
+                {
+                    AudioPlayer.instance.PlaySound(holdableUseSound, holdableUseVolume, Random.Range(0.9f, 1.1f));
+                }
             }
         }
     }

@@ -8,12 +8,19 @@ public class LightUtil : MonoBehaviour {
 
     private bool lightsFound = false;
     private Light[] lights;
-
+    private float lastFindLights = 0;
 
     private void Start()
     {
         instance = this;
-        FindLights();
+    }
+
+    private void Update()
+    {
+        if(Time.time - lastFindLights > 5)
+        {
+            FindLights();
+        }
     }
 
     public float SampleLightIntensity(Vector3 location)
@@ -29,6 +36,8 @@ public class LightUtil : MonoBehaviour {
     public float SampleLightIntensity(Vector3 location, bool useTrace, GameObject traceObject = null)
     {
         float intensity = 0;
+
+        if(lights == null) { return 0; }
 
         foreach (Light l in lights)
         {
@@ -90,6 +99,9 @@ public class LightUtil : MonoBehaviour {
         int layerMask = 0;
         layerMask = ~layerMask;
 
+        float maxDistance = Mathf.Max(Mathf.Abs(lightPosition.x - location.x), Mathf.Abs(lightPosition.y - location.y), Mathf.Abs(lightPosition.z - location.z));
+        if(maxDistance <= 0.5f) { return true; }
+
         if (Physics.Raycast(lightPosition, relativePosition.normalized, out hit, range, layerMask))
         {
             if(traceObject == null) { return false; }
@@ -104,8 +116,6 @@ public class LightUtil : MonoBehaviour {
     public float GetLightIntensity(float distance, float range, float intensity)
     {
         float value = 1 - (distance / range);
-
-        //return Mathf.Clamp(value + ((1 - value) * intensity * 0.3f), 0, 1);
         value *= Mathf.Clamp(intensity, 0f, 1f);
 
         if(value < 0.7f)
@@ -118,7 +128,7 @@ public class LightUtil : MonoBehaviour {
 
     public void FindLights()
     {
-        if (lightsFound) { return; }
+        lastFindLights = Time.time;
 
         lights = FindObjectsOfType(typeof(Light)) as Light[];
     }

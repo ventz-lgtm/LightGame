@@ -15,6 +15,7 @@ public class DroppedFlare : BaseInventoryItem {
     public float flareDuration;
     private float flareFuelRemaining;
     private float startTime;
+    private float initialVolume;
 
     AudioSource flareSounds;
     AudioClip flareOnSound;
@@ -40,10 +41,12 @@ public class DroppedFlare : BaseInventoryItem {
         }
 
         flareSounds = GetComponent<AudioSource>();
-        flareOnSound = (AudioClip)Resources.Load("Audio/roadFlareContinue");
+        flareOnSound = (AudioClip)Resources.Load("Audio/flare_loop");
         flareStartSound = (AudioClip)Resources.Load("Audio/RoadFlareStart");
         flareEndSound = (AudioClip)Resources.Load("Audio/RoadFlareEnd");
         flareSounds.clip = flareStartSound;
+        initialVolume = flareSounds.volume;
+        flareFuelRemaining = 1;
     }
 
     protected override void Update()
@@ -52,9 +55,7 @@ public class DroppedFlare : BaseInventoryItem {
 
         if (flareOn)
         {
-
-            flareFuelRemaining = flareDuration - (Time.time - startTime * Time.deltaTime);
-            
+            flareFuelRemaining -= Time.deltaTime * 0.01f;
 
             if(flareLightObject && !flareLightObject.activeSelf)
             {
@@ -68,6 +69,9 @@ public class DroppedFlare : BaseInventoryItem {
                 flareSounds.Play();
             }
 
+            float volumeDistance = 8f;
+            flareSounds.volume = Mathf.Clamp(initialVolume * ((volumeDistance - Vector3.Distance(transform.position, GameManager.instance.playerObject.transform.position)) / volumeDistance), 0, initialVolume);
+            
             if (flareLight)
             {
                 flareLight.range = flareRange + Random.Range(-.5f, .5f);
@@ -108,8 +112,6 @@ public class DroppedFlare : BaseInventoryItem {
 
     protected override void OnInteractableStart(GameObject invokerObject)
     {
-        base.OnInteractableStart(invokerObject);
-
         if (flareOn) { return; }
         if(invokerObject == null)
         {
@@ -117,15 +119,10 @@ public class DroppedFlare : BaseInventoryItem {
             return;
         }
 
-        Character character = invokerObject.GetComponent<Character>();
-        
-        if(character != null)
-        {
-            if (character.PickupFlare())
-            {
-                Destroy(gameObject);
-            }
-        }
+        flareOn = true;
+        flareFuelRemaining = 1;
+
+        base.OnInteractableStart(invokerObject);
     }
 
     public void Ignite()
