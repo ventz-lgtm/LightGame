@@ -44,6 +44,9 @@ public class Character : MonoBehaviour {
 
     AudioSource footStepSound;
 
+    Animator playerAnimation;
+    AnimatorControllerParameter isRunning;
+
     private void Awake()
     {
         inventoryItems = new List<InventoryItemType>();
@@ -56,7 +59,7 @@ public class Character : MonoBehaviour {
         camera.transform.parent = transform;
 
         currentOrigin = transform.position;
-
+        playerAnimation = transform.Find("Visual").transform.Find("Mesh").GetComponent<Animator>();
         footStepSound = GetComponent<AudioSource>();
     }
 
@@ -102,6 +105,9 @@ public class Character : MonoBehaviour {
             {
                 footStepSound.Play();
             }
+
+            playerAnimation.SetBool("isRunning", true);
+
         }
         else
         {
@@ -109,6 +115,8 @@ public class Character : MonoBehaviour {
             {
                 footStepSound.Stop();
             }
+
+            playerAnimation.SetBool("isRunning", false);
         }
 	}
 
