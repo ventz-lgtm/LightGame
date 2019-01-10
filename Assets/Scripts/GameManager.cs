@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour {
     public bool playSounds = true;
     public float windVolume = 0.14f;
 
+    [Header("UI")]
+    public GameObject hintPrefab;
+
     [HideInInspector]
     Dictionary<LocationType, bool> activatedLocations = new Dictionary<LocationType, bool>();
 
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour {
     private float notifyAlpha = 0;
     private Light dangerLight;
     private float lastLurker = 0;
+    private GameObject hintPanel;
 
     AudioSource[] audioSources;
     AudioSource backgroundAmbience;
@@ -317,6 +321,22 @@ public class GameManager : MonoBehaviour {
         style.fontSize = h * 2 / 100;
         style.normal.textColor = new Color(1f, 1f, 1f, notifyAlpha);
         GUI.Label(rect, notifyText, style);
+    }
+
+    public void ShowHint(string text, string title = "Hint")
+    {
+        if(hintPanel != null)
+        {
+            Destroy(hintPanel);
+        }
+
+        hintPanel = Instantiate(hintPrefab);
+        hintPanel.transform.SetParent(Camera.main.transform.Find("Canvas").gameObject.transform);
+        RectTransform rt = hintPanel.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(240, -300);
+        HintPanel panelComponent = hintPanel.GetComponent<HintPanel>();
+        panelComponent.SetTitle(title);
+        panelComponent.SetText(text);
     }
 }
 

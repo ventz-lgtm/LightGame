@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Hint : MonoBehaviour {
 
-    public string text = "Hint";
+    [TextArea]
+    public string text = "Placeholder";
+    public string title = "Hint";
     public float hintTime = 6;
 
     private bool triggered = false;
@@ -14,7 +16,7 @@ public class Hint : MonoBehaviour {
         if(!triggered && other.gameObject == GameManager.instance.playerObject)
         {
             triggered = true;
-            GameManager.instance.Notify(text, hintTime);
+            GameManager.instance.ShowHint(text, title);
         }
     }
 }

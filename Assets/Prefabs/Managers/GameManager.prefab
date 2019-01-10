@@ -343,3 +343,4 @@ MonoBehaviour:
     - Cloth
   playSounds: 1
   windVolume: 0.14
+  hintPrefab: {fileID: 1159761605041300, guid: 9c4efb32201969548903fcb8c6747fb5, type: 2}

@@ -13,6 +13,7 @@ public class LightUtil : MonoBehaviour {
     private void Start()
     {
         instance = this;
+        FindLights();
     }
 
     private void Update()
@@ -101,11 +102,15 @@ public class LightUtil : MonoBehaviour {
 
         float maxDistance = Mathf.Max(Mathf.Abs(lightPosition.x - location.x), Mathf.Abs(lightPosition.y - location.y), Mathf.Abs(lightPosition.z - location.z));
         if(maxDistance <= 0.5f) { return true; }
-
-        if (Physics.Raycast(lightPosition, relativePosition.normalized, out hit, range, layerMask))
+        
+        if (Physics.Raycast(lightPosition, relativePosition.normalized, out hit, range * 2, layerMask))
         {
-            if(traceObject == null) { return false; }
-            if(traceObject != hit.collider.gameObject && hit.collider.gameObject.transform.parent != transform.transform) { return false; }
+            if(traceObject == null) { Debug.DrawLine(lightPosition, hit.point, Color.blue);  return false; }
+            if(traceObject != hit.collider.gameObject && hit.collider.gameObject.transform.parent != transform.transform) {
+                return false;
+            }
+
+            Debug.DrawLine(lightPosition, hit.point, Color.green);
 
             return true;
         }

@@ -39,6 +39,8 @@ public class Character : MonoBehaviour {
     private Vector3 currentOrigin;
     private Vector3 movementDirection = Vector3.forward;
     private Vector3 currentMovementDirection = Vector3.forward;
+    private float lastHintCheck = 0;
+    private bool darknessHintDone = false;
 
     AudioSource footStepSound;
 
@@ -57,9 +59,9 @@ public class Character : MonoBehaviour {
 
         footStepSound = GetComponent<AudioSource>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         currentOrigin += (transform.position - currentOrigin) * originDampening;
 
         Debug.DrawLine(transform.position, currentOrigin);
@@ -73,6 +75,23 @@ public class Character : MonoBehaviour {
                 HandleMouseCameraMovement();
                 break;
         }
+
+        if(Time.time - lastHintCheck > 2)
+        {
+            lastHintCheck = Time.time;
+
+            float intensity = GetLightIntensity();
+
+            if (!darknessHintDone)
+            {
+                if (intensity < 0.2f)
+                {
+                    Debug.Log("hint");
+                    darknessHintDone = true;
+                    GameManager.instance.ShowHint("Stay in the light.\n\nWandering into darkness reduces your sanity and exposes you to monsters!", "The Darkness");
+                }
+            }
+        }        
 
         UpdateCamera();
         UpdateVisibleObject();

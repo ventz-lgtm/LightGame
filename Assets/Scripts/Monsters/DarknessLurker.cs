@@ -52,7 +52,7 @@ public class DarknessLurker : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
-        else if(Vector3.Distance(transform.position, GameManager.instance.playerObject.transform.position) < 5)
+        else if(Vector3.Distance(transform.position, GameManager.instance.playerObject.transform.position) < 4)
             {
             maxDuration = Time.time - created - 0.1f;
         }
