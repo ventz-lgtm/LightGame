@@ -179,18 +179,18 @@ public class GameManager : MonoBehaviour {
         // LURKERS //
         /////////////
 
-        if(Time.time - lastLurker > Mathf.Max(0.1f, 1 - dangerLevel) * 1)
+        if(Time.time - lastLurker > Mathf.Max(0.1f, 1 - dangerLevel) * 0.5f)
         {
             lastLurker = Time.time;
 
             foreach(LurkerPrefabType type in lurkerPrefabs)
             {
-                if(type.dangerThreshold < dangerLevel)
+                if(type.dangerThreshold <= dangerLevel)
                 {
                     if(lurkers.Count >= maxLurkers) { break; }
 
                     GameObject lurker = Instantiate(type.prefab);
-                    lurker.transform.position = PickMonsterSpawnLocation(Random.Range(8f, 15f));
+                    lurker.transform.position = PickMonsterSpawnLocation(Random.Range(6f, 10f));
                     lurkers.Add(lurker);
                 }
             }
