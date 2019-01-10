@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -35,6 +36,9 @@ public class GameManager : MonoBehaviour {
     [Header("UI")]
     public GameObject hintPrefab;
     public GameObject escapeMenuPanel;
+    public GameObject gameOverScreen;
+    public GameObject fadeToBlackScreen;
+    private Color tempColor;
 
     [HideInInspector]
     Dictionary<LocationType, bool> activatedLocations = new Dictionary<LocationType, bool>();
@@ -55,6 +59,9 @@ public class GameManager : MonoBehaviour {
     private Light dangerLight;
     private float lastLurker = 0;
     private GameObject hintPanel;
+    private GameObject gameOverInstance;
+    private GameObject fadeToBlackInstance;
+    private bool gameOver = false;
 
     AudioSource[] audioSources;
     AudioSource backgroundAmbience;
@@ -239,8 +246,42 @@ public class GameManager : MonoBehaviour {
                     }
                 }
             }
+
+            if(sanity >= 1.0f)
+            {
+                gameOver = true;
+                fadeOut();
+                StartCoroutine(waitThenMenu());
+            }
+        }
+
+        //////////////////////
+        // GameOver effects //
+        //////////////////////
+        else
+        {
+            tempColor.a += 0.005f;
+            fadeToBlackInstance.GetComponent<Image>().color = tempColor;
         }
 	}
+
+    private void fadeOut()
+    {
+        gameOverInstance = Instantiate(gameOverScreen);
+        gameOverInstance.transform.SetParent(Camera.main.transform.Find("Canvas"));
+        gameOverInstance.GetComponent<RectTransform>().anchoredPosition = new Vector2(0.0f, 0.0f);
+        fadeToBlackInstance = Instantiate(fadeToBlackScreen);
+        tempColor = fadeToBlackInstance.GetComponent<Image>().color;
+        tempColor.a = 0.0f;
+        fadeToBlackInstance.GetComponent<Image>().color = tempColor;
+
+        fadeToBlackInstance.transform.SetParent(Camera.main.transform.Find("Canvas"));
+        fadeToBlackInstance.GetComponent<RectTransform>().anchoredPosition = new Vector2(0.0f, 0.0f);
+    }
+    IEnumerator waitThenMenu() { 
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("Menu");
+    }
 
     public void LoadScene(string sceneName)
     {
@@ -348,6 +389,7 @@ public class GameManager : MonoBehaviour {
         style.fontSize = h * 2 / 100;
         style.normal.textColor = new Color(1f, 1f, 1f, notifyAlpha);
         GUI.Label(rect, notifyText, style);
+
     }
 
     public void ShowHint(string text, string title = "Hint")

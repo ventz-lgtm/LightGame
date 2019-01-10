@@ -111,7 +111,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -192,7 +192,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -273,7 +273,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -372,3 +372,7 @@ MonoBehaviour:
   windVolume: 0.14
   hintPrefab: {fileID: 1159761605041300, guid: 9c4efb32201969548903fcb8c6747fb5, type: 2}
   escapeMenuPanel: {fileID: 0}
+  gameOverScreen: {fileID: 1809992072708356, guid: 540e1b8a508fabf4abc4dcef5e2f04f1,
+    type: 2}
+  fadeToBlackScreen: {fileID: 1401582292452688, guid: cce056f50fb68b24b8757e1287b40906,
+    type: 2}
