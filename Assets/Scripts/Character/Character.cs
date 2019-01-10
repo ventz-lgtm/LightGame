@@ -46,6 +46,7 @@ public class Character : MonoBehaviour {
     AudioSource footStepSound;
 
     Animator playerAnimation;
+    enum runDirection {IDLE, FORWARD, RIGHT, BACKWARDS, LEFT};
 
     private void Awake()
     {
@@ -106,7 +107,32 @@ public class Character : MonoBehaviour {
                 footStepSound.Play();
             }
 
-            playerAnimation.SetBool("isRunning", true);
+            Vector3 velNormal = rb.velocity.normalized;
+            float dotForward = Vector3.Dot(visualObject.transform.forward, velNormal);
+
+            float dotRight = Vector3.Dot(visualObject.transform.right, velNormal);
+
+
+
+            if (dotForward >= 0.5f)
+            {
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.FORWARD);
+            }
+            else if(dotForward <= -0.5f)
+            {
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.BACKWARDS);
+            }
+            else if(dotRight >= 0.5f)
+            {
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.RIGHT);
+            }
+            else if (dotRight <= -0.5f)
+            {
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.LEFT);
+            }
+            
+
+            Debug.Log(playerAnimation.GetInteger("RunDirection"));
 
         }
         else
@@ -115,9 +141,12 @@ public class Character : MonoBehaviour {
             {
                 footStepSound.Stop();
             }
+            playerAnimation.SetInteger("RunDirection", (int)runDirection.IDLE);
 
-            playerAnimation.SetBool("isRunning", false);
         }
+
+        
+        
 	}
 
 
