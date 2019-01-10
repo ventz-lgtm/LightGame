@@ -408,6 +408,11 @@ public class GameManager : MonoBehaviour {
         panelComponent.SetText(text);
     }
 
+    public void HealSanity(float amount)
+    {
+        sanity = Mathf.Max(0, sanity - amount);
+    }
+
     public void ExitGame()
     {
         Application.Quit();
@@ -460,6 +465,7 @@ public class InventoryItemType
 {
     public string name;
     public Sprite icon;
+    public bool deleteOnDrop = false;
     public GameObject instance;
 }
 

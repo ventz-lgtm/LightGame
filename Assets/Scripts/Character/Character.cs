@@ -154,11 +154,7 @@ public class Character : MonoBehaviour {
             }
             playerAnimation.SetInteger("RunDirection", (int)runDirection.IDLE);
             playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.IDLE);
-
         }
-
-        
-        
 	}
 
 
@@ -355,7 +351,7 @@ public class Character : MonoBehaviour {
         GameObject droppedItem = item.instance;
         if (droppedItem == null) { return null; }
         
-        if (dontDrop)
+        if (dontDrop || item.deleteOnDrop)
         {
             Destroy(droppedItem);
         }
@@ -363,6 +359,12 @@ public class Character : MonoBehaviour {
         {
             droppedItem.SetActive(true);
             droppedItem.transform.position = transform.position + (visualObject.transform.forward * 0.5f);
+
+            BaseInventoryItem itemComponent = droppedItem.GetComponent<BaseInventoryItem>();
+            if(itemComponent != null && itemComponent.onDrop != null)
+            {
+                itemComponent.onDrop.Invoke();
+            }
         }
         
         inventoryItems.RemoveAt(index);

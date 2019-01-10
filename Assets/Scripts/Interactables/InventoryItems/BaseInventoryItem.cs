@@ -1,8 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BaseInventoryItem : BaseInteractable {
+
+    [System.Serializable]
+    public class InventoryItemCallback : UnityEvent { }
+
+    public InventoryItemCallback onDrop;
+    public bool deleteOnDrop = false;
 
     public InventoryItemType itemType;
 

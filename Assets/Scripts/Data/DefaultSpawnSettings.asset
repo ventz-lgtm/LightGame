@@ -65,3 +65,7 @@ MonoBehaviour:
     prefab: {fileID: 1164970590057830, guid: 4755f079313f6ac479b45ff38843ea3f, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
+  - chance: 90
+    prefab: {fileID: 1170055273800760, guid: 03f7367d04eadd24ebc24e4e6c03eb51, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
