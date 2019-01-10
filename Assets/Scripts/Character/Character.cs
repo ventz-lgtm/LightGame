@@ -45,7 +45,6 @@ public class Character : MonoBehaviour {
     AudioSource footStepSound;
 
     Animator playerAnimation;
-    AnimatorControllerParameter isRunning;
 
     private void Awake()
     {
