@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour {
     public float staggerDuration = 0.5f;
     public float staggerPause = 1f;
     public float waitUntilEscapeLight = 8f;
+    public float contactDamage = 0.2f;
     public GameObject particleObject;
 
     protected ParticleSystem particles;
@@ -60,6 +61,19 @@ public class Monster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (player)
+        {
+            Debug.Log(player.name);
+        }
+
+        if(Vector3.Distance(player.transform.position, gameObject.transform.position) <= 1.0f)
+        {
+            GameManager.instance.DamageSanity(contactDamage);
+            Destroy(gameObject);
+        }
+
+
         if (Time.time - lastGrowl > 18)
         {
             lastGrowl = Time.time;
