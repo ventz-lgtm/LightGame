@@ -11,7 +11,7 @@ public class Generator : BaseElectricInteractable {
     public Material onLightMaterial;
     public Material offLightMaterial;
 
-    public bool partProvided { get; private set; }
+    public bool partProvided;
 
     private GameObject lightObject;
     private Light generatorLight;

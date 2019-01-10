@@ -101,9 +101,12 @@ public class PrefabScatter : MonoBehaviour {
     public void SpawnItems()
     {
         RemoveItems();
+        if(settings == null) { return; }
 
         ScatterPrefabConfig[] prefabs = settings.prefabs;
         Random.InitState(seed);
+
+        if(prefabs == null) { return; }
 
         foreach (ScatterPrefabConfig cfg in prefabs)
         {

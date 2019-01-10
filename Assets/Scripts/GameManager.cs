@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
     public InventoryRecipe[] recipes;
 
     [Header("Audio")]
+    public bool playSounds = true;
     public float windVolume = 0.14f;
 
     [HideInInspector]
@@ -71,7 +73,10 @@ public class GameManager : MonoBehaviour {
             dangerLight = playerObject.transform.Find("DangerLight").GetComponent<Light>();
         }
 
-        audioListener = playerObject.GetComponent<AudioListener>();
+        if(playerObject != null)
+        {
+            audioListener = playerObject.GetComponent<AudioListener>();
+        }
 
         audioSources = GetComponents<AudioSource>();
         backgroundAmbience = audioSources[0];
@@ -85,6 +90,14 @@ public class GameManager : MonoBehaviour {
         windSource = audioSources[2];
         windSource.volume = 0f;
         windSource.Play();
+
+        if (!playSounds)
+        {
+            foreach(AudioSource source in audioSources)
+            {
+                source.volume = 0;
+            }
+        }
     }
 
     // Use this for initialization
@@ -103,18 +116,22 @@ public class GameManager : MonoBehaviour {
         // WIND SOUND //
         ////////////////
 
-        int layerMask = ~0;
-        RaycastHit hit;
-        if (Physics.Raycast(playerObject.transform.position + new Vector3(0,1,0), Vector3.up, out hit, 20, layerMask))
+        if (playerObject != null)
         {
-            windSourceVolume = windVolume * 0.15f * (1 - dangerLevel);
-        }
-        else
-        {
-            windSourceVolume = windVolume * (1 - dangerLevel);
-        }
+            int layerMask = ~0;
+            RaycastHit hit;
+            if (Physics.Raycast(playerObject.transform.position + new Vector3(0, 1, 0), Vector3.up, out hit, 20, layerMask))
+            {
+                windSourceVolume = windVolume * 0.15f * (1 - dangerLevel);
+            }
+            else
+            {
+                windSourceVolume = windVolume * (1 - dangerLevel);
+            }
 
-        windSource.volume = windSource.volume + ((windSourceVolume - windSource.volume) * 2f * Time.deltaTime);
+            windSource.volume = windSource.volume + ((windSourceVolume - windSource.volume) * 2f * Time.deltaTime);
+        }
+        if (!playSounds) { windSource.volume = 0f; }
 
         //////////////////
         // DANGER LIGHT //
@@ -126,9 +143,12 @@ public class GameManager : MonoBehaviour {
             minDistance = Mathf.Min(minDistance, Vector3.Distance(playerObject.transform.position, transform.GetChild(i).transform.position));
         }
 
-        float dangerLightPercentage = Mathf.Max(0, 3 - minDistance) / 3;
-        dangerLight.range = 8;
-        dangerLight.intensity = dangerLightPercentage * 0.38f;
+        if (dangerLight != null)
+        {
+            float dangerLightPercentage = Mathf.Max(0, 3 - minDistance) / 3;
+            dangerLight.range = 8;
+            dangerLight.intensity = dangerLightPercentage * 0.38f;
+        }
 
         /////////////////////
         // SANITY & DANGER //
@@ -182,6 +202,11 @@ public class GameManager : MonoBehaviour {
             }
         }
 	}
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 
     public float GetDangerLevel()
     {

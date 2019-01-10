@@ -58,6 +58,8 @@ public class FadeCameraObstruction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(GameManager.instance.playerObject == null) { return; }
+
         RaycastHit hit;
         int layerMask = ~0;
 

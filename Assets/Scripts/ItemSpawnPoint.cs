@@ -9,6 +9,8 @@ public class ItemSpawnPoint : MonoBehaviour {
 
     private void Start()
     {
+        if(GameManager.instance.playerObject == null) { return; }
+
         SpawnItem();
         Destroy(gameObject);
     }
