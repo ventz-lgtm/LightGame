@@ -279,6 +279,8 @@ public class GameManager : MonoBehaviour {
         int selection = Random.Range(0, total);
         total = 0;
 
+        Debug.Log("selection " + selection);
+
         foreach(MonsterPrefabType type in monsterPrefabs)
         {
             total += type.spawnChance;

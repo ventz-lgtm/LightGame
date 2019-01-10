@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HintPanel : MonoBehaviour {
 
+    
     private Text title;
     private Text text;
 
@@ -22,5 +23,13 @@ public class HintPanel : MonoBehaviour {
     public void SetText(string contents)
     {
         text.text = contents;
+
+        TextGenerator textGen = new TextGenerator();
+        TextGenerationSettings generationSettings = text.GetGenerationSettings(text.rectTransform.rect.size);
+
+        float height = textGen.GetPreferredHeight(contents, generationSettings);
+
+        RectTransform transform = GetComponent<RectTransform>();
+        transform.sizeDelta = new Vector2(transform.sizeDelta.x, height + 100);
     }
 }
