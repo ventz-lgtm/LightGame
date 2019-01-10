@@ -298,16 +298,13 @@ public class GameManager : MonoBehaviour {
         int selection = Random.Range(0, total);
         total = 0;
 
-        Debug.Log("selection " + selection);
-
         foreach(MonsterPrefabType type in monsterPrefabs)
         {
             total += type.spawnChance;
 
             if(total >= selection)
             {
-                MonsterPrefabType prefabType = monsterPrefabs[Mathf.Clamp(Random.Range(0, monsterPrefabs.Length), 0, monsterPrefabs.Length - 1)];
-                monsterPrefab = prefabType.prefab;
+                monsterPrefab = type.prefab;
                 GameObject monster = Instantiate(monsterPrefab);
 
                 return monster;
