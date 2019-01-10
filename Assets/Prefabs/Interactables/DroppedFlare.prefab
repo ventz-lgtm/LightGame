@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c963272b72de6e845a1e6b4bf90cf3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startActive: 1
+  startActive: 0
   interactableName: Flare
   tooltip: 
   textColor: {r: 1, g: 1, b: 1, a: 1}
