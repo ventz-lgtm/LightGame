@@ -94,15 +94,14 @@ public class Inventory : MonoBehaviour {
                 
                 torch = holdPosition.GetChild(0).Find("Bulb").GetComponent<Torchbehaviour>();
                 SetCurrentBatteryLife(torch);
-                if (Input.GetKeyDown(KeyCode.F) && holding)
+                if (Input.GetKeyDown(KeyCode.F))
                 {
                     torch.TurnOnLight();
                 }
 
-                if (Input.GetKeyDown(KeyCode.R) && batteryCount > 0 && holding)
+                if (Input.GetKeyDown(KeyCode.R))
                 {
                     torch.replaceBatteries();
-                    batteryCount--;
                 }
             }
         }

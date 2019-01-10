@@ -29,7 +29,6 @@ public class ChopTree : BaseInteractable {
         m_Canvas = Camera.main.GetComponentInChildren<Canvas>();
         chopping = false;
         treePosition = gameObject.transform.position;
-
         treeChopSound = GetComponent<AudioSource>();
     }
 

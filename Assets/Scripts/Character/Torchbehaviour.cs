@@ -21,6 +21,8 @@ public class Torchbehaviour : MonoBehaviour {
 
     AudioSource flashLightOnOff;
 
+    Character playerCharacter;
+
 	// Use this for initialization
 	void Start () {
         light = GetComponent<Light>();
@@ -28,6 +30,8 @@ public class Torchbehaviour : MonoBehaviour {
         currentLightIntenisity = maxLightIntensity;
 
         flashLightOnOff = GetComponent<AudioSource>();
+
+        playerCharacter = GameManager.instance.playerObject.GetComponent<Character>();
 	}
 
     
@@ -51,7 +55,11 @@ public class Torchbehaviour : MonoBehaviour {
     public void replaceBatteries()
     {
         hasBattery = true;
-        currentLightIntenisity = maxLightIntensity;
+        if (playerCharacter.GetInventoryItemCount("Battery") > 0)
+        {
+            playerCharacter.InventoryDrop("Battery", true);
+            currentLightIntenisity = maxLightIntensity;
+        }
     }
 
     public void TurnOnLight()
