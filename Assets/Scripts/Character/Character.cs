@@ -46,8 +46,7 @@ public class Character : MonoBehaviour {
     AudioSource footStepSound;
 
     Animator playerAnimation;
-    enum runDirection {IDLE, FORWARD,  BACKWARDS};
-    enum runLeftRight {IDLE, LEFT, RIGHT };
+    enum runDirection {IDLE, FORWARD, RIGHT, BACKWARDS, LEFT};
 
     private void Awake()
     {
@@ -123,24 +122,16 @@ public class Character : MonoBehaviour {
             {
                 playerAnimation.SetInteger("RunDirection", (int)runDirection.BACKWARDS);
             }
-            else
-            {
-                playerAnimation.SetInteger("RunDirection", (int)runDirection.IDLE);
-            }
 
-
-            if(dotRight >= 0.5f)
+            else if(dotRight >= 0.5f)
             {
-                playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.RIGHT);
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.RIGHT);
             }
             else if (dotRight <= -0.5f)
             {
-                playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.LEFT);
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.LEFT);
             }
-            else
-            {
-                playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.IDLE);
-            }
+
 
 
 
@@ -153,7 +144,6 @@ public class Character : MonoBehaviour {
                 footStepSound.Stop();
             }
             playerAnimation.SetInteger("RunDirection", (int)runDirection.IDLE);
-            playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.IDLE);
         }
 	}
 
