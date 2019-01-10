@@ -160,7 +160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1031294813629202}
   m_LocalRotation: {x: -0.50000006, y: -0.49999988, z: -0.4999999, w: 0.50000024}
-  m_LocalPosition: {x: -4.9, y: 0.26, z: -18.09}
+  m_LocalPosition: {x: 0.088736534, y: -24.734684, z: 81.459496}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4110371154596266}
@@ -279,7 +279,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 51e74b1a8f976cb438aafd80ae0a392d, type: 2}
+  - {fileID: 2100000, guid: 1e63207aa579c184b8f2c750bba337d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -400,6 +400,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  useSound: {fileID: 0}
   locationType: 1
   poweredMaterial: {fileID: 2100000, guid: eb77ca86a2b99c944ae844df5b464b83, type: 2}
   unpoweredMaterial: {fileID: 2100000, guid: 219534c0801107046bb514fcc4bb0047, type: 2}
@@ -413,6 +414,7 @@ MonoBehaviour:
   onColor: {r: 0, g: 1, b: 0, a: 1}
   onLightMaterial: {fileID: 2100000, guid: a84c48de1e34aee4e9e9b87d9e475274, type: 2}
   offLightMaterial: {fileID: 2100000, guid: 219534c0801107046bb514fcc4bb0047, type: 2}
+  partProvided: 0
 --- !u!198 &198414815454038178
 ParticleSystem:
   m_ObjectHideFlags: 1

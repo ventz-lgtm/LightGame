@@ -16,6 +16,10 @@ ModelImporter:
     100016: Generator
     100018: Generator 1 light 1
     100020: Generator 1 light 2
+    100022: Generator 5 light 1
+    100024: Generator 5 light 2
+    100026: Generator no box
+    100028: Group47574
     400000: Box200
     400002: Cylinder048
     400004: Cylinder049
@@ -27,6 +31,10 @@ ModelImporter:
     400016: Generator
     400018: Generator 1 light 1
     400020: Generator 1 light 2
+    400022: Generator 5 light 1
+    400024: Generator 5 light 2
+    400026: Generator no box
+    400028: Group47574
     2300000: Box200
     2300002: Cylinder048
     2300004: Cylinder049
@@ -36,6 +44,9 @@ ModelImporter:
     2300012: Generator
     2300014: Generator 1 light 1
     2300016: Generator 1 light 2
+    2300018: Generator 5 light 1
+    2300020: Generator 5 light 2
+    2300022: Generator no box
     3300000: Box200
     3300002: Cylinder048
     3300004: Cylinder049
@@ -45,6 +56,9 @@ ModelImporter:
     3300012: Generator
     3300014: Generator 1 light 1
     3300016: Generator 1 light 2
+    3300018: Generator 5 light 1
+    3300020: Generator 5 light 2
+    3300022: Generator no box
     4300000: Box200
     4300002: Cylinder048
     4300004: Cylinder049
@@ -54,6 +68,9 @@ ModelImporter:
     4300012: Generator 1 light 2
     4300014: Generator 1 light 1
     4300016: Generator
+    4300018: Generator 5 light 1
+    4300020: Generator 5 light 2
+    4300022: Generator no box
     9500000: //RootNode
   externalObjects:
   - first:

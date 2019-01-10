@@ -32,7 +32,7 @@ public class ItemSpawnPoint : MonoBehaviour {
             total += item.chance;
         }
 
-        int selection = Random.Range(0, total - 1);
+        int selection = Random.Range(0, total);
 
         total = 0;
         foreach(SpawnPointItem item in settings.items)

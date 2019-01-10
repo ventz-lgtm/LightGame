@@ -342,9 +342,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  useSound: {fileID: 0}
   itemType:
     name: Flare
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: e7fa1f709bfbe624c99f9017cfe5dc76, type: 3}
     instance: {fileID: 0}
   flareIntensity: 2
   flareRange: 8

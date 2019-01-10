@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("UI")]
     public GameObject hintPrefab;
+    public GameObject escapeMenuPanel;
 
     [HideInInspector]
     Dictionary<LocationType, bool> activatedLocations = new Dictionary<LocationType, bool>();
@@ -54,7 +55,6 @@ public class GameManager : MonoBehaviour {
     private Light dangerLight;
     private float lastLurker = 0;
     private GameObject hintPanel;
-    private bool gameOver = false;
 
     AudioSource[] audioSources;
     AudioSource backgroundAmbience;
@@ -110,141 +110,135 @@ public class GameManager : MonoBehaviour {
         lurkers = new ArrayList();
 
         Camera.main.farClipPlane = 30f;
-        gameOver = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        backgroundAmbience.volume = 0.2f * dangerLevel;
 
-        if (!gameOver)
+        if (Input.GetButtonDown("Pause"))
         {
-
-            backgroundAmbience.volume = 0.2f * dangerLevel;
-
-            ////////////////
-            // WIND SOUND //
-            ////////////////
-
-            if (playerObject != null)
+            if (escapeMenuPanel.activeSelf)
             {
-                int layerMask = ~0;
-                RaycastHit hit;
-                if (Physics.Raycast(playerObject.transform.position + new Vector3(0, 1, 0), Vector3.up, out hit, 20, layerMask))
-                {
-                    windSourceVolume = windVolume * 0.15f * (1 - dangerLevel);
-                }
-                else
-                {
-                    windSourceVolume = windVolume * (1 - dangerLevel);
-                }
-
-                windSource.volume = windSource.volume + ((windSourceVolume - windSource.volume) * 2f * Time.deltaTime);
+                escapeMenuPanel.SetActive(false);
             }
-            if (!playSounds) { windSource.volume = 0f; }
-
-            //////////////////
-            // DANGER LIGHT //
-            //////////////////
-
-            float minDistance = Mathf.Infinity;
-            for (int i = 0; i < transform.childCount; i++)
+            else
             {
-                minDistance = Mathf.Min(minDistance, Vector3.Distance(playerObject.transform.position, transform.GetChild(i).transform.position));
-            }
-
-            if (dangerLight != null)
-            {
-                float dangerLightPercentage = Mathf.Clamp((3 - minDistance) / 3, 0, 1);
-                dangerLight.range = 8;
-                dangerLight.intensity = dangerLightPercentage * 0.38f;
-
-                dangerLevel = Mathf.Max(dangerLevel, dangerLightPercentage);
-            }
-
-            /////////////
-            // LURKERS //
-            /////////////
-
-            if (Time.time - lastLurker > Mathf.Max(0.1f, 1 - dangerLevel) * 1)
-            {
-                lastLurker = Time.time;
-
-                foreach (LurkerPrefabType type in lurkerPrefabs)
-                {
-                    if (type.dangerThreshold < dangerLevel)
-                    {
-                        if (lurkers.Count >= maxLurkers) { break; }
-
-                        GameObject lurker = Instantiate(type.prefab);
-                        lurker.transform.position = PickMonsterSpawnLocation(Random.Range(8f, 15f));
-                        lurkers.Add(lurker);
-                    }
-                }
-            }
-
-            /////////////////////
-            // SANITY & DANGER //
-            /////////////////////
-
-            if (playerCharacter != null)
-            {
-                float lightLevel = playerCharacter.GetLightIntensity();
-
-                if (lightLevel <= 0.2f)
-                {
-                    sanity = Mathf.Clamp(sanity + (0.01f * Time.deltaTime), minimumSanity, 1f);
-                }
-                else
-                {
-                    sanity = Mathf.Clamp(sanity - (lightLevel * Time.deltaTime * 0.07f), minimumSanity, 1f);
-                }
-
-                float valueChange = (((1 - lightLevel) - 0.5f));
-                if (valueChange > 0)
-                {
-                    valueChange *= 0.02f;
-                }
-                else
-                {
-                    valueChange *= 0.06f;
-                }
-
-                sanityWhispers.volume = sanity;
-
-                dangerLevel = Mathf.Clamp(dangerLevel + valueChange * Time.deltaTime, 0, 1);
-
-                if (Time.time - lastMonsterTrySpawn > 1 && Time.time - lastMonsterSpawn > monsterSpawnCooldown && monsters.Count < maxMonsters)
-                {
-                    lastMonsterTrySpawn = Time.time;
-
-                    int chance = Random.Range(0, 100);
-                    float threshold = Mathf.Max(minMonsterSpawnChance, dangerLevel * 20);
-
-                    if (chance < threshold)
-                    {
-                        GameObject monster = SpawnMonster();
-                        if (monster != null)
-                        {
-                            monster.transform.position = PickMonsterSpawnLocation();
-                            monsters.Add(monster);
-                            monster.transform.parent = transform;
-                            lastMonsterSpawn = Time.time;
-                        }
-                    }
-                }
-            }
-            if(sanity >= 1.0f)
-            {
-                gameOver = true;
+                escapeMenuPanel.SetActive(true);
             }
         }
 
-        //////////////////////
-        // GameOver effects //
-        //////////////////////
-        else
-        {
+        ////////////////
+        // WIND SOUND //
+        ////////////////
 
+        if (playerObject != null)
+        {
+            int layerMask = ~0;
+            RaycastHit hit;
+            if (Physics.Raycast(playerObject.transform.position + new Vector3(0, 1, 0), Vector3.up, out hit, 20, layerMask))
+            {
+                windSourceVolume = windVolume * 0.15f * (1 - dangerLevel);
+            }
+            else
+            {
+                windSourceVolume = windVolume * (1 - dangerLevel);
+            }
+
+            windSource.volume = windSource.volume + ((windSourceVolume - windSource.volume) * 2f * Time.deltaTime);
+        }
+        if (!playSounds) { windSource.volume = 0f; }
+
+        //////////////////
+        // DANGER LIGHT //
+        //////////////////
+
+        float minDistance = Mathf.Infinity;
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            minDistance = Mathf.Min(minDistance, Vector3.Distance(playerObject.transform.position, transform.GetChild(i).transform.position));
+        }
+
+        if (dangerLight != null)
+        {
+            float dangerLightPercentage = Mathf.Clamp((3 - minDistance) / 3, 0, 1);
+            dangerLight.range = 8;
+            dangerLight.intensity = dangerLightPercentage * 0.38f;
+
+            dangerLevel = Mathf.Max(dangerLevel, dangerLightPercentage);
+        }
+
+        /////////////
+        // LURKERS //
+        /////////////
+
+        if(Time.time - lastLurker > Mathf.Max(0.1f, 1 - dangerLevel) * 1)
+        {
+            lastLurker = Time.time;
+
+            foreach(LurkerPrefabType type in lurkerPrefabs)
+            {
+                if(type.dangerThreshold < dangerLevel)
+                {
+                    if(lurkers.Count >= maxLurkers) { break; }
+
+                    GameObject lurker = Instantiate(type.prefab);
+                    lurker.transform.position = PickMonsterSpawnLocation(Random.Range(8f, 15f));
+                    lurkers.Add(lurker);
+                }
+            }
+        }
+
+        /////////////////////
+        // SANITY & DANGER //
+        /////////////////////
+
+        if (playerCharacter != null)
+        {
+            float lightLevel = playerCharacter.GetLightIntensity();
+
+            if(lightLevel <= 0.2f)
+            {
+                sanity = Mathf.Clamp(sanity + (0.01f * Time.deltaTime), minimumSanity, 1f);
+            }
+            else
+            {
+                sanity = Mathf.Clamp(sanity - (lightLevel * Time.deltaTime * 0.07f), minimumSanity, 1f);
+            }
+
+            float valueChange = (((1 - lightLevel) - 0.5f));
+            if(valueChange > 0)
+            {
+                valueChange *= 0.02f;
+            }
+            else
+            {
+                valueChange *= 0.06f;
+            }
+
+            sanityWhispers.volume = sanity;
+
+            dangerLevel = Mathf.Clamp(dangerLevel + valueChange * Time.deltaTime, 0, 1);
+
+            if(Time.time - lastMonsterTrySpawn > 1 && Time.time - lastMonsterSpawn > monsterSpawnCooldown && monsters.Count < maxMonsters)
+            {
+                lastMonsterTrySpawn = Time.time;
+
+                int chance = Random.Range(0, 100);
+                float threshold = Mathf.Max(minMonsterSpawnChance, dangerLevel * 20);
+
+                if (chance < threshold)
+                {
+                    GameObject monster = SpawnMonster();
+                    if(monster != null)
+                    {
+                        monster.transform.position = PickMonsterSpawnLocation();
+                        monsters.Add(monster);
+                        monster.transform.parent = transform;
+                        lastMonsterSpawn = Time.time;
+                    }
+                }
+            }
         }
 	}
 
@@ -370,6 +364,11 @@ public class GameManager : MonoBehaviour {
         HintPanel panelComponent = hintPanel.GetComponent<HintPanel>();
         panelComponent.SetTitle(title);
         panelComponent.SetText(text);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
 

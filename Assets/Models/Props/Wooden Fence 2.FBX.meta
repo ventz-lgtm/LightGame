@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: fa73e72914960a44daf1b9f1a17da997
+timeCreated: 1547149820
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Box221
+    100002: Box222
+    100004: Box223
+    100006: Box224
+    100008: Box225
+    100010: Box226
+    100012: Box227
+    100014: Box228
+    100016: Box229
+    100018: Box232
+    100020: Box233
+    100022: Box234
+    100024: Box235
+    100026: Box236
+    100028: Box237
+    100030: Box238
+    100032: //RootNode
+    400000: Box221
+    400002: Box222
+    400004: Box223
+    400006: Box224
+    400008: Box225
+    400010: Box226
+    400012: Box227
+    400014: Box228
+    400016: Box229
+    400018: Box232
+    400020: Box233
+    400022: Box234
+    400024: Box235
+    400026: Box236
+    400028: Box237
+    400030: Box238
+    400032: //RootNode
+    2300000: Box221
+    2300002: Box222
+    2300004: Box223
+    2300006: Box224
+    2300008: Box225
+    2300010: Box226
+    2300012: Box227
+    2300014: Box228
+    2300016: Box229
+    2300018: Box232
+    2300020: Box233
+    2300022: Box234
+    2300024: Box235
+    2300026: Box236
+    2300028: Box237
+    2300030: Box238
+    3300000: Box221
+    3300002: Box222
+    3300004: Box223
+    3300006: Box224
+    3300008: Box225
+    3300010: Box226
+    3300012: Box227
+    3300014: Box228
+    3300016: Box229
+    3300018: Box232
+    3300020: Box233
+    3300022: Box234
+    3300024: Box235
+    3300026: Box236
+    3300028: Box237
+    3300030: Box238
+    4300000: Box221
+    4300002: Box222
+    4300004: Box223
+    4300006: Box224
+    4300008: Box225
+    4300010: Box226
+    4300012: Box227
+    4300014: Box228
+    4300016: Box229
+    4300018: Box232
+    4300020: Box233
+    4300022: Box234
+    4300024: Box235
+    4300026: Box236
+    4300028: Box237
+    4300030: Box238
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: ac7ed2eeee49e684296bddc1f272603d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

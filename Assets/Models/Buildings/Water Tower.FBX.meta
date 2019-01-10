@@ -6,12 +6,26 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cylinder110
+    100004: WaterTower
     400000: //RootNode
+    400002: Cylinder110
+    400004: WaterTower
     2300000: //RootNode
+    2300002: Cylinder110
+    2300004: WaterTower
     3300000: //RootNode
+    3300002: Cylinder110
+    3300004: WaterTower
     4300000: WaterTower
+    4300002: Cylinder110
     9500000: //RootNode
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: ac7ed2eeee49e684296bddc1f272603d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

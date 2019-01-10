@@ -47,7 +47,6 @@ public class BaseInteractable : MonoBehaviour {
     
     protected virtual void Start()
     {
-
         pressed = false;
         meshRenderer = GetComponent<MeshRenderer>();
         meshFilter = GetComponent<MeshFilter>();
@@ -206,7 +205,7 @@ public class BaseInteractable : MonoBehaviour {
 
             textMesh.text = text;
 
-            if (hovered)
+            if (hovered && GameManager.instance.playerObject != null)
             {
                 textMeshAlpha = Mathf.Min(textMeshAlpha + (Time.deltaTime * textMeshFadeMultiplier), 1);
             }
