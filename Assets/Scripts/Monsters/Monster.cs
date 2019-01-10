@@ -61,12 +61,6 @@ public class Monster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (player)
-        {
-            Debug.Log(player.name);
-        }
-
         if(Vector3.Distance(player.transform.position, gameObject.transform.position) <= 1.0f)
         {
             GameManager.instance.DamageSanity(contactDamage);
