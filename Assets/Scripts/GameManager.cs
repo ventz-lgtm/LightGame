@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour {
     public int maxMonsters = 10;
     public float monsterSpawnCooldown = 10f;
     public int minMonsterSpawnChance = 10;
+    public int maxLurkers = 10;
     public MonsterPrefabType[] monsterPrefabs;
+    public LurkerPrefabType[] lurkerPrefabs;
     public GeneratorPart[] generatorParts;
 
     [Header("Crafting")]
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour {
     public float sanity { get; private set; }
     public float minimumSanity { get; private set; }
     public ArrayList monsters { get; private set; }
+    public ArrayList lurkers { get; private set; }
     public Character playerCharacter { get; private set; }
 
     private float lastMonsterSpawn = 0;
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour {
     private string notifyText = "";
     private float notifyAlpha = 0;
     private Light dangerLight;
+    private float lastLurker = 0;
 
     AudioSource[] audioSources;
     AudioSource backgroundAmbience;
@@ -104,6 +108,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         dangerLevel = 0;
         monsters = new ArrayList();
+        lurkers = new ArrayList();
 
         Camera.main.farClipPlane = 30f;
     }
@@ -145,9 +150,32 @@ public class GameManager : MonoBehaviour {
 
         if (dangerLight != null)
         {
-            float dangerLightPercentage = Mathf.Max(0, 3 - minDistance) / 3;
+            float dangerLightPercentage = Mathf.Clamp((3 - minDistance) / 3, 0, 1);
             dangerLight.range = 8;
             dangerLight.intensity = dangerLightPercentage * 0.38f;
+
+            dangerLevel = Mathf.Max(dangerLevel, dangerLightPercentage);
+        }
+
+        /////////////
+        // LURKERS //
+        /////////////
+
+        if(Time.time - lastLurker > Mathf.Max(0.1f, 1 - dangerLevel) * 1)
+        {
+            lastLurker = Time.time;
+
+            foreach(LurkerPrefabType type in lurkerPrefabs)
+            {
+                if(type.dangerThreshold < dangerLevel)
+                {
+                    if(lurkers.Count >= maxLurkers) { break; }
+
+                    GameObject lurker = Instantiate(type.prefab);
+                    lurker.transform.position = PickMonsterSpawnLocation(Random.Range(8f, 15f));
+                    lurkers.Add(lurker);
+                }
+            }
         }
 
         /////////////////////
@@ -228,12 +256,12 @@ public class GameManager : MonoBehaviour {
         Destroy(monster);
     }
 
-    public Vector3 PickMonsterSpawnLocation()
+    public Vector3 PickMonsterSpawnLocation(float distance = 0)
     {
         Vector3 location = playerObject.transform.position;
 
         float degree = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-        float distance = Random.Range(15f, 30f);
+        distance = distance == 0 ? Random.Range(15f, 30f) : distance;
 
         location += new Vector3(Mathf.Cos(degree), 0, Mathf.Sin(degree)) * distance;
 
@@ -314,6 +342,13 @@ public class MonsterPrefabType
     public GameObject prefab;
     public int spawnAfterSeconds = 0;
     public int spawnChance = 100;
+}
+
+[System.Serializable]
+public class LurkerPrefabType
+{
+    public GameObject prefab;
+    public float dangerThreshold = 0.5f;
 }
 
 [System.Serializable]

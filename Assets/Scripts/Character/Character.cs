@@ -280,13 +280,13 @@ public class Character : MonoBehaviour {
     public GameObject InventoryDrop(int index, bool dontDrop = false)
     {
         if(inventoryItems.Count <= index) { return null; }
-
+        
         InventoryItemType item = inventoryItems[index];
         if (item == null) { return null; }
 
         GameObject droppedItem = item.instance;
         if (droppedItem == null) { return null; }
-
+        
         if (dontDrop)
         {
             Destroy(droppedItem);

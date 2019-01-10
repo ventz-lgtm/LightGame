@@ -215,11 +215,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243437204383782426, guid: 7c490a06060f2ff429f4e1e29119f4b3,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 600759f8f8c7d4547ae3f92eceec7072, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -305,10 +305,14 @@ MonoBehaviour:
   maxMonsters: 10
   monsterSpawnCooldown: 5
   minMonsterSpawnChance: 10
+  maxLurkers: 10
   monsterPrefabs:
   - prefab: {fileID: 1631358026519248, guid: b3f8f4fc7f57a314c9f8c61a81a9aef3, type: 2}
     spawnAfterSeconds: 0
     spawnChance: 100
+  lurkerPrefabs:
+  - prefab: {fileID: 1722429925000360, guid: c8f7718dde99ae343af10c85eaf650d7, type: 2}
+    dangerThreshold: 0
   generatorParts:
   - name: Control Panel
     mesh: {fileID: 0}
@@ -337,4 +341,5 @@ MonoBehaviour:
     ingredients:
     - Stick
     - Cloth
-  windClip: {fileID: 0}
+  playSounds: 1
+  windVolume: 0.14
