@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class TrainControlBox : MonoBehaviour {
 
+    public static TrainControlBox instance;
+
     public Material offMaterial;
     public Material onMaterial;
 
     private MeshRenderer[] buttonRenderers;
     private Generator[] generators;
     private bool foundGenerators = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -49,5 +56,15 @@ public class TrainControlBox : MonoBehaviour {
 
         Generator g = generators[index];
         return g.IsPowered();
+    }
+
+    public bool FullyPowered()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (!IsGeneratorPowered(i)) { return false; }
+        }
+
+        return true;
     }
 }

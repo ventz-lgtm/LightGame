@@ -36,9 +36,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1476253865127554}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9, y: 0.69, z: 0.42}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.70710695, z: 0, w: 0.70710665}
+  m_LocalPosition: {x: -16.382996, y: 1.5646839, z: -0.0025577545}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,7 +83,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1476253865127554}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114629763821534166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,15 +95,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6431854f76c564d488992e3862b7f5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableName: Button
+  startActive: 0
+  interactableName: Start Train
   tooltip: A button, click it!
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  textMeshFadeMultiplier: 4
+  textTowardsCamera: 0
   idleMaterial: {fileID: 2100000, guid: 219534c0801107046bb514fcc4bb0047, type: 2}
   hoveredMaterial: {fileID: 2100000, guid: eb77ca86a2b99c944ae844df5b464b83, type: 2}
   pressedMaterial: {fileID: 2100000, guid: a84c48de1e34aee4e9e9b87d9e475274, type: 2}
+  touchActivates: 0
   interactableType: 0
   onInteractStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: StartTrain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onInteractEnd:
@@ -111,6 +127,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  useSound: {fileID: 0}
 --- !u!135 &135027746498383114
 SphereCollider:
   m_ObjectHideFlags: 1
