@@ -5,6 +5,8 @@ using UnityEngine;
 public class Monster : MonoBehaviour {
 
     public float visibleLightThreshold = 0.3f;
+    public bool avoidLight = true;
+    public float escapeAfterSeconds = 0;
 
     [Header("Movement")]
     public float moveSpeed = 0.5f;
@@ -27,6 +29,7 @@ public class Monster : MonoBehaviour {
     private float lastGrowl = 0;
     private float lastSurprise = 0;
     private float predictSample;
+    private float created = 0;
 
     AudioSource[] audioSources;
     AudioSource monsterSuprise;
@@ -52,6 +55,7 @@ public class Monster : MonoBehaviour {
         monsterSupriseClip2 = (AudioClip)Resources.Load("Audio/horror_sound_two");
 
         player = GameManager.instance.playerObject;
+        created = Time.time;
     }
 	
 	// Update is called once per frame
@@ -63,6 +67,11 @@ public class Monster : MonoBehaviour {
             {
                 StartCoroutine(GrowlAfterSeconds());
             }
+        }
+
+        if(escapeAfterSeconds > 0 && Time.time - created > escapeAfterSeconds)
+        {
+            escapingLight = true;
         }
 
         if (visible && !escapingLight && Time.time - lastSurprise > 30)
@@ -175,7 +184,7 @@ public class Monster : MonoBehaviour {
             }
         }
 
-        if (!escaping)
+        if (!escaping && avoidLight)
         {
             if (predictSample >= visibleLightThreshold - 0.05f)
             {

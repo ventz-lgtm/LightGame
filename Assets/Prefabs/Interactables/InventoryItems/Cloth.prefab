@@ -178,5 +178,5 @@ MonoBehaviour:
   useSound: {fileID: 8300000, guid: 3c207b4494131fa49a9e0ef4ecde29d5, type: 3}
   itemType:
     name: Cloth
-    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    icon: {fileID: 21300000, guid: 5cb1d09b4cd90914cb65d03a22c61d81, type: 3}
     instance: {fileID: 0}

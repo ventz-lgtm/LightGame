@@ -187,6 +187,8 @@ public class Fire : BaseInteractable {
         if (!holdingObject) { return ""; }
 
         PickUpItem pickup = holdingObject.GetComponent<PickUpItem>();
+        if(pickup == null) { return "NULL PICKUP"; }
+
         if (pickup.itemDefinition == PickUpItem.items.FIRE_TORCH) { return "Light Torch"; }
         
         return "";

@@ -310,6 +310,9 @@ MonoBehaviour:
   - prefab: {fileID: 1631358026519248, guid: b3f8f4fc7f57a314c9f8c61a81a9aef3, type: 2}
     spawnAfterSeconds: 0
     spawnChance: 100
+  - prefab: {fileID: 1775390767951324, guid: c3de476c789e9234bb62cd59a08e0278, type: 2}
+    spawnAfterSeconds: 0
+    spawnChance: 5
   lurkerPrefabs:
   - prefab: {fileID: 1722429925000360, guid: c8f7718dde99ae343af10c85eaf650d7, type: 2}
     dangerThreshold: 0
@@ -336,11 +339,35 @@ MonoBehaviour:
     pickupType: 7
   recipes:
   - name: Torch
-    icon: {fileID: 21300000, guid: a8ab10a405cc91d4db8fff9e05727735, type: 3}
+    icon: {fileID: 21300000, guid: 7e7c8f907095906498ed4b3eaceaf6b7, type: 3}
     prefab: {fileID: 1047933807099954, guid: 1fe6fd8c7c36c7a44b4b1e1f799c46e7, type: 2}
     ingredients:
     - Stick
     - Cloth
+  - name: Radiator
+    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    prefab: {fileID: 1985986182169152, guid: 7a633382a7e46714393a03b80c79893b, type: 2}
+    ingredients:
+    - Electrical Parts
+    - Mechanical Parts
+  - name: Exhaust
+    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    prefab: {fileID: 1177231729009212, guid: 1ef607b14326a7940a921bedfbb74998, type: 2}
+    ingredients:
+    - Electrical Parts
+    - Mechanical Parts
+  - name: Control Panel
+    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    prefab: {fileID: 1471889488849816, guid: 5e950484409f62d4294d3edcc4f0a7e2, type: 2}
+    ingredients:
+    - Electrical Parts
+    - Mechanical Parts
+  - name: Battery Charger
+    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    prefab: {fileID: 1365329461780218, guid: 99a610785ec081b4a9fd1a0cafeba044, type: 2}
+    ingredients:
+    - Electrical Parts
+    - Mechanical Parts
   playSounds: 1
   windVolume: 0.14
   hintPrefab: {fileID: 1159761605041300, guid: 9c4efb32201969548903fcb8c6747fb5, type: 2}

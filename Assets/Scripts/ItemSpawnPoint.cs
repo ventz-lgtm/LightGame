@@ -41,7 +41,7 @@ public class ItemSpawnPoint : MonoBehaviour {
 
             if(item.prefab == null) { continue; }
 
-            if(total > selection)
+            if(total >= selection)
             {
                 GameObject obj = Instantiate(item.prefab);
                 if(obj == null) { return null; }

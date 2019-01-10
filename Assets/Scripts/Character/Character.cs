@@ -12,6 +12,7 @@ public class Character : MonoBehaviour {
     public float cameraHeight = 10;
     public float movementDampen = 4;
     public GameObject visualObject;
+    public GameObject handObject;
 
     [Header("Camera")]
     public CameraMovementType cameraMovementType = CameraMovementType.QE;

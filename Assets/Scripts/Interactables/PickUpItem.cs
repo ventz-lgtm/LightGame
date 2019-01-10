@@ -10,6 +10,7 @@ public class PickUpItem : BaseInteractable {
     public bool aimable = false;
     public AudioClip holdableUseSound;
     public float holdableUseVolume = 0.1f;
+    public bool ignoreHandRotation = false;
 
     public Inventory playerHeld;
 

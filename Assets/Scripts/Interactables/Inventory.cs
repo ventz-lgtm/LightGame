@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour {
     public int maxBatteries;
 
     private bool holdingTorch;
+    private Character character;
 
     public int batteryPercent;
 
@@ -23,8 +24,10 @@ public class Inventory : MonoBehaviour {
     {
         if (!holding)
         {
+            GameObject handObject = character.handObject;
+
             pickUpObject.transform.SetParent(holdPosition);
-            pickUpObject.transform.position = holdPosition.transform.position;
+            pickUpObject.transform.position = handObject.transform.position;
             pickUpObject.transform.rotation = holdPosition.transform.rotation;
 
             Collider collider = pickUpObject.GetComponent<Collider>();
@@ -77,7 +80,7 @@ public class Inventory : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        character = GameManager.instance.playerObject.GetComponent<Character>();
 	}
 	
 	// Update is called once per frame
@@ -86,6 +89,17 @@ public class Inventory : MonoBehaviour {
         if (holding)
         {
             PickUpItem itemInHand = holdPosition.GetChild(0).GetComponent<PickUpItem>();
+
+            GameObject handObject = character.handObject;
+            rb_heldObject.gameObject.transform.position = handObject.transform.position - (handObject.transform.forward * 0.1f);
+            if (itemInHand.ignoreHandRotation)
+            {
+
+            }
+            else
+            {
+                rb_heldObject.gameObject.transform.rotation = handObject.transform.rotation;
+            }
 
             //If player is holding a torch
             if (itemInHand && itemInHand.getItemDefinition() == 0)

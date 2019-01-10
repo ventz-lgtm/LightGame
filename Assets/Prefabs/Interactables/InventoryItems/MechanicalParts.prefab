@@ -338,5 +338,5 @@ MonoBehaviour:
   useSound: {fileID: 0}
   itemType:
     name: Mechanical Parts
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 802f2f983155f364eb7a5b4b3930cd3a, type: 3}
     instance: {fileID: 0}

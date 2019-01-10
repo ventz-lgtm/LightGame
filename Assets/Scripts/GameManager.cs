@@ -270,15 +270,30 @@ public class GameManager : MonoBehaviour {
     {
         if(monsterPrefabs.Length == 0) { return null; }
 
-        if (monsterPrefab == null)
+        int total = 0;
+        foreach(MonsterPrefabType type in monsterPrefabs)
         {
-            MonsterPrefabType prefabType = monsterPrefabs[Mathf.Clamp(Random.Range(0, monsterPrefabs.Length - 1), 0, monsterPrefabs.Length - 1)];
-            monsterPrefab = prefabType.prefab;
+            total += type.spawnChance;
         }
 
-        GameObject monster = Instantiate(monsterPrefab);
+        int selection = Random.Range(0, total);
+        total = 0;
 
-        return monster;
+        foreach(MonsterPrefabType type in monsterPrefabs)
+        {
+            total += type.spawnChance;
+
+            if(total >= selection)
+            {
+                MonsterPrefabType prefabType = monsterPrefabs[Mathf.Clamp(Random.Range(0, monsterPrefabs.Length), 0, monsterPrefabs.Length - 1)];
+                monsterPrefab = prefabType.prefab;
+                GameObject monster = Instantiate(monsterPrefab);
+
+                return monster;
+            }
+        }
+
+        return null;
     }
 
     public bool IsLocationActive(LocationType type)

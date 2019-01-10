@@ -176,5 +176,5 @@ MonoBehaviour:
   useSound: {fileID: 8300000, guid: 3c207b4494131fa49a9e0ef4ecde29d5, type: 3}
   itemType:
     name: Stick
-    icon: {fileID: 21300000, guid: 8e94abb7c94e7c9448b40f02fa00e244, type: 3}
+    icon: {fileID: 21300000, guid: 05dfa352c6e299a478d27eb370e924bf, type: 3}
     instance: {fileID: 0}
