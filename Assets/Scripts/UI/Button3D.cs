@@ -46,8 +46,6 @@ public class Button3D : MonoBehaviour {
         transform.position = originalLocation + (new Vector3(0, Mathf.Sin(Time.time + timeOffset), 0) * 0.07f);
         transform.rotation = Quaternion.Euler(new Vector3(Mathf.Sin(Time.time + timeOffset) + Mathf.Cos(Time.time * 2) * mult, Mathf.Cos(Time.time * 1.5f) * mult, Mathf.Sin(Time.time * 3)) * mult);
 
-        Debug.Log(hovered);
-
         if (hovered)
         {
             meshRenderer.sharedMaterial = hoveredMaterial;

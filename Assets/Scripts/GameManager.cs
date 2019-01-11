@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour {
     public enum InventoryItem { STICK }
 
     public static GameManager instance;
+    public ItemSpawnPointSettings settings;
+
+    [Header("Spawn Settings")]
+    public SpawnPointItem[] spawnPointItems;
+    public ScatterPrefabConfig[] prefabScatter;
 
     [Header("Game")]
     public float darknessWarningThreshold = 0.5f;
@@ -179,7 +184,7 @@ public class GameManager : MonoBehaviour {
         // LURKERS //
         /////////////
 
-        if(Time.time - lastLurker > Mathf.Max(0.1f, 1 - dangerLevel) * 0.5f)
+        if(playerObject != null && Time.time - lastLurker > Mathf.Max(0.1f, 1 - dangerLevel) * 0.5f)
         {
             lastLurker = Time.time;
 
@@ -258,7 +263,7 @@ public class GameManager : MonoBehaviour {
         //////////////////////
         // GameOver effects //
         //////////////////////
-        else
+        else if(fadeToBlackInstance != null)
         {
             tempColor.a += 0.005f;
             fadeToBlackInstance.GetComponent<Image>().color = tempColor;

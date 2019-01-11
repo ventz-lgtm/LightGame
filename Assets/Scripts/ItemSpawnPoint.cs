@@ -5,20 +5,41 @@ using UnityEngine;
 public class ItemSpawnPoint : MonoBehaviour {
 
     public float spawnChance = 1f;
-    public ItemSpawnPointSettings settings;
+
+    private bool spawnedItem = false;
+    private SpawnPointItem[] items;
 
     private void Start()
     {
-        if(GameManager.instance.playerObject == null) { return; }
+        if(GameManager.instance.playerObject == null) { return; }       
+    }
 
-        SpawnItem();
-        Destroy(gameObject);
+    private void Update()
+    {
+        if(items == null)
+        {
+            if(GameManager.instance == null) { return; }
+
+            items = GameManager.instance.spawnPointItems;
+            return;
+        }
+
+        if (!spawnedItem)
+        {
+            SpawnItem();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public GameObject SpawnItem()
     {
-        if(settings == null) { return null; }
-        if(Random.Range(0f, 1f) > Mathf.Min(settings.maxSpawnChance, spawnChance)) { return null; }
+        /*if(Random.Range(0f, 1f) > Mathf.Min(0.1f, spawnChance)) {
+            spawnedItem = true;
+            return null;
+        }*/
 
         GameObject parent = GameObject.Find("SpawnedItems");
         if(parent == null)
@@ -27,7 +48,7 @@ public class ItemSpawnPoint : MonoBehaviour {
         }
 
         int total = 0;
-        foreach(SpawnPointItem item in settings.items)
+        foreach(SpawnPointItem item in items)
         {
             total += item.chance;
         }
@@ -35,7 +56,7 @@ public class ItemSpawnPoint : MonoBehaviour {
         int selection = Random.Range(0, total);
 
         total = 0;
-        foreach(SpawnPointItem item in settings.items)
+        foreach(SpawnPointItem item in items)
         {
             total += item.chance;
 
@@ -44,20 +65,23 @@ public class ItemSpawnPoint : MonoBehaviour {
             if(total >= selection)
             {
                 GameObject obj = Instantiate(item.prefab);
-                if(obj == null) { return null; }
+                if(obj == null) { Debug.Log(1); return null; }
                 obj.transform.position = transform.position + item.offset + new Vector3(0,0.6f,0);
                 obj.transform.rotation = Quaternion.Euler(item.rotation.x, item.rotation.y, item.rotation.z);
                 obj.transform.parent = parent.transform;
+
+                spawnedItem = true;
 
                 return obj;
             }
         }
 
+        Debug.Log(2);
         return null;
     }
 }
 
-[CreateAssetMenu]
+[CreateAssetMenuAttribute]
 public class ItemSpawnPointSettings : ScriptableObject
 {
     public float maxSpawnChance = 1f;

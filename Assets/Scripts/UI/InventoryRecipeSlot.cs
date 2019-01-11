@@ -69,7 +69,7 @@ public class InventoryRecipeSlot : MonoBehaviour {
 
     public void UpdateSlot()
     {
-        if (hasRecipe)
+        if (hasRecipe && image != null)
         {
             image.gameObject.SetActive(true);
             craftButton.gameObject.SetActive(true);
@@ -85,7 +85,7 @@ public class InventoryRecipeSlot : MonoBehaviour {
                 craftButton.interactable = false;
             }
         }
-        else
+        else if(image != null)
         {
             image.gameObject.SetActive(false);
             craftButton.gameObject.SetActive(false);

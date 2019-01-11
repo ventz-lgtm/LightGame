@@ -52,4 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnChance: 0.8
-  settings: {fileID: 11400000, guid: 2125f357e0f088a469fdf00a90191cdf, type: 2}
+  settings: {fileID: 11400000, guid: fdc5550de6d831f4aa28c0fdf2722747, type: 2}

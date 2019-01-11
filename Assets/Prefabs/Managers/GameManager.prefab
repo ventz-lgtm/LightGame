@@ -297,6 +297,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78399eb60b6152f4494b1061e7824491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  spawnPointItems:
+  - chance: 150
+    prefab: {fileID: 1522243455367144, guid: e6bcbee606ebaf84f8b497f257be8d1a, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 140
+    prefab: {fileID: 1206544553321428, guid: 5f6c30d6657578840aece571858a1124, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 170
+    prefab: {fileID: 1047933807099954, guid: 1fe6fd8c7c36c7a44b4b1e1f799c46e7, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 60
+    prefab: {fileID: 1043273078570018, guid: 1020c4819622b4346a17b091012d0ed2, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 35
+    prefab: {fileID: 1365329461780218, guid: 99a610785ec081b4a9fd1a0cafeba044, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 35
+    prefab: {fileID: 1471889488849816, guid: 5e950484409f62d4294d3edcc4f0a7e2, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 35
+    prefab: {fileID: 1177231729009212, guid: 1ef607b14326a7940a921bedfbb74998, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 35
+    prefab: {fileID: 1985986182169152, guid: 7a633382a7e46714393a03b80c79893b, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 140
+    prefab: {fileID: 1164970590057830, guid: 4755f079313f6ac479b45ff38843ea3f, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 200
+    prefab: {fileID: 1258652289979112, guid: 886d1dfc5e35f874eb4a59d28bc3e34f, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 150
+    prefab: {fileID: 1387813720447954, guid: 86627cf802492da47b690f1ff856781c, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 100
+    prefab: {fileID: 1824258608401338, guid: 395c9a04652727d4bb4745f90d481304, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 100
+    prefab: {fileID: 1136260990335320, guid: f645d8a0a00db064a9c83a75159c8e70, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  - chance: 80
+    prefab: {fileID: 1170055273800760, guid: 03f7367d04eadd24ebc24e4e6c03eb51, type: 2}
+    offset: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+  prefabScatter:
+  - prefab: {fileID: 1961604923457282, guid: 5f5bf186b75fce44886f73c242f20d9b, type: 2}
+    maxPerSegment: 4
+    minPerSegment: 4
+    radius: 5
+    addCollider: 0
+    scale: {x: 0, y: 0}
+    offset: {x: 0, y: 0, z: 0}
+    angle: {x: 0, y: 0, z: 0}
+    randomizePitch: {x: -10, y: 10}
+    randomizeYaw: {x: 0, y: 360}
+    randomizeRoll: {x: -10, y: 10}
+  - prefab: {fileID: 100000, guid: 037bb7baa26958d489d4a62ff44b887a, type: 3}
+    maxPerSegment: 2
+    minPerSegment: 2
+    radius: 0.2
+    addCollider: 0
+    scale: {x: 0, y: 0}
+    offset: {x: 0, y: 0.07, z: 0}
+    angle: {x: -90, y: 0, z: 0}
+    randomizePitch: {x: 0, y: 0}
+    randomizeYaw: {x: 0, y: 360}
+    randomizeRoll: {x: 0, y: 0}
+  - prefab: {fileID: 100000, guid: 3b12e75f305bebf4384c77dded666585, type: 3}
+    maxPerSegment: 1
+    minPerSegment: 1
+    radius: 0.2
+    addCollider: 0
+    scale: {x: 4, y: 6}
+    offset: {x: 0, y: 0.6, z: 0}
+    angle: {x: -90, y: 0, z: 0}
+    randomizePitch: {x: 0, y: 0}
+    randomizeYaw: {x: 0, y: 360}
+    randomizeRoll: {x: 0, y: 0}
   darknessWarningThreshold: 0.5
   darknessDeathThreshold: 0.2
   playerObject: {fileID: 0}
@@ -345,25 +437,25 @@ MonoBehaviour:
     - Stick
     - Cloth
   - name: Radiator
-    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    icon: {fileID: 21300000, guid: a37f920b8746f504fbfaa20ec6d2a931, type: 3}
     prefab: {fileID: 1985986182169152, guid: 7a633382a7e46714393a03b80c79893b, type: 2}
     ingredients:
     - Electrical Parts
     - Mechanical Parts
   - name: Exhaust
-    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    icon: {fileID: 21300000, guid: cbd8ff33bb3b35c49a06cee6dc40a23b, type: 3}
     prefab: {fileID: 1177231729009212, guid: 1ef607b14326a7940a921bedfbb74998, type: 2}
     ingredients:
     - Electrical Parts
     - Mechanical Parts
   - name: Control Panel
-    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    icon: {fileID: 21300000, guid: f88604f31d4b05346b30476b2a6f6d2c, type: 3}
     prefab: {fileID: 1471889488849816, guid: 5e950484409f62d4294d3edcc4f0a7e2, type: 2}
     ingredients:
     - Electrical Parts
     - Mechanical Parts
   - name: Battery Charger
-    icon: {fileID: 21300000, guid: c0f4c88dbe3310a47959dd0cdb142919, type: 3}
+    icon: {fileID: 21300000, guid: af0deab126b65ea4b9af2871005cd926, type: 3}
     prefab: {fileID: 1365329461780218, guid: 99a610785ec081b4a9fd1a0cafeba044, type: 2}
     ingredients:
     - Electrical Parts

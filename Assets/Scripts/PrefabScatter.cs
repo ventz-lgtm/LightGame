@@ -11,8 +11,7 @@ public class PrefabScatter : MonoBehaviour {
 
     public int seed = 1;
 
-    public ScatterPrefabSettings settings;
-
+    private ScatterPrefabConfig[] prefabScatter;
     private bool hasSpawned = false;
     private int lastSeed = 0;
     private GameObject playerObect;
@@ -20,11 +19,26 @@ public class PrefabScatter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        playerObect = GameManager.instance.playerObject;
+        
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {       
+        if (prefabScatter == null || prefabScatter.Length == 0)
+        {
+            if(GameManager.instance == null) { return; }
+            prefabScatter = GameManager.instance.prefabScatter;
+            return;
+        }
+
+        if(playerObect == null)
+        {
+            if(GameManager.instance == null) { return; }
+
+            playerObect = GameManager.instance.playerObject;
+            return;
+        }
+
         if (!Application.isPlaying)
         {
             Debug.DrawLine(transform.position, transform.position + new Vector3(width, 0, 0));
@@ -100,15 +114,13 @@ public class PrefabScatter : MonoBehaviour {
 
     public void SpawnItems()
     {
-        RemoveItems();
-        if(settings == null) { return; }
+        if(prefabScatter == null || prefabScatter.Length == 0) { return; }
 
-        ScatterPrefabConfig[] prefabs = settings.prefabs;
+        RemoveItems();
+
         Random.InitState(seed);
 
-        if(prefabs == null) { return; }
-
-        foreach (ScatterPrefabConfig cfg in prefabs)
+        foreach (ScatterPrefabConfig cfg in prefabScatter)
         {
             int amount = Random.Range(cfg.minPerSegment, cfg.maxPerSegment);
             amount = amount * (int)(width * 0.1f) * (int)(length * 0.1f);
@@ -207,10 +219,4 @@ public class ScatterPrefabConfig
     public Vector2 randomizePitch;
     public Vector2 randomizeYaw;
     public Vector2 randomizeRoll;
-}
-
-[CreateAssetMenu]
-public class ScatterPrefabSettings : ScriptableObject
-{
-    public ScatterPrefabConfig[] prefabs;
 }
