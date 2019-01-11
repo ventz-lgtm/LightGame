@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1145766516469052}
   m_LocalRotation: {x: 0.4525578, y: 0.392524, z: -0.23177877, w: 0.76641697}
   m_LocalPosition: {x: -0.00000025851955, y: 0.17500019, z: 0.00000008633206}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 4970696233809618}
   m_RootOrder: 1
@@ -125,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164970590057830}
   m_LocalRotation: {x: -0.0000002482921, y: 0.0022067644, z: -0.00000073808036, w: 0.99999756}
-  m_LocalPosition: {x: -0.24580003, y: -24.734674, z: 80.5799}
+  m_LocalPosition: {x: 1.0412259, y: -24.734684, z: 89.17021}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4328602079668102}
@@ -326,7 +326,14 @@ MonoBehaviour:
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   useSound: {fileID: 8300000, guid: 3c207b4494131fa49a9e0ef4ecde29d5, type: 3}
+  onDrop:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: BaseInventoryItem+InventoryItemCallback, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  deleteOnDrop: 0
   itemType:
     name: Battery
     icon: {fileID: 21300000, guid: d3102828845479a4b8aeadcb66960d18, type: 3}
+    deleteOnDrop: 0
     instance: {fileID: 0}

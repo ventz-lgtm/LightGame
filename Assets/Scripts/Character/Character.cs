@@ -359,11 +359,6 @@ public class Character : MonoBehaviour {
         GameObject droppedItem = item.instance;
         if (droppedItem == null) { return null; }
         
-        if (dontDrop || item.deleteOnDrop)
-        {
-            Destroy(droppedItem);
-        }
-        else
         {
             droppedItem.SetActive(true);
             droppedItem.transform.position = transform.position + (visualObject.transform.forward * 0.5f);
@@ -373,6 +368,11 @@ public class Character : MonoBehaviour {
             {
                 itemComponent.onDrop.Invoke();
             }
+        }
+
+        if (dontDrop || item.deleteOnDrop)
+        {
+            Destroy(droppedItem);
         }
         
         inventoryItems.RemoveAt(index);
