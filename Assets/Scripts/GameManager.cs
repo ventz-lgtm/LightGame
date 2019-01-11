@@ -287,9 +287,9 @@ public class GameManager : MonoBehaviour {
                 lastMonsterTrySpawn = Time.time;
 
                 int chance = Random.Range(0, 100);
-                float threshold = Mathf.Max(minMonsterSpawnChance, dangerLevel * 20);
+                float threshold = Mathf.Max(minMonsterSpawnChance, Mathf.Max(0.05f, dangerLevel) * 20);
 
-                if (chance < threshold)
+                if (chance <= threshold)
                 {
                     GameObject monster = SpawnMonster();
                     if(monster != null)

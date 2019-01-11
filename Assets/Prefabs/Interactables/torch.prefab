@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec48c5e6db4af74fba201d84fda88de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  torchLightDistance: 2.1
   maxLightIntensity: 5
   currentLightIntenisity: 10
   batteryDrain: 0.01

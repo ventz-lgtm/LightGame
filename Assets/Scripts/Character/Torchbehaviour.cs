@@ -5,6 +5,7 @@ using UnityEngine;
 public class Torchbehaviour : MonoBehaviour {
 
 
+    public float torchLightDistance = 1;
     //LightIntensity value between 0 and 8.
     public float maxLightIntensity;
     public float currentLightIntenisity;
@@ -116,7 +117,7 @@ public class Torchbehaviour : MonoBehaviour {
             Transform heldItem = playerInventory.GetHeldItem();
             if (heldItem == torchItem.gameObject.transform)
             {
-                glowObject.transform.position = transform.position + (transform.forward * 0.5f);
+                glowObject.transform.position = transform.position + (transform.forward * torchLightDistance);
             }
             else
             {
