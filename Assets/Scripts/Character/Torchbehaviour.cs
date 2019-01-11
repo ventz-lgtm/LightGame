@@ -116,7 +116,7 @@ public class Torchbehaviour : MonoBehaviour {
             Transform heldItem = playerInventory.GetHeldItem();
             if (heldItem == torchItem.gameObject.transform)
             {
-                glowObject.transform.position = transform.position + (transform.forward * 0.5f);
+                glowObject.transform.position = transform.position + (transform.forward * 2.0f);
             }
             else
             {
