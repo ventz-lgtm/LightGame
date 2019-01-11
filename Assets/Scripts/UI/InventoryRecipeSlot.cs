@@ -16,6 +16,7 @@ public class InventoryRecipeSlot : MonoBehaviour {
     private Text toolTipText;
     private Character character;
     private bool hovered = false;
+    private GameObject toolTipPanel;
 
     private void Start()
     {
@@ -25,7 +26,8 @@ public class InventoryRecipeSlot : MonoBehaviour {
         button = transform.Find("SlotButton").GetComponent<Button>();
         craftButton.onClick.AddListener(CraftItem);
         title = transform.Find("Label").GetComponent<Text>();
-        toolTipText = transform.parent.parent.Find("ToolTip").GetComponent<Text>();
+        toolTipPanel = transform.parent.parent.Find("ToolTip").gameObject;
+        toolTipText = toolTipPanel.transform.Find("Text").GetComponent<Text>();
         character = GameManager.instance.playerCharacter;
     }
 
@@ -34,12 +36,22 @@ public class InventoryRecipeSlot : MonoBehaviour {
         if (recipe != null && hovered)
         {
             toolTipText.text = GetRecipeText();
+
+            if (!toolTipPanel.activeSelf)
+            {
+                toolTipPanel.SetActive(true);
+            }
         }
         else
         {
             if(toolTipText.text == GetRecipeText())
             {
                 toolTipText.text = "";
+
+                if (toolTipPanel.activeSelf)
+                {
+                    toolTipPanel.SetActive(false);
+                }
             }
         }
     }

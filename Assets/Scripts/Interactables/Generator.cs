@@ -92,7 +92,7 @@ public class Generator : BaseElectricInteractable {
             PickUpItem currentItem = player.transform.Find("Visual").gameObject.transform.Find("HoldPosition").GetChild(0).GetComponent<PickUpItem>();
             
             bool success = ProvidePart(currentItem.itemDefinition);
-            Debug.Log(success);
+
             if (success)
             {
                 playerInventory.DestroyHeldItem();
@@ -108,10 +108,10 @@ public class Generator : BaseElectricInteractable {
         }
     }
 
-    public bool ProvidePart(PickUpItem.items itemType)
+    public bool ProvidePart(PickUpItem.items itemType, bool forcePower = false)
     {
         if (partProvided) { return false; }
-        if(itemType != requiredPart.pickupType) { return false; }
+        if(itemType != requiredPart.pickupType && !forcePower) { return false; }
 
         GameManager.instance.SetLocationActive(locationType, true);
         partProvided = true;

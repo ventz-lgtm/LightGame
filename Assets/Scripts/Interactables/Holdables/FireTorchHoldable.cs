@@ -44,7 +44,11 @@ public class FireTorchHoldable : PickUpItem {
         {
             fuelPercentage = Mathf.Max(0, fuelPercentage - (fuelUsage * Time.deltaTime));
         }
-        fireLight.gameObject.transform.position = transform.position + new Vector3(0, 1.5f, 0);
+
+        if(fireLight != null)
+        {
+            fireLight.gameObject.transform.position = transform.position + new Vector3(0, 1.5f, 0);
+        }
     }
 
     public void LateUpdate()

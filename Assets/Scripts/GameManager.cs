@@ -48,9 +48,12 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     Dictionary<LocationType, bool> activatedLocations = new Dictionary<LocationType, bool>();
 
+    [HideInInspector]
+    public float dangerLevelAudioMinimum = 0f;
     public float dangerLevel { get; private set; }
     public float sanity { get; private set; }
-    public float minimumSanity { get; private set; }
+    [HideInInspector]
+    public float minimumSanity;
     public ArrayList monsters { get; private set; }
     public ArrayList lurkers { get; private set; }
     public Character playerCharacter { get; private set; }
@@ -72,6 +75,7 @@ public class GameManager : MonoBehaviour {
     AudioSource backgroundAmbience;
     AudioSource windSource;
     AudioSource sanityWhispers;
+    AudioSource heartBeatSource;
 
     private float windSourceVolume = 0f;
 
@@ -106,6 +110,10 @@ public class GameManager : MonoBehaviour {
         windSource.volume = 0f;
         windSource.Play();
 
+        heartBeatSource = audioSources[3];
+        heartBeatSource.volume = 0f;
+        heartBeatSource.Play();
+
         if (!playSounds)
         {
             foreach(AudioSource source in audioSources)
@@ -122,11 +130,35 @@ public class GameManager : MonoBehaviour {
         lurkers = new ArrayList();
 
         Camera.main.farClipPlane = 30f;
+
+        if(ObjectiveUI.instance != null)
+        {
+            if(playerObject != null)
+            {
+                ObjectiveUI.instance.SetObjective("Escape Notwellit!");
+            }
+            else
+            {
+                ObjectiveUI.instance.gameObject.SetActive(false);
+            }
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        backgroundAmbience.volume = 0.2f * dangerLevel;
+        if (Input.GetButtonDown("GeneratorCheat"))
+        {
+            foreach(Generator generator in FindObjectsOfType<Generator>())
+            {
+                if(generator.locationType != LocationType.TOWN)
+                {
+                    generator.ProvidePart(PickUpItem.items.EXHAUST, true);
+                }
+            }
+        }
+
+        heartBeatSource.volume = dangerLevelAudioMinimum * 10;
+        backgroundAmbience.volume = 0.2f * Mathf.Max(dangerLevel, dangerLevelAudioMinimum);
 
         if (Input.GetButtonDown("Pause"))
         {
@@ -209,6 +241,18 @@ public class GameManager : MonoBehaviour {
         {
             float lightLevel = playerCharacter.GetLightIntensity();
 
+            Inventory inventory = playerCharacter.GetComponent<Inventory>();
+            Transform heldObject = inventory.GetHeldItem();
+            if (heldObject != null)
+            {
+                FireTorchHoldable item = heldObject.GetComponent<FireTorchHoldable>();
+                if(item != null && item.fireLightOn)
+                {
+                    lightLevel = Mathf.Max(lightLevel, item.fuelPercentage * 0.3f);
+                }
+                
+            }
+
             if(lightLevel <= 0.2f)
             {
                 sanity = Mathf.Clamp(sanity + (0.01f * Time.deltaTime), minimumSanity, 1f);
@@ -216,6 +260,11 @@ public class GameManager : MonoBehaviour {
             else
             {
                 sanity = Mathf.Clamp(sanity - (lightLevel * Time.deltaTime * 0.07f), minimumSanity, 1f);
+            }
+
+            if(lightLevel <= 0.4f)
+            {
+                sanity = Mathf.Max(0.01f, sanity);
             }
 
             float valueChange = (((1 - lightLevel) - 0.5f));
@@ -232,6 +281,7 @@ public class GameManager : MonoBehaviour {
 
             dangerLevel = Mathf.Clamp(dangerLevel + valueChange * Time.deltaTime, 0, 1);
 
+            
             if(Time.time - lastMonsterTrySpawn > 1 && Time.time - lastMonsterSpawn > monsterSpawnCooldown && monsters.Count < maxMonsters)
             {
                 lastMonsterTrySpawn = Time.time;
@@ -318,7 +368,7 @@ public class GameManager : MonoBehaviour {
         Vector3 location = playerObject.transform.position;
 
         float degree = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-        distance = distance == 0 ? Random.Range(15f, 30f) : distance;
+        distance = distance == 0 ? Random.Range(10f, 20f) : distance;
 
         location += new Vector3(Mathf.Cos(degree), 0, Mathf.Sin(degree)) * distance;
 
@@ -332,6 +382,8 @@ public class GameManager : MonoBehaviour {
         int total = 0;
         foreach(MonsterPrefabType type in monsterPrefabs)
         {
+            if(Time.time < type.spawnAfterSeconds) { continue; }
+
             total += type.spawnChance;
         }
 
@@ -340,6 +392,8 @@ public class GameManager : MonoBehaviour {
 
         foreach(MonsterPrefabType type in monsterPrefabs)
         {
+            if (Time.time < type.spawnAfterSeconds) { continue; }
+
             total += type.spawnChance;
 
             if(total >= selection)

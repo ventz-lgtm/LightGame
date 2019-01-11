@@ -8,15 +8,24 @@ public class Hint : MonoBehaviour {
     public string text = "Placeholder";
     public string title = "Hint";
     public float hintTime = 6;
+    public bool showHint = true;
+    [TextArea]
+    public string objective = "";
 
     private bool triggered = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!triggered && other.gameObject == GameManager.instance.playerObject)
+        if(showHint && !triggered && other.gameObject == GameManager.instance.playerObject)
         {
-            triggered = true;
             GameManager.instance.ShowHint(text, title);
         }
+
+        if(!triggered && objective != "" && ObjectiveUI.instance != null && other.gameObject == GameManager.instance.playerObject)
+        {
+            ObjectiveUI.instance.SetObjective(objective);
+        }
+
+        triggered = true;
     }
 }

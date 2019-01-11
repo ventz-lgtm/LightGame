@@ -16,6 +16,7 @@ public class Monster : MonoBehaviour {
     public float waitUntilEscapeLight = 8f;
     public float contactDamage = 0.2f;
     public GameObject particleObject;
+    public float dangerLevelAudioMinimum = 0f;
 
     protected ParticleSystem particles;
     private bool staggering = false;
@@ -61,7 +62,10 @@ public class Monster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Vector3.Distance(player.transform.position, gameObject.transform.position) <= 1.0f)
+        if(GameManager.instance.dangerLevelAudioMinimum < dangerLevelAudioMinimum) { }
+        GameManager.instance.dangerLevelAudioMinimum = dangerLevelAudioMinimum;
+
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) <= 1.0f)
         {
             GameManager.instance.DamageSanity(contactDamage);
             Destroy(gameObject);
@@ -146,7 +150,7 @@ public class Monster : MonoBehaviour {
     private void FixedUpdate()
     {
         visible = IsVisible();
-        Vector3 predictPosition = transform.position + (transform.forward * moveSpeed) + new Vector3(0, 0.5f, 0);
+        Vector3 predictPosition = transform.position + (transform.forward * Mathf.Min(1, moveSpeed)) + new Vector3(0, 0.5f, 0);
         predictSample = LightUtil.instance.SampleLightIntensity(predictPosition, false, gameObject);
 
         if (visible || stopped)
@@ -248,6 +252,11 @@ public class Monster : MonoBehaviour {
 
         if(Vector3.Distance(escapeLocation, transform.position) < 1)
         {
+            if(dangerLevelAudioMinimum >= GameManager.instance.dangerLevelAudioMinimum)
+            {
+                dangerLevelAudioMinimum = 0f;
+            }
+
             GameManager.instance.RemoveMonster(gameObject);
         }
     }

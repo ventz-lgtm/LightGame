@@ -569,7 +569,9 @@ MonoBehaviour:
   staggerDuration: 0.5
   staggerPause: 1
   waitUntilEscapeLight: 8
+  contactDamage: 0.2
   particleObject: {fileID: 1955158986044204}
+  dangerLevelAudioMinimum: 0.1
 --- !u!135 &135392272496902692
 SphereCollider:
   m_ObjectHideFlags: 1

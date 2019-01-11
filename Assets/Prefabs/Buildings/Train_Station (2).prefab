@@ -146,6 +146,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1202071129942090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4966058846244634}
+  - component: {fileID: 33764063422418260}
+  - component: {fileID: 65355449357719558}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1212503677779472
 GameObject:
   m_ObjectHideFlags: 1
@@ -345,7 +362,7 @@ GameObject:
   - component: {fileID: 33380862786932140}
   - component: {fileID: 65107975218461322}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1543,7 +1560,7 @@ Transform:
   m_Children:
   - {fileID: 4612826529878170}
   - {fileID: 4799641281674188}
-  - {fileID: 4784340488612442}
+  - {fileID: 4966058846244634}
   - {fileID: 4073204688904594}
   - {fileID: 4750712471964584}
   - {fileID: 4074263340627220}
@@ -1565,6 +1582,7 @@ Transform:
   - {fileID: 4410572163998624}
   - {fileID: 4431167367148630}
   - {fileID: 4923301832136788}
+  - {fileID: 4784340488612442}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1574,13 +1592,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1471715927707780}
-  m_LocalRotation: {x: -0.3826831, y: -0, z: -0, w: 0.92387974}
-  m_LocalPosition: {x: 0.06999, y: -0.00122, z: 0.7531}
-  m_LocalScale: {x: 0.021998389, y: 0.01, z: 0.02165515}
+  m_LocalRotation: {x: -0.9238802, y: -0, z: -0, w: 0.3826819}
+  m_LocalPosition: {x: -0.04362, y: -0.00124, z: 0.9366}
+  m_LocalScale: {x: 0.021998398, y: 0.010000002, z: 0.021655206}
   m_Children: []
   m_Father: {fileID: 4780986547719940}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -45.000004, y: 0, z: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: -135, y: 0, z: 0}
 --- !u!4 &4799641281674188
 Transform:
   m_ObjectHideFlags: 1
@@ -1718,6 +1736,19 @@ Transform:
   m_Father: {fileID: 4529857770782882}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4966058846244634
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202071129942090}
+  m_LocalRotation: {x: -0.3826831, y: -0, z: -0, w: 0.92387974}
+  m_LocalPosition: {x: 0.06999, y: -0.00122, z: 0.7531}
+  m_LocalScale: {x: 0.021998389, y: 0.01, z: 0.02165515}
+  m_Children: []
+  m_Father: {fileID: 4780986547719940}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -45.000004, y: 0, z: 0}
 --- !u!4 &4999582329284072
 Transform:
   m_ObjectHideFlags: 1
@@ -2605,6 +2636,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1683539375486960}
   m_Mesh: {fileID: 4300000, guid: 8b202a49e7658f74e8b7361d12a91742, type: 3}
+--- !u!33 &33764063422418260
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202071129942090}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33797984543906090
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -2940,6 +2978,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06273688, y: 0.06178378, z: 0.26431695}
   m_Center: {x: 0, y: 0.030891882, z: -0.000000037310446}
+--- !u!65 &65355449357719558
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202071129942090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65393445089477606
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4038,9 +4088,16 @@ MonoBehaviour:
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   useSound: {fileID: 0}
+  onDrop:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: BaseInventoryItem+InventoryItemCallback, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  deleteOnDrop: 0
   itemType:
     name: 
     icon: {fileID: 21300000, guid: e7fa1f709bfbe624c99f9017cfe5dc76, type: 3}
+    deleteOnDrop: 0
     instance: {fileID: 0}
   flareIntensity: 2
   flareRange: 8
@@ -4133,9 +4190,16 @@ MonoBehaviour:
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   useSound: {fileID: 8300000, guid: 3c207b4494131fa49a9e0ef4ecde29d5, type: 3}
+  onDrop:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: BaseInventoryItem+InventoryItemCallback, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  deleteOnDrop: 0
   itemType:
     name: Cloth
     icon: {fileID: 21300000, guid: 5cb1d09b4cd90914cb65d03a22c61d81, type: 3}
+    deleteOnDrop: 0
     instance: {fileID: 0}
 --- !u!114 &114751953547709936
 MonoBehaviour:
@@ -4170,9 +4234,16 @@ MonoBehaviour:
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   useSound: {fileID: 0}
+  onDrop:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: BaseInventoryItem+InventoryItemCallback, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  deleteOnDrop: 0
   itemType:
     name: 
     icon: {fileID: 21300000, guid: e7fa1f709bfbe624c99f9017cfe5dc76, type: 3}
+    deleteOnDrop: 0
     instance: {fileID: 0}
   flareIntensity: 2
   flareRange: 8
@@ -4210,9 +4281,16 @@ MonoBehaviour:
     m_TypeName: BaseInteractable+InteractableEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   useSound: {fileID: 8300000, guid: 3c207b4494131fa49a9e0ef4ecde29d5, type: 3}
+  onDrop:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: BaseInventoryItem+InventoryItemCallback, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  deleteOnDrop: 0
   itemType:
     name: Stick
     icon: {fileID: 21300000, guid: 05dfa352c6e299a478d27eb370e924bf, type: 3}
+    deleteOnDrop: 0
     instance: {fileID: 0}
 --- !u!114 &114785695342124090
 MonoBehaviour:

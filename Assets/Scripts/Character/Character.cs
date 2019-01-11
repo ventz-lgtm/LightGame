@@ -93,7 +93,6 @@ public class Character : MonoBehaviour {
             {
                 if (intensity < 0.2f)
                 {
-                    Debug.Log("hint");
                     darknessHintDone = true;
                     GameManager.instance.ShowHint("Stay in the light.\n\nWandering into darkness reduces your sanity and exposes you to monsters!", "The Darkness");
                 }
@@ -107,6 +106,7 @@ public class Character : MonoBehaviour {
         {
             if (!footStepSound.isPlaying)
             {
+                footStepSound.pitch = 1.5f;
                 footStepSound.Play();
             }
 

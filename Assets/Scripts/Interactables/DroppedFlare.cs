@@ -70,7 +70,7 @@ public class DroppedFlare : BaseInventoryItem {
             }
 
             float volumeDistance = 8f;
-            flareSounds.volume = Mathf.Clamp(initialVolume * ((volumeDistance - Vector3.Distance(transform.position, GameManager.instance.playerObject.transform.position)) / volumeDistance), 0, initialVolume);
+            flareSounds.volume = 0.3f * Mathf.Clamp(initialVolume * ((volumeDistance - Vector3.Distance(transform.position, GameManager.instance.playerObject.transform.position)) / volumeDistance), 0, initialVolume);
             
             if (flareLight)
             {

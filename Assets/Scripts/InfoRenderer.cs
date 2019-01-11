@@ -39,6 +39,10 @@ public class InfoRenderer : MonoBehaviour
             rect = new Rect(0, 75, w, (h * 2 / 100));
             text = string.Format("Sanity: {0}", GameManager.instance.sanity);
             GUI.Label(rect, text, style);
+
+            rect = new Rect(0, 100, w, (h * 2 / 100));
+            text = string.Format("Monsters: {0}", GameManager.instance.monsters.Count);
+            GUI.Label(rect, text, style);
         }
     }
 }

@@ -660,7 +660,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631358026519248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20709705, y: -24.734684, z: 81.36033}
+  m_LocalPosition: {x: 6.942852, y: -25.734684, z: 59.14527}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4590681012207384}
@@ -1243,14 +1243,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibleLightThreshold: 0.4
   avoidLight: 1
-  escapeAfterSeconds: 0
-  moveSpeed: 0.5
+  escapeAfterSeconds: 30
+  moveSpeed: 2.5
   staggerMovement: 0
   staggerDuration: 0.5
   staggerPause: 1
   waitUntilEscapeLight: 8
   contactDamage: 0.2
   particleObject: {fileID: 1894020490793142}
+  dangerLevelAudioMinimum: 0
 --- !u!137 &137035346369587354
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

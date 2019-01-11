@@ -315,19 +315,19 @@ MonoBehaviour:
     prefab: {fileID: 1043273078570018, guid: 1020c4819622b4346a17b091012d0ed2, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
-  - chance: 35
+  - chance: 20
     prefab: {fileID: 1365329461780218, guid: 99a610785ec081b4a9fd1a0cafeba044, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
-  - chance: 35
+  - chance: 20
     prefab: {fileID: 1471889488849816, guid: 5e950484409f62d4294d3edcc4f0a7e2, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
-  - chance: 35
+  - chance: 20
     prefab: {fileID: 1177231729009212, guid: 1ef607b14326a7940a921bedfbb74998, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
-  - chance: 35
+  - chance: 20
     prefab: {fileID: 1985986182169152, guid: 7a633382a7e46714393a03b80c79893b, type: 2}
     offset: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
@@ -403,8 +403,8 @@ MonoBehaviour:
     spawnAfterSeconds: 0
     spawnChance: 100
   - prefab: {fileID: 1775390767951324, guid: c3de476c789e9234bb62cd59a08e0278, type: 2}
-    spawnAfterSeconds: 0
-    spawnChance: 5
+    spawnAfterSeconds: 100
+    spawnChance: 10
   lurkerPrefabs:
   - prefab: {fileID: 1722429925000360, guid: c8f7718dde99ae343af10c85eaf650d7, type: 2}
     dangerThreshold: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   - name: Control Panel
     mesh: {fileID: 0}
     material: {fileID: 0}
-    generatorMesh: {fileID: 4300010, guid: cae1782fb15efad469e6ddef063e459d, type: 3}
+    generatorMesh: {fileID: 4300016, guid: cae1782fb15efad469e6ddef063e459d, type: 3}
     pickupType: 4
   - name: Battery Charger
     mesh: {fileID: 0}
@@ -422,12 +422,12 @@ MonoBehaviour:
   - name: Exhaust
     mesh: {fileID: 0}
     material: {fileID: 0}
-    generatorMesh: {fileID: 4300010, guid: de74fb3490398454f81273c746a0f99b, type: 3}
+    generatorMesh: {fileID: 4300016, guid: de74fb3490398454f81273c746a0f99b, type: 3}
     pickupType: 6
   - name: Radiator
     mesh: {fileID: 0}
     material: {fileID: 0}
-    generatorMesh: {fileID: 4300010, guid: 106a5ef221f87e345accd4d4c73c45a1, type: 3}
+    generatorMesh: {fileID: 4300016, guid: 106a5ef221f87e345accd4d4c73c45a1, type: 3}
     pickupType: 7
   recipes:
   - name: Torch
