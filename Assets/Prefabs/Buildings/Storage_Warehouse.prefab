@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 4411590413272980}
   - component: {fileID: 33712380913668634}
   - component: {fileID: 23517247049062346}
+  - component: {fileID: 64372210989270368}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -343,6 +344,7 @@ GameObject:
   - component: {fileID: 4668826149407264}
   - component: {fileID: 33097261252742124}
   - component: {fileID: 23649328191124496}
+  - component: {fileID: 64150098499883682}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -3104,6 +3106,20 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 5efaf593391555941a1ea23618587c16, type: 3}
+--- !u!64 &64150098499883682
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282643735491336}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 7bf7c3ed9f76e1d4d87b59085dded580, type: 3}
 --- !u!64 &64164720333576956
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -3160,6 +3176,20 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300012, guid: 5efaf593391555941a1ea23618587c16, type: 3}
+--- !u!64 &64372210989270368
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1141496555194128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 7bf7c3ed9f76e1d4d87b59085dded580, type: 3}
 --- !u!64 &64390168837950906
 MeshCollider:
   m_ObjectHideFlags: 1

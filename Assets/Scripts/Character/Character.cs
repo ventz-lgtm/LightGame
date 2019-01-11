@@ -115,9 +115,16 @@ public class Character : MonoBehaviour {
 
             float dotRight = Vector3.Dot(visualObject.transform.right, velNormal);
 
+            if (dotRight >= 0.5f)
+            {
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.RIGHT);
+            }
+            else if (dotRight <= -0.5f)
+            {
+                playerAnimation.SetInteger("RunDirection", (int)runDirection.LEFT);
+            }
 
-
-            if (dotForward >= 0.5f)
+            else if (dotForward >= 0.5f)
             {
                 playerAnimation.SetInteger("RunDirection", (int)runDirection.FORWARD);
             }
@@ -126,14 +133,7 @@ public class Character : MonoBehaviour {
                 playerAnimation.SetInteger("RunDirection", (int)runDirection.BACKWARDS);
             }
 
-            else if(dotRight >= 0.5f)
-            {
-                playerAnimation.SetInteger("RunDirection", (int)runDirection.RIGHT);
-            }
-            else if (dotRight <= -0.5f)
-            {
-                playerAnimation.SetInteger("RunDirection", (int)runDirection.LEFT);
-            }
+           
 
             Transform transform = inv.GetHeldItem();
             GameObject heldObject = transform != null ? transform.gameObject : null;
