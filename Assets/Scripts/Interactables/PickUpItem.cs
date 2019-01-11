@@ -34,6 +34,8 @@ public class PickUpItem : BaseInteractable {
         pickupSoundSource.clip = pickupSound;
         pickupSoundSource.volume = 1.0f;
 
+        if(GameManager.instance.playerObject == null) { return; }
+
         playerHeld = GameManager.instance.playerObject.GetComponent<Inventory>();
         if (!playerHeld)
         {

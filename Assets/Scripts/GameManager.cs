@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour {
 
         audioSources = GetComponents<AudioSource>();
         backgroundAmbience = audioSources[0];
-        backgroundAmbience.volume = 0.2f;
+        backgroundAmbience.volume = 1f;
 
         sanityWhispers = audioSources[1];
         sanityWhispers.volume = 0.0f;
@@ -159,6 +159,11 @@ public class GameManager : MonoBehaviour {
 
         heartBeatSource.volume = dangerLevelAudioMinimum * 10;
         backgroundAmbience.volume = 0.2f * Mathf.Max(dangerLevel, dangerLevelAudioMinimum);
+        
+        if(playerObject == null)
+        {
+            backgroundAmbience.volume = 0.3f;
+        }
 
         if (Input.GetButtonDown("Pause"))
         {

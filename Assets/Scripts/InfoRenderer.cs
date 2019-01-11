@@ -12,6 +12,8 @@ public class InfoRenderer : MonoBehaviour
 
     void OnGUI()
     {
+        if (true) { return; }
+
         int w = Screen.width, h = Screen.height;
 
         GUIStyle style = new GUIStyle();

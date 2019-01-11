@@ -43,6 +43,8 @@ public class Torchbehaviour : MonoBehaviour {
             glowObject = glowTransform.gameObject;
         }
 
+        if(GameManager.instance.playerObject == null) { return; }
+
         playerInventory = GameManager.instance.playerObject.GetComponent<Inventory>();
         currentLightIntenisity = maxLightIntensity;
 
