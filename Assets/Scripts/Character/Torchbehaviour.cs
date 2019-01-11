@@ -12,7 +12,10 @@ public class Torchbehaviour : MonoBehaviour {
     public int maxBatteries;
     public int batteryCount;
     private int batteryPercent;
-    Light light;
+    Light directionalLight;
+    Light glowLight;
+    Vector3 glowPosition;
+    GameObject glowObject;
 
     Inventory playerInventory;
 
@@ -20,26 +23,39 @@ public class Torchbehaviour : MonoBehaviour {
     public bool hasBattery;
 
     AudioSource flashLightOnOff;
+    PickUpItem torchItem;
 
     Character playerCharacter;
 
 	// Use this for initialization
 	void Start () {
-        light = GetComponent<Light>();
+        directionalLight = GetComponent<Light>();
+        Transform glowTransform = transform.Find("GlowArea");
+        if(glowTransform != null)
+        {
+            glowLight = glowTransform.GetComponent<Light>();
+
+        }
+
+        if(glowTransform != null)
+        {
+            glowObject = glowTransform.gameObject;
+        }
+
         playerInventory = GameManager.instance.playerObject.GetComponent<Inventory>();
         currentLightIntenisity = maxLightIntensity;
 
         flashLightOnOff = GetComponent<AudioSource>();
 
         playerCharacter = GameManager.instance.playerObject.GetComponent<Character>();
-	}
+
+        torchItem = transform.parent.GetComponent<PickUpItem>();
+
+    }
 
     
-
-    /*public int GetBatteryCount()
-    {
-        return batteryCount;
-    }*/
+    
+    
 
     public int GetMaxBatteries()
     {
@@ -75,20 +91,47 @@ public class Torchbehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
-
         if (torchOn)
         {
             currentLightIntenisity -= (batteryDrain / maxLightIntensity) * Time.deltaTime * 10;
-            light.intensity = currentLightIntenisity;
-            if(light.intensity <= 0.0)
+            directionalLight.intensity = currentLightIntenisity;
+            glowLight.intensity = currentLightIntenisity *0.25f;
+            if(directionalLight.intensity <= 0.0)
             {
                 hasBattery = false;
             }
+
+            /*RaycastHit hit;
+            Ray downRay = new Ray(gameObject.transform.position , Vector3.down);
+
+            if(Physics.Raycast(downRay, out hit))
+            {
+                Debug.Log(hit.distance);
+                Vector3 localForward = transform.rotation * Vector3.up;
+                //gameObject.transform.position = gameObject.transform.forward + new Vector3(0, 0, hit.distance * gameObject.transform.forward.magnitude);
+                glowObject.transform.position = gameObject.transform.position - transform.InverseTransformVector(new Vector3(hit.distance, 0, hit.distance));
+                //glowObject.transform.position = Transform.Translate(gameObject.transform.position,new Vector3(0, 0, hit.distance)); gameObject.transform.position + new Vector3(0, 0, hit.distance);
+            }*/
+
+            Transform heldItem = playerInventory.GetHeldItem();
+            if (heldItem == torchItem.gameObject.transform)
+            {
+                glowObject.transform.position = transform.position + (transform.forward * 0.5f);
+            }
+            else
+            {
+                glowObject.transform.position = transform.position;
+            }
+            
         }
         else
         {
-            light.intensity = 0.0f;
+            directionalLight.intensity = 0.0f;
+            if(glowLight != null)
+            {
+                glowLight.intensity = 0.0f;
+            }
+            
         }
 	}
 }
