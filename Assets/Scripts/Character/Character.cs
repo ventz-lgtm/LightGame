@@ -47,7 +47,8 @@ public class Character : MonoBehaviour {
     AudioSource footStepSound;
 
     Animator playerAnimation;
-    enum runDirection {IDLE, FORWARD, RIGHT, BACKWARDS, LEFT};
+    enum runForwardBack {IDLE, FORWARD, BACKWARDS};
+    enum runLeftRight { IDLE, LEFT, RIGHT};
 
     private void Awake()
     {
@@ -115,22 +116,30 @@ public class Character : MonoBehaviour {
 
             float dotRight = Vector3.Dot(visualObject.transform.right, velNormal);
 
-            if (dotRight >= 0.5f)
+            if (dotRight >= 0.4f)
             {
-                playerAnimation.SetInteger("RunDirection", (int)runDirection.RIGHT);
+                playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.RIGHT);
             }
-            else if (dotRight <= -0.5f)
+            else if (dotRight <= -0.4f)
             {
-                playerAnimation.SetInteger("RunDirection", (int)runDirection.LEFT);
+                playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.LEFT);
+            }
+            else
+            {
+                playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.IDLE);
             }
 
-            else if (dotForward >= 0.5f)
+            if (dotForward >= 0.4f)
             {
-                playerAnimation.SetInteger("RunDirection", (int)runDirection.FORWARD);
+                playerAnimation.SetInteger("RunForwardBack", (int)runForwardBack.FORWARD);
             }
-            else if (dotForward <= -0.5f)
+            else if (dotForward <= -0.4f)
             {
-                playerAnimation.SetInteger("RunDirection", (int)runDirection.BACKWARDS);
+                playerAnimation.SetInteger("RunForwardBack", (int)runForwardBack.BACKWARDS);
+            }
+            else
+            {
+                playerAnimation.SetInteger("RunForwardBack", (int)runForwardBack.IDLE);
             }
 
            
@@ -153,7 +162,8 @@ public class Character : MonoBehaviour {
 
             if (!holding)
             {
-                playerAnimation.SetInteger("RunDirection", (int)runDirection.FORWARD);
+                playerAnimation.SetInteger("RunForwardBack", (int)runForwardBack.FORWARD);
+                playerAnimation.SetInteger("RunLeftRight", (int)runLeftRight.IDLE);
             }
         }
         else
@@ -162,7 +172,8 @@ public class Character : MonoBehaviour {
             {
                 footStepSound.Stop();
             }
-            playerAnimation.SetInteger("RunDirection", (int)runDirection.IDLE);
+            playerAnimation.SetInteger("RunForwardBack", (int)runForwardBack.IDLE);
+            playerAnimation.SetInteger("RunLeftRight",(int)runLeftRight.IDLE);
         }
 	}
 
